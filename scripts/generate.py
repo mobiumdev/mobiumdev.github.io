@@ -173,6 +173,7 @@ Every command takes these.
 | --- | --- |
 """ + "\n".join(rows) + "\n")
         extra = json.loads((ROOT / "examples/cli-extra.json").read_text())
+        self.no_picture = json.loads((ROOT / "examples/no-picture.json").read_text())
         for name, h in self.cli.items():
             self.cli_page(base, name, h, extra.get(name, []))
 
@@ -216,14 +217,22 @@ Every command takes these.
         for e in extra:
             n += 1
             out.append(f"### {e['title']}\n\n```sh\n{e['cli']}\n```\n")
+            if e.get("image"):
+                alt = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", e["caption"]).replace("`", "")
+                out.append(f"\n![{cell(alt)}]({e['image']})\n\n*{e['caption']}*\n")
         if h["examples"]:
             out.append(("### More, from `mobium " + name + " --help`\n\n" if n else "") + "```sh\n" + h["examples"] + "\n```\n")
         elif not n:
             raise SystemExit(f"mobium {name} has no example: add one to examples/cli-extra.json")
+        pics = self.other_pictures(tool) if tool else ""
+        if pics:
+            out.append("## On a device\n" + pics)
+        if not pics and not any(o.lstrip().startswith("![") or "\n![" in o or "| ![" in o for o in out):
+            why = self.no_picture.get(name.replace(" ", "-"))
+            if not why:
+                raise SystemExit(f"mobium {name} has no picture and no reason in examples/no-picture.json")
+            out.append(f"*No screenshot: {why}*\n")
         if tool:
-            pics = self.other_pictures(tool)
-            if pics:
-                out.append("## On a device\n" + pics)
             out.append(f"## The tool\n\n`{name}` calls [`{tool}`](/reference/mcp/{slug(tool)}); "
                        "its arguments and what every client calls it are there.\n")
         write(base / f"{name.replace(' ', '-')}.md", "\n".join(out))

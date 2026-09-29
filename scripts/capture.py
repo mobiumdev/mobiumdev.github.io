@@ -34,6 +34,17 @@ def settings_root():
     return [f"terminate {SETTINGS}", f"launch {SETTINGS}"]
 
 
+def cleared_shade():
+    """The shade emptied first, so a picture of it shows this run's
+    notifications and no earlier session's. "?" lets a step fail: with
+    nothing in the shade there is no Clear all to tap."""
+    return ["notifications --shade open", "?tap 'text=Clear all'", "?notifications --shade close"]
+
+
+def gesture(name):
+    return app_screen("Gestures") + [f"tap 'text={name}'"]
+
+
 def app_screen(name):
     return [f"terminate {APP}", f"launch {APP}", f"tap 'text={name}'"]
 
@@ -45,8 +56,8 @@ PLAN = [
     dict(tool="app_devices", i=0),
     dict(tool="app_launch", i=0, setup=[f"terminate {SETTINGS}"], after=True),
     dict(tool="app_map", i=0, setup=settings_root(), after=True),
-    dict(tool="app_text", i=0, setup=settings_root()),
-    dict(tool="app_find", i=0, setup=settings_root()),
+    dict(tool="app_text", i=0, setup=settings_root(), after=True),
+    dict(tool="app_find", i=0, setup=settings_root(), after=True),
     dict(tool="app_current", i=0),
     dict(tool="app_state", i=0),
     dict(tool="app_tap", i=0, setup=settings_root(), before=True, after=True),
@@ -54,8 +65,8 @@ PLAN = [
     dict(tool="app_swipe", i=0, setup=settings_root(), before=True, after=True),
     dict(tool="app_batch", i=0, setup=settings_root(), files={"steps.json": "steps"}, after=True),
     dict(tool="app_press", i=1, setup=settings_root(), after=True),
-    dict(tool="app_press", i=0, setup=settings_root() + ["tap 'text=Network & internet'"]),
-    dict(tool="app_terminate", i=0, setup=[f"launch {SETTINGS}"]),
+    dict(tool="app_press", i=0, setup=settings_root() + ["tap 'text=Network & internet'"], before=True, after=True),
+    dict(tool="app_terminate", i=0, setup=[f"launch {SETTINGS}"], before=True, after=True),
     dict(tool="app_appearance", i=0, setup=settings_root(), after=True, restore=["appearance light"]),
     dict(tool="app_orientation", i=0, setup=settings_root(), after=True, restore=["orientation portrait"]),
     dict(tool="app_screen", i=0),
@@ -64,7 +75,7 @@ PLAN = [
     dict(tool="app_accessibility", i=0),
     dict(tool="app_accessibility", i=1, setup=settings_root(), after=True,
          restore=["accessibility bold_text off"]),
-    dict(tool="app_notifications", i=0),
+    dict(tool="app_notifications", i=0, setup=cleared_shade()),
     dict(tool="app_notifications", i=1, after=True, restore=["notifications --shade close"]),
     dict(tool="app_check", i=0, setup=app_screen("Form Demo"), before=True, after=True),
     dict(tool="app_wait_for", i=2, setup=app_screen("Form Demo") + ["check testid=termsCheck"]),
@@ -80,27 +91,67 @@ PLAN = [
          setup=["terminate org.wikipedia", "locale org.wikipedia ja-JP"], after=True,
          restore=["locale org.wikipedia ''", "terminate org.wikipedia"]),
     dict(tool="app_screenshot", i=0, setup=settings_root(), shot_from="screen.png"),
-    dict(tool="app_clipboard", i=0),
+    dict(tool="app_clipboard", i=0, setup=settings_root(), after=True, pause=0.5),
     dict(tool="app_clipboard", i=1),
-    dict(tool="app_location", i=0),
+    dict(tool="app_location", i=0, setup=[f"grant {APP} location"] + app_screen("Location Demo"), after=True,
+         pause=3.0, restore=[f"reset-permissions {APP}"]),
     dict(tool="app_location", i=1),
-    dict(tool="app_timezone", i=0, restore=["timezone {timezone}"]),
+    dict(tool="app_timezone", i=0, setup=settings_root() + ["scroll-to text=System", "tap text=System", "tap 'text=Date & time'",
+                                                   "wait 'text=Time zone'"],
+         before=True, after=True, pause=2.0, restore=["timezone {timezone}"]),
     dict(tool="app_time", i=0),
     dict(tool="app_battery", i=0),
-    dict(tool="app_network", i=0, restore=["network --reset"]),
+    dict(tool="app_network", i=0, setup=settings_root() + ["tap 'text=Network & internet'"], before=True, after=True,
+         pause=2.0, restore=["network --reset"]),
     dict(tool="app_network", i=1, restore=["network --reset"]),
     dict(tool="app_dialogs", i=0),
     dict(tool="app_dialogs", i=1),
-    dict(tool="app_sms", i=0),
-    dict(tool="app_call", i=0),
+    dict(tool="app_sms", i=0, setup=cleared_shade() + settings_root(), after=True, pause=2.0),
+    dict(tool="app_call", i=0, after=True, pause=2.0),
     dict(tool="app_call", i=1),
     dict(tool="app_background", i=0, setup=settings_root()),
     dict(tool="app_shake", i=0),
-    dict(tool="app_zoom", i=0, setup=settings_root()),
+    dict(tool="app_zoom", i=0, setup=gesture("Pinch and Spread"), before=True, after=True),
     dict(tool="app_record", i=0, setup=settings_root()),
     dict(tool="app_record", i=1, setup=["swipe up"]),
     dict(tool="app_list_apps", i=0),
-    dict(tool="app_contexts", i=0, setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back"]),
+    dict(tool="app_contexts", i=0, setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back"],
+         after=True),
+    # Gestures, each on the MobiumApp screen that reports what it received.
+    dict(tool="app_tap", i=None, cmd="double-tap testid=pressTarget", setup=gesture("Tap and Press"),
+         before=True, after=True),
+    dict(tool="app_long_press", i=None, cmd="long-press testid=pressTarget", setup=gesture("Tap and Press"),
+         before=True, after=True),
+    dict(tool="app_drag", i=None, cmd="drag 'label=Drag source' 'label=Drop zone'", setup=gesture("Drag"),
+         before=True, after=True),
+    dict(tool="app_rotate", i=None, cmd="rotate 90", setup=gesture("Rotate") + ["wait text=Back"],
+         before=True, after=True, pause=2.0),
+    dict(tool="app_press_tap", i=None, cmd="press-tap 'label=Hold zone' 'label=Act zone'",
+         setup=gesture("Multi-Touch"), after=True),
+    dict(tool="app_press_drag", i=None, cmd="press-drag 'label=Hold zone' 'label=Act zone' 'label=Drag end'",
+         setup=gesture("Multi-Touch"), after=True),
+    # Reading and writing a field, on the Login Demo.
+    dict(tool="app_type", i=None, cmd="type testid=username mobium", setup=app_screen("Login Demo"),
+         before=True, after=True),
+    dict(tool="app_wait_for", i=None,
+         cmd="wait testid=loginError --for text --text 'Incorrect username or password.'",
+         setup=app_screen("Login Demo") + ["fill testid=username mobium", "fill testid=password wrongpass1",
+                                          "keyboard --hide", "tap testid=loginBtn"], after=True),
+    # A WebView's content, on MobiumApp's plain page.
+    dict(tool="app_eval", i=None, cmd="eval document.title",
+         setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back", "context WEBVIEW_dev.mobium.mobiumapp"],
+         after=True, restore=["context NATIVE_APP"]),
+    # The rest of the WebView tools, on the same page.
+    dict(tool="app_context", i=None, cmd="context WEBVIEW_dev.mobium.mobiumapp",
+         setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back"], after=True,
+         restore=["context NATIVE_APP"]),
+    dict(tool="app_cookies", i=0,
+         setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back", "context WEBVIEW_dev.mobium.mobiumapp"],
+         after=True, restore=["context NATIVE_APP"]),
+    dict(tool="app_check", i=None, cmd="uncheck testid=termsCheck",
+         setup=app_screen("Form Demo") + ["check testid=termsCheck"], before=True, after=True),
+    dict(tool="app_open_url", i=None, cmd="open https://en.wikipedia.org/wiki/Mobile_app",
+         setup=["terminate org.wikipedia"], after=True, pause=3.0, restore=["terminate org.wikipedia"]),
     dict(tool="app_session", i=0),
     dict(tool="app_session", i=1),
 ]
@@ -148,12 +199,16 @@ def main():
             continue
         key = f"{tool}[{i}]" if i is not None else f"{tool}:{p['cmd']}"
         for s in p.get("setup", []):
-            mobium(s)
+            if s.startswith("?"):
+                mobium(s[1:], check=False)
+            else:
+                mobium(s)
         for fname, what in p.get("files", {}).items():
             (work / fname).write_text(json.dumps(canon[tool][i]["args"][what], indent=2) + "\n")
         entry = {"tool": tool, "index": i}
+        stem = f"{tool}-{i}" if i is not None else f"{tool}-{re.sub(r'[^a-z0-9]+', '-', p['cmd'].lower()).strip('-')[:40]}"
         if p.get("before"):
-            entry["before"] = shot(f"{tool}-{i if i is not None else 'x'}-before")
+            entry["before"] = shot(f"{stem}-before")
         cmd = p.get("cmd") or canon[tool][i]["cli"]
         shown = cmd if p.get("cmd") is None else "mobium " + cmd
         run = cmd.removeprefix("mobium ") if p.get("cmd") is None else cmd
@@ -167,8 +222,8 @@ def main():
             out = "\n".join(l for l in out.splitlines() if l.startswith("emulator-"))
         entry.update(command=shown, verbatim=p.get("cmd") is None, exit=r.returncode, output=out)
         if p.get("after"):
-            time.sleep(1.0)
-            entry["after"] = shot(f"{tool}-{i if i is not None else 'x'}-after")
+            time.sleep(p.get("pause", 1.0))
+            entry["after"] = shot(f"{stem}-after")
         if p.get("shot_from"):
             entry["after"] = save(work / p["shot_from"], f"{tool}-{i}-after")
         for s in p.get("restore", []):

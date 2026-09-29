@@ -22,7 +22,7 @@
   "command": "mobium map",
   "verbatim": true,
   "exit": 0,
-  "output": "@e1 settings_homepage_container (list)\n@e2 Profile picture, double tap to open Google Account (button)\n@e3 Search settings (button)\n@e4 main_content_scrollable_container (list)\n@e5 Network & internet Mobile, Wi‑Fi, hotspot (button)\n@e6 Connected devices Bluetooth, pairing (button)\n@e7 Apps Assistant, recent apps, default apps (button)\n@e8 Notifications Notification history, conversations (button)\n@e9 Battery 100% (button)\n@e10 Storage 51% used - 7.86 GB free (button)\n@e11 Sound & vibration Volume, haptics, Do Not Disturb (button)",
+  "output": "@e1 settings_homepage_container (list)\n@e2 Profile picture, double tap to open Google Account (button)\n@e3 Search settings (button)\n@e4 main_content_scrollable_container (list)\n@e5 Network & internet Mobile, Wi‑Fi, hotspot (button)\n@e6 Connected devices Bluetooth, pairing (button)\n@e7 Apps Assistant, recent apps, default apps (button)\n@e8 Notifications Notification history, conversations (button)\n@e9 Battery 100% (button)\n@e10 Storage 51% used - 7.85 GB free (button)\n@e11 Sound & vibration Volume, haptics, Do Not Disturb (button)",
   "after": "/img/shots/app_map-0-after.jpg"
  },
  "app_text[0]": {
@@ -31,7 +31,8 @@
   "command": "mobium text",
   "verbatim": true,
   "exit": 0,
-  "output": "Profile picture, double tap to open Google Account\nSettings\nSearch settings\nNetwork & internet\nMobile, Wi‑Fi, hotspot\nConnected devices\nBluetooth, pairing\nApps\nAssistant, recent apps, default apps\nNotifications\nNotification history, conversations\nBattery\n100%\nStorage\n51% used - 7.86 GB free\nSound & vibration\nVolume, haptics, Do Not Disturb"
+  "output": "Profile picture, double tap to open Google Account\nSettings\nSearch settings\nNetwork & internet\nMobile, Wi‑Fi, hotspot\nConnected devices\nBluetooth, pairing\nApps\nAssistant, recent apps, default apps\nNotifications\nNotification history, conversations\nBattery\n100%\nStorage\n51% used - 7.85 GB free\nSound & vibration\nVolume, haptics, Do Not Disturb",
+  "after": "/img/shots/app_text-0-after.jpg"
  },
  "app_find[0]": {
   "tool": "app_find",
@@ -39,7 +40,8 @@
   "command": "mobium find role=button",
   "verbatim": true,
   "exit": 0,
-  "output": "@e2 Profile picture, double tap to open Google Account (button)\n@e3 Search settings (button)\n(no ref)  [53,599][200,736]\n@e5 Network & internet Mobile, Wi‑Fi, hotspot (button)\n@e6 Connected devices Bluetooth, pairing (button)\n@e7 Apps Assistant, recent apps, default apps (button)\n@e8 Notifications Notification history, conversations (button)\n@e9 Battery 100% (button)\n@e10 Storage 51% used - 7.86 GB free (button)\n@e11 Sound & vibration Volume, haptics, Do Not Disturb (button)"
+  "output": "@e2 Profile picture, double tap to open Google Account (button)\n@e3 Search settings (button)\n(no ref)  [53,599][200,736]\n@e5 Network & internet Mobile, Wi‑Fi, hotspot (button)\n@e6 Connected devices Bluetooth, pairing (button)\n@e7 Apps Assistant, recent apps, default apps (button)\n@e8 Notifications Notification history, conversations (button)\n@e9 Battery 100% (button)\n@e10 Storage 51% used - 7.85 GB free (button)\n@e11 Sound & vibration Volume, haptics, Do Not Disturb (button)",
+  "after": "/img/shots/app_find-0-after.jpg"
  },
  "app_current[0]": {
   "tool": "app_current",
@@ -83,7 +85,7 @@
   "command": "mobium swipe up",
   "verbatim": true,
   "exit": 0,
-  "output": "swiped up: (540,1680) to (540,720)",
+  "output": "swiped up: (540,1584) to (540,679)",
   "after": "/img/shots/app_swipe-0-after.jpg"
  },
  "app_batch[0]": {
@@ -92,7 +94,7 @@
   "command": "mobium batch steps.json",
   "verbatim": true,
   "exit": 0,
-  "output": "1. app_tap: tapped text=Network & internet at (407, 867)\n2. app_wait_for: text=Internet is visible after 1.283s — @e3 Internet AndroidWifi (button)",
+  "output": "1. app_tap: tapped text=Network & internet at (407, 867)\n2. app_wait_for: text=Internet is visible after 1.222s — @e3 Internet AndroidWifi (button)",
   "after": "/img/shots/app_batch-0-after.jpg"
  },
  "app_press[1]": {
@@ -107,18 +109,22 @@
  "app_press[0]": {
   "tool": "app_press",
   "index": 0,
+  "before": "/img/shots/app_press-0-before.jpg",
   "command": "mobium press back",
   "verbatim": true,
   "exit": 0,
-  "output": "pressed back"
+  "output": "pressed back",
+  "after": "/img/shots/app_press-0-after.jpg"
  },
  "app_terminate[0]": {
   "tool": "app_terminate",
   "index": 0,
+  "before": "/img/shots/app_terminate-0-before.jpg",
   "command": "mobium terminate com.android.settings",
   "verbatim": true,
   "exit": 0,
-  "output": "terminated com.android.settings"
+  "output": "terminated com.android.settings",
+  "after": "/img/shots/app_terminate-0-after.jpg"
  },
  "app_appearance[0]": {
   "tool": "app_appearance",
@@ -153,7 +159,7 @@
   "verbatim": false,
   "exit": 0,
   "output": "small-phone — 720x1520px @320dpi = 360x760dp (sw360dp) — overriding 1080x2400px @420dpi\nThis is an override. Call app_screen with profile=\"reset\" to put the device back.",
-  "after": "/img/shots/app_screen-x-after.jpg"
+  "after": "/img/shots/app_screen-screen-small-phone-after.jpg"
  },
  "app_accessibility[0]": {
   "tool": "app_accessibility",
@@ -178,7 +184,7 @@
   "command": "mobium notifications --post \"Your code is 123456\"",
   "verbatim": true,
   "exit": 0,
-  "output": "android  Set a screen lock — For added security, set a PIN, pattern, or password for this device.\ncom.google.android.dialer  Missed calls — 3 missed calls\ncom.google.android.dialer  Missed call — Missed call\ncom.google.android.dialer  Missed call — Missed call\ncom.google.android.dialer  Missed call — Missed call\nandroid  Serial console enabled — Performance is impacted. To disable, check bootloader.\ncom.android.shell  Mobium — Your code is 123456"
+  "output": "android  Serial console enabled — Performance is impacted. To disable, check bootloader.\ncom.android.shell  Mobium — Your code is 123456"
  },
  "app_notifications[1]": {
   "tool": "app_notifications",
@@ -186,7 +192,7 @@
   "command": "mobium notifications --shade open",
   "verbatim": true,
   "exit": 0,
-  "output": "com.android.shell  Mobium — Your code is 123456\nandroid  Set a screen lock — For added security, set a PIN, pattern, or password for this device.\ncom.google.android.dialer  Missed calls — 3 missed calls\ncom.google.android.dialer  Missed call — Missed call\ncom.google.android.dialer  Missed call — Missed call\ncom.google.android.dialer  Missed call — Missed call\nandroid  Serial console enabled — Performance is impacted. To disable, check bootloader.",
+  "output": "com.android.shell  Mobium — Your code is 123456\nandroid  Serial console enabled — Performance is impacted. To disable, check bootloader.",
   "after": "/img/shots/app_notifications-1-after.jpg"
  },
  "app_check[0]": {
@@ -205,7 +211,7 @@
   "command": "mobium wait testid=termsCheck --for checked --timeout 5s",
   "verbatim": true,
   "exit": 0,
-  "output": "testid=termsCheck is checked after 13ms — @e3 Accept terms (checkbox, checked)"
+  "output": "testid=termsCheck is checked after 18ms — @e3 Accept terms (checkbox, checked)"
  },
  "app_fill:fill testid=username mobium": {
   "tool": "app_fill",
@@ -214,7 +220,7 @@
   "verbatim": false,
   "exit": 0,
   "output": "typed \"mobium\" into testid=username",
-  "after": "/img/shots/app_fill-x-after.jpg"
+  "after": "/img/shots/app_fill-fill-testid-username-mobium-after.jpg"
  },
  "app_keyboard[0]": {
   "tool": "app_keyboard",
@@ -259,7 +265,7 @@
   "verbatim": false,
   "exit": 0,
   "output": "launched org.wikipedia",
-  "after": "/img/shots/app_locale-x-after.jpg"
+  "after": "/img/shots/app_locale-launch-org-wikipedia-after.jpg"
  },
  "app_screenshot[0]": {
   "tool": "app_screenshot",
@@ -267,7 +273,7 @@
   "command": "mobium screenshot -o screen.png",
   "verbatim": true,
   "exit": 0,
-  "output": "saved …/screen.png (154010 bytes)",
+  "output": "saved …/screen.png (153875 bytes)",
   "after": "/img/shots/app_screenshot-0-after.jpg"
  },
  "app_clipboard[0]": {
@@ -276,7 +282,8 @@
   "command": "mobium clipboard \"hello there\"",
   "verbatim": true,
   "exit": 0,
-  "output": "wrote \"hello there\" to the clipboard — Android cannot read it back, so this is the write reported as sent. Paste into a field to see it"
+  "output": "wrote \"hello there\" to the clipboard — Android cannot read it back, so this is the write reported as sent. Paste into a field to see it",
+  "after": "/img/shots/app_clipboard-0-after.jpg"
  },
  "app_clipboard[1]": {
   "tool": "app_clipboard",
@@ -292,7 +299,8 @@
   "command": "mobium location 51.5074 -0.1278",
   "verbatim": true,
   "exit": 0,
-  "output": "the device is at 51.507400,-0.127800, injected and read back"
+  "output": "the device is at 51.507400,-0.127800, injected and read back",
+  "after": "/img/shots/app_location-0-after.jpg"
  },
  "app_location[1]": {
   "tool": "app_location",
@@ -305,10 +313,12 @@
  "app_timezone[0]": {
   "tool": "app_timezone",
   "index": 0,
+  "before": "/img/shots/app_timezone-0-before.jpg",
   "command": "mobium timezone Asia/Tokyo",
   "verbatim": true,
   "exit": 0,
-  "output": "Asia/Tokyo (was America/Los_Angeles)"
+  "output": "Asia/Tokyo (was America/Los_Angeles)",
+  "after": "/img/shots/app_timezone-0-after.jpg"
  },
  "app_time[0]": {
   "tool": "app_time",
@@ -316,7 +326,7 @@
   "command": "mobium time",
   "verbatim": true,
   "exit": 0,
-  "output": "2026-09-28T22:41:34.460-07:00 America/Los_Angeles"
+  "output": "2026-09-29T01:27:21.511-07:00 America/Los_Angeles"
  },
  "app_battery[0]": {
   "tool": "app_battery",
@@ -329,10 +339,12 @@
  "app_network[0]": {
   "tool": "app_network",
   "index": 0,
+  "before": "/img/shots/app_network-0-before.jpg",
   "command": "mobium network --offline",
   "verbatim": true,
   "exit": 0,
-  "output": "offline (airplane mode)"
+  "output": "offline (airplane mode)",
+  "after": "/img/shots/app_network-0-after.jpg"
  },
  "app_network[1]": {
   "tool": "app_network",
@@ -364,7 +376,8 @@
   "command": "mobium sms \"Your code is 123456\" --from 5559876",
   "verbatim": true,
   "exit": 0,
-  "output": "delivered a message from 5559876"
+  "output": "delivered a message from 5559876",
+  "after": "/img/shots/app_sms-0-after.jpg"
  },
  "app_call[0]": {
   "tool": "app_call",
@@ -372,7 +385,8 @@
   "command": "mobium call --number 5551234",
   "verbatim": true,
   "exit": 0,
-  "output": "ringing a call from 5551234"
+  "output": "ringing a call from 5551234",
+  "after": "/img/shots/app_call-0-after.jpg"
  },
  "app_call[1]": {
   "tool": "app_call",
@@ -401,10 +415,12 @@
  "app_zoom[0]": {
   "tool": "app_zoom",
   "index": 0,
+  "before": "/img/shots/app_zoom-0-before.jpg",
   "command": "mobium zoom in",
   "verbatim": true,
   "exit": 0,
-  "output": "pinched in about the screen at (540, 1200), fingers 160 to 640px apart — the gesture was delivered, which is all this can confirm: neither platform reports a zoom level in the hierarchy, so ask the thing you zoomed (a WebView knows its own visualViewport.scale)"
+  "output": "pinched in about the screen at (540, 1200), fingers 160 to 640px apart — the gesture was delivered, which is all this can confirm: neither platform reports a zoom level in the hierarchy, so ask the thing you zoomed (a WebView knows its own visualViewport.scale)",
+  "after": "/img/shots/app_zoom-0-after.jpg"
  },
  "app_record[0]": {
   "tool": "app_record",
@@ -420,7 +436,7 @@
   "command": "mobium record stop -o flow.mp4",
   "verbatim": true,
   "exit": 0,
-  "output": "saved …/flow.mp4: 38 frames, 1.474s of video, recorded over 1.528s"
+  "output": "saved …/flow.mp4: 54 frames, 1.605s of video, recorded over 1.705s"
  },
  "app_list_apps[0]": {
   "tool": "app_list_apps",
@@ -436,7 +452,8 @@
   "command": "mobium contexts",
   "verbatim": true,
   "exit": 0,
-  "output": "NATIVE_APP  (current)\nWEBVIEW_dev.mobium.mobiumapp  — about:blank about:blank"
+  "output": "NATIVE_APP  (current)\nWEBVIEW_dev.mobium.mobiumapp  — about:blank about:blank",
+  "after": "/img/shots/app_contexts-0-after.jpg"
  },
  "app_session[0]": {
   "tool": "app_session",
@@ -463,5 +480,128 @@
   "exit": 0,
   "output": "accepted the dialog \"Discard changes?\\nThey will be lost.\" — this answered it and did not choose an outcome: on a permission prompt accept and dismiss do not mean grant and deny, and on iOS they are the other way round. Tap the button by ref if you need a particular answer",
   "after": "/img/shots/app_alert-1-after.jpg"
+ },
+ "app_long_press:long-press testid=pressTarget": {
+  "tool": "app_long_press",
+  "index": null,
+  "before": "/img/shots/app_long_press-long-press-testid-presstarget-before.jpg",
+  "command": "mobium long-press testid=pressTarget",
+  "verbatim": false,
+  "exit": 0,
+  "output": "long-pressed testid=pressTarget at (540, 665) for 800ms",
+  "after": "/img/shots/app_long_press-long-press-testid-presstarget-after.jpg"
+ },
+ "app_drag:drag 'label=Drag source' 'label=Drop zone'": {
+  "tool": "app_drag",
+  "index": null,
+  "before": "/img/shots/app_drag-drag-label-drag-source-label-drop-zone-before.jpg",
+  "command": "mobium drag 'label=Drag source' 'label=Drop zone'",
+  "verbatim": false,
+  "exit": 0,
+  "output": "dragged label=Drag source at (540,612) onto label=Drop zone at (540,964), holding 700ms at each end — the gesture was delivered; whether the drop was accepted is the app's own state, so map the screen again to see it",
+  "after": "/img/shots/app_drag-drag-label-drag-source-label-drop-zone-after.jpg"
+ },
+ "app_rotate:rotate 90": {
+  "tool": "app_rotate",
+  "index": null,
+  "before": "/img/shots/app_rotate-rotate-90-before.jpg",
+  "command": "mobium rotate 90",
+  "verbatim": false,
+  "exit": 0,
+  "output": "rotated the screen 90 degrees clockwise about (540, 1200), fingers 200px from the center — the gesture was delivered, which is all this can confirm: nothing in either hierarchy reports a rotation, and unlike a zoom there is no WebView property to ask either",
+  "after": "/img/shots/app_rotate-rotate-90-after.jpg"
+ },
+ "app_press_tap:press-tap 'label=Hold zone' 'label=Act zone'": {
+  "tool": "app_press_tap",
+  "index": null,
+  "command": "mobium press-tap 'label=Hold zone' 'label=Act zone'",
+  "verbatim": false,
+  "exit": 0,
+  "output": "held label=Hold zone at (284,908) and tapped label=Act zone at (795,908) with a second finger, 300ms after the first landed — the gesture was delivered; what it did is the app's own state, so map the screen again to see it",
+  "after": "/img/shots/app_press_tap-press-tap-label-hold-zone-label-act-zone-after.jpg"
+ },
+ "app_press_drag:press-drag 'label=Hold zone' 'label=Act zone' 'label=Drag end'": {
+  "tool": "app_press_drag",
+  "index": null,
+  "command": "mobium press-drag 'label=Hold zone' 'label=Act zone' 'label=Drag end'",
+  "verbatim": false,
+  "exit": 0,
+  "output": "held label=Hold zone at (284,908) and dragged a second finger from label=Act zone at (795,908) to label=Drag end at (540,1249) — the gesture was delivered; what it did is the app's own state, so map the screen again to see it",
+  "after": "/img/shots/app_press_drag-press-drag-label-hold-zone-label-act-zon-after.jpg"
+ },
+ "app_type:type testid=username mobium": {
+  "tool": "app_type",
+  "index": null,
+  "before": "/img/shots/app_type-type-testid-username-mobium-before.jpg",
+  "command": "mobium type testid=username mobium",
+  "verbatim": false,
+  "exit": 0,
+  "output": "typed \"mobium\" into testid=username",
+  "after": "/img/shots/app_type-type-testid-username-mobium-after.jpg"
+ },
+ "app_wait_for:wait testid=loginError --for text --text 'Incorrect username or password.'": {
+  "tool": "app_wait_for",
+  "index": null,
+  "command": "mobium wait testid=loginError --for text --text 'Incorrect username or password.'",
+  "verbatim": false,
+  "exit": 0,
+  "output": "testid=loginError contains \"Incorrect username or password.\" after 1.425s — @e1 ScrollView (list)",
+  "after": "/img/shots/app_wait_for-wait-testid-loginerror-for-text-text-inc-after.jpg"
+ },
+ "app_eval:eval document.title": {
+  "tool": "app_eval",
+  "index": null,
+  "command": "mobium eval document.title",
+  "verbatim": false,
+  "exit": 0,
+  "output": "",
+  "after": "/img/shots/app_eval-eval-document-title-after.jpg"
+ },
+ "app_tap:double-tap testid=pressTarget": {
+  "tool": "app_tap",
+  "index": null,
+  "before": "/img/shots/app_tap-double-tap-testid-presstarget-before.jpg",
+  "command": "mobium double-tap testid=pressTarget",
+  "verbatim": false,
+  "exit": 0,
+  "output": "double-tapped testid=pressTarget at (540, 665)",
+  "after": "/img/shots/app_tap-double-tap-testid-presstarget-after.jpg"
+ },
+ "app_context:context WEBVIEW_dev.mobium.mobiumapp": {
+  "tool": "app_context",
+  "index": null,
+  "command": "mobium context WEBVIEW_dev.mobium.mobiumapp",
+  "verbatim": false,
+  "exit": 0,
+  "output": "switched to WEBVIEW_dev.mobium.mobiumapp",
+  "after": "/img/shots/app_context-context-webview-dev-mobium-mobiumapp-after.jpg"
+ },
+ "app_cookies[0]": {
+  "tool": "app_cookies",
+  "index": 0,
+  "command": "mobium cookies",
+  "verbatim": true,
+  "exit": 0,
+  "output": "no cookies for about:blank",
+  "after": "/img/shots/app_cookies-0-after.jpg"
+ },
+ "app_check:uncheck testid=termsCheck": {
+  "tool": "app_check",
+  "index": null,
+  "before": "/img/shots/app_check-uncheck-testid-termscheck-before.jpg",
+  "command": "mobium uncheck testid=termsCheck",
+  "verbatim": false,
+  "exit": 0,
+  "output": "testid=termsCheck is now unchecked",
+  "after": "/img/shots/app_check-uncheck-testid-termscheck-after.jpg"
+ },
+ "app_open_url:open https://en.wikipedia.org/wiki/Mobile_app": {
+  "tool": "app_open_url",
+  "index": null,
+  "command": "mobium open https://en.wikipedia.org/wiki/Mobile_app",
+  "verbatim": false,
+  "exit": 0,
+  "output": "opened https://en.wikipedia.org/wiki/Mobile_app in org.wikipedia",
+  "after": "/img/shots/app_open_url-open-https-en-wikipedia-org-wiki-mobile--after.jpg"
  }
 }
