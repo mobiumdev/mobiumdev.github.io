@@ -204,6 +204,9 @@
     "app_map": [
       {
         "code": "for (Element e : device.map()) {\n    System.out.println(e.ref() + \" \" + e.role() + \" \" + e.label());\n}"
+      },
+      {
+        "code": "Map<String, Object> diff = device.mapDiff();\nSystem.out.println(diff.get(\"added\"));\nSystem.out.println(diff.get(\"changed\"));"
       }
     ],
     "app_network": [
@@ -367,6 +370,14 @@
     "app_timezone": [
       {
         "code": "String zone = device.timezone(\"Asia/Tokyo\");   // read back"
+      }
+    ],
+    "app_trace": [
+      {
+        "code": "device.traceStart(\"sign in\");"
+      },
+      {
+        "code": "Map<String, Object> saved = device.traceStop(\"sign-in.zip\");\nSystem.out.println(saved.get(\"calls\") + \" \" + saved.get(\"path\"));"
       }
     ],
     "app_type": [

@@ -204,6 +204,9 @@
     "app_map": [
       {
         "code": "foreach (var e in device.Map())\n    Console.WriteLine($\"{e.Ref} {e.Role} {e.Label}\");"
+      },
+      {
+        "code": "var diff = device.MapDiff();\nConsole.WriteLine(diff[\"added\"]);\nConsole.WriteLine(diff[\"changed\"]);"
       }
     ],
     "app_network": [
@@ -367,6 +370,14 @@
     "app_timezone": [
       {
         "code": "string zone = device.Timezone(\"Asia/Tokyo\");"
+      }
+    ],
+    "app_trace": [
+      {
+        "code": "device.TraceStart(\"sign in\");"
+      },
+      {
+        "code": "var saved = device.TraceStop(\"sign-in.zip\");\nConsole.WriteLine($\"{saved[\"calls\"]} {saved[\"path\"]}\");"
       }
     ],
     "app_type": [

@@ -204,6 +204,9 @@
     "app_map": [
       {
         "code": "elements, err := dev.Map(ctx)\nif err != nil {\n\treturn err\n}\nfor _, el := range elements {\n\tfmt.Println(el.Ref, el.Role, el.Label)\n}"
+      },
+      {
+        "code": "diff, err := dev.MapDiff(ctx)\nif err != nil {\n\treturn err\n}\nfor _, e := range diff.Added {\n\tfmt.Println(\"+\", e.Ref, e.Label)\n}\nfor _, c := range diff.Changed {\n\tfmt.Println(\"~\", c.After.Ref, c.After.Label, c.What)\n}"
       }
     ],
     "app_network": [
@@ -367,6 +370,14 @@
     "app_timezone": [
       {
         "code": "if err := dev.SetTimezone(ctx, \"Asia/Tokyo\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_trace": [
+      {
+        "code": "if _, err := dev.TraceStart(ctx, &mobium.TraceOptions{Name: \"sign in\"}); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "saved, err := dev.TraceStop(ctx, \"sign-in.zip\")\nif err != nil {\n\treturn err\n}\nfmt.Println(saved.Calls, saved.Path)"
       }
     ],
     "app_type": [

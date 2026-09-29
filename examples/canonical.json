@@ -394,6 +394,13 @@
       "title": "Map what can be acted on, with a ref for each",
       "cli": "mobium map",
       "args": {}
+    },
+    {
+      "title": "What the last action changed",
+      "cli": "mobium map --diff",
+      "args": {
+        "diff": true
+      }
     }
   ],
   "app_network": [
@@ -709,6 +716,24 @@
       "cli": "mobium timezone Asia/Tokyo",
       "args": {
         "timezone": "Asia/Tokyo"
+      }
+    }
+  ],
+  "app_trace": [
+    {
+      "title": "Start tracing the session",
+      "cli": "mobium trace start --name \"sign in\"",
+      "args": {
+        "action": "start",
+        "name": "sign in"
+      }
+    },
+    {
+      "title": "Stop, and save the trace",
+      "cli": "mobium trace stop -o sign-in.zip",
+      "args": {
+        "action": "stop",
+        "path": "sign-in.zip"
       }
     }
   ],

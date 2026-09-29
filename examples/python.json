@@ -204,6 +204,9 @@
     "app_map": [
       {
         "code": "for el in device.map():\n    print(el.ref, el.label)"
+      },
+      {
+        "code": "diff = device.map_diff()\nfor e in diff[\"added\"]:\n    print(\"+\", e.ref, e.label)\nfor c in diff[\"changed\"]:\n    print(\"~\", c[\"after\"].ref, c[\"after\"].label, c[\"what\"])"
       }
     ],
     "app_network": [
@@ -367,6 +370,14 @@
     "app_timezone": [
       {
         "code": "device.timezone(\"Asia/Tokyo\")"
+      }
+    ],
+    "app_trace": [
+      {
+        "code": "device.trace_start(name=\"sign in\")"
+      },
+      {
+        "code": "saved = device.trace_stop(\"sign-in.zip\")\nprint(saved[\"calls\"], saved[\"path\"])"
       }
     ],
     "app_type": [

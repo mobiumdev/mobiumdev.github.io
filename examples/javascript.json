@@ -204,6 +204,9 @@
     "app_map": [
       {
         "code": "const elements = await device.map()\nfor (const e of elements) console.log(e.ref, e.role, e.label)\n// @e1 button Network & internet ..."
+      },
+      {
+        "code": "const diff = await device.mapDiff()\nfor (const e of diff.added) console.log('+', e.ref, e.label)\nfor (const c of diff.changed) console.log('~', c.after.ref, c.after.label, c.what)"
       }
     ],
     "app_network": [
@@ -367,6 +370,14 @@
     "app_timezone": [
       {
         "code": "const zone = await device.timezone('Asia/Tokyo')"
+      }
+    ],
+    "app_trace": [
+      {
+        "code": "await device.traceStart({ name: 'sign in' })"
+      },
+      {
+        "code": "const saved = await device.traceStop('sign-in.zip')\nconsole.log(saved.calls, saved.path)"
       }
     ],
     "app_type": [
