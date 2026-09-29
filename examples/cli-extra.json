@@ -1,4 +1,12 @@
 {
+  "batch": [
+    {
+      "title": "Log in to the Login Demo in one call",
+      "cli": "mobium batch login.json",
+      "image": "/img/guides/cli-3-welcome.jpg",
+      "caption": "The Login Demo after a batch that filled both fields and tapped Log In — from [the CLI guide](/guides/cli)"
+    }
+  ],
   "daemon": [
     {
       "title": "Look at the daemon, then stop it",
@@ -47,6 +55,22 @@
       "caption": "`mobium grid ui` during a test run: 14 devices, 2 held, 0 waiting, emulator-5554 and emulator-5556 each held by a grid run — from [the grid guide](/guides/grid#4-tests-on-a-grid)"
     }
   ],
+  "inspect": [
+    {
+      "title": "Open the inspector on the device in front",
+      "cli": "mobium inspect --open",
+      "image": "/img/guides/inspector.jpg",
+      "caption": "The inspector's page: the screen on the left, what is on it on the right, the locator `map` would give for anything clicked, and the steps done so far as a `mobium test` file — from [the inspector guide](/guides/inspector)"
+    }
+  ],
+  "mcp": [
+    {
+      "title": "Register it with an agent",
+      "cli": "claude mcp add mobium -- mobium mcp",
+      "image": "/img/guides/mcp-agent-result.jpg",
+      "caption": "What an agent left on screen after driving the Login Demo through `mobium mcp` — from [the MCP guide](/guides/mcp)"
+    }
+  ],
   "show-report": [
     {
       "title": "Open the report of the last test run",
@@ -61,22 +85,6 @@
       "cli": "mobium test --reporter list,html",
       "image": "/img/guides/test-runner-report.jpg",
       "caption": "The HTML report of a run with a failure — from [the test runner guide](/guides/test-runner#3-a-failure-and-what-it-leaves)"
-    }
-  ],
-  "mcp": [
-    {
-      "title": "Register it with an agent",
-      "cli": "claude mcp add mobium -- mobium mcp",
-      "image": "/img/guides/mcp-agent-result.jpg",
-      "caption": "What an agent left on screen after driving the Login Demo through `mobium mcp` — from [the MCP guide](/guides/mcp)"
-    }
-  ],
-  "batch": [
-    {
-      "title": "Log in to the Login Demo in one call",
-      "cli": "mobium batch login.json",
-      "image": "/img/guides/cli-3-welcome.jpg",
-      "caption": "The Login Demo after a batch that filled both fields and tapped Log In — from [the CLI guide](/guides/cli)"
     }
   ]
 }

@@ -217,6 +217,21 @@
       "args": {}
     }
   ],
+  "app_download": [
+    {
+      "title": "Bring back a file an app saved",
+      "cli": "mobium download mobium-report.txt -o report.txt",
+      "args": {
+        "name": "mobium-report.txt",
+        "path": "report.txt"
+      }
+    },
+    {
+      "title": "List what the folder holds",
+      "cli": "mobium download",
+      "args": {}
+    }
+  ],
   "app_drag": [
     {
       "title": "Drag one element onto another",
@@ -713,6 +728,15 @@
       "cli": "mobium uninstall com.example.shop",
       "args": {
         "app": "com.example.shop"
+      }
+    }
+  ],
+  "app_upload": [
+    {
+      "title": "Send a file where the device keeps downloads",
+      "cli": "mobium upload invoice-42.txt",
+      "args": {
+        "path": "invoice-42.txt"
       }
     }
   ],

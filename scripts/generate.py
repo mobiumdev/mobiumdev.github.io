@@ -532,10 +532,10 @@ def doc_text(doc, lang):
 
 SYNC = {
     "quickstart": ["README.md", "cli.md", "python.md", "javascript.md", "go.md", "java.md", "dotnet.md"],
-    "guides": ["README.md", "autowait.md", "test-runner.md", "grid.md", "network.md", "cli.md", "mcp.md"],
+    "guides": ["README.md", "autowait.md", "test-runner.md", "grid.md", "network.md", "inspector.md", "cli.md", "mcp.md"],
 }
 POSITION = {"README.md": 0, "cli.md": 1, "python.md": 2, "javascript.md": 3, "go.md": 4, "java.md": 5, "dotnet.md": 6,
-            "autowait.md": 1, "test-runner.md": 2, "grid.md": 3, "network.md": 4, "mcp.md": 6}
+            "autowait.md": 1, "test-runner.md": 2, "grid.md": 3, "network.md": 4, "inspector.md": 5, "mcp.md": 6}
 
 
 def sync(src):

@@ -196,6 +196,29 @@ PLAN = [
          setup=app_screen("Form Demo") + ["check testid=termsCheck"], before=True, after=True),
     dict(tool="app_open_url", i=None, cmd="open https://en.wikipedia.org/wiki/Mobile_app",
          setup=["terminate org.wikipedia"], after=True, pause=3.0, restore=["terminate org.wikipedia"]),
+    # A file sent to the device, then picked in MobiumApp's Files Demo, which
+    # says what arrived; and the app's own save, brought back.
+    dict(tool="app_upload", i=0,
+         setup=app_screen("Files Demo") + ["$printf 'Invoice 42\\nTotal: 19.00\\n' > invoice-42.txt"],
+         then=["tap testid=pickFileBtn", "$sleep 2", "tap text=invoice-42.txt",
+               "wait testid=pickedFile --for text --text 'Invoice 42'"],
+         after=True,
+         caption="After `mobium upload invoice-42.txt`, the Files Demo's Upload a file opened the system picker, "
+                 "the file was in it, and the line under the button says the name, size and first line of what "
+                 "arrived — on an Android 15 emulator", restore=["$adb shell rm -f /sdcard/Download/invoice-42.txt",
+                              "$adb shell content delete --uri content://media/external/downloads "
+                              "--where \"\\\"_display_name='invoice-42.txt'\\\"\""]),
+    dict(tool="app_download", i=0,
+         setup=app_screen("Files Demo") + ["tap testid=saveReportBtn",
+                                           "wait testid=savedFile --for text --text 'MobiumApp report 1'"],
+         after=True,
+         caption="The Files Demo's Download the report saved `mobium-report.txt` in the Download folder, and the "
+                 "line under it says how big and which save it was; `mobium download` brought that file back — "
+                 "on an Android 15 emulator"),
+    dict(tool="app_download", i=1,
+         restore=["$adb shell rm -f /sdcard/Download/mobium-report.txt",
+                  "$adb shell content delete --uri content://media/external/downloads "
+                  "--where \"\\\"_display_name='mobium-report.txt'\\\"\""]),
     dict(tool="app_session", i=0),
     dict(tool="app_session", i=1),
 ]
@@ -242,15 +265,19 @@ def main():
         if a.only and tool not in a.only:
             continue
         key = f"{tool}[{i}]" if i is not None else f"{tool}:{p['cmd']}"
-        for s in p.get("setup", []):
-            if s.startswith("$"):
-                # A step that is not mobium's — the emulator console, which is
-                # the only thing that can set a battery.
-                subprocess.run(s[1:], shell=True, env=env, capture_output=True, check=True)
-            elif s.startswith("?"):
-                mobium(s[1:], check=False)
-            else:
-                mobium(s)
+        def steps(ss):
+            for s in ss:
+                if s.startswith("$"):
+                    # A step that is not mobium's — the emulator console, which
+                    # is the only thing that can set a battery, or a file made
+                    # where the command will look for it.
+                    subprocess.run(s[1:], shell=True, env=env, cwd=work, capture_output=True, check=True)
+                elif s.startswith("?"):
+                    mobium(s[1:], check=False)
+                else:
+                    mobium(s)
+
+        steps(p.get("setup", []))
         for fname, what in p.get("files", {}).items():
             (work / fname).write_text(json.dumps(canon[tool][i]["args"][what], indent=2) + "\n")
         entry = {"tool": tool, "index": i}
@@ -271,6 +298,9 @@ def main():
         entry.update(command=shown, verbatim=p.get("cmd") is None, exit=r.returncode, output=out)
         if p.get("caption"):
             entry["caption"] = p["caption"]
+        # What happens next on the device, when that is what shows the
+        # command worked: an uploaded file picked in the app.
+        steps(p.get("then", []))
         if p.get("after"):
             time.sleep(p.get("pause", 1.0))
             entry["after"] = shot(f"{stem}-after")

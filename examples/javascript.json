@@ -114,6 +114,14 @@
         "code": "const report = await device.doctor()\nconsole.log(report)"
       }
     ],
+    "app_download": [
+      {
+        "code": "const saved = await device.download('mobium-report.txt', { path: 'report.txt' })\nconsole.log(saved.path, saved.bytes)\n\n// Or the file itself, as bytes\nconst report = await device.download('mobium-report.txt')"
+      },
+      {
+        "code": "for (const f of await device.downloads()) {\n  console.log(f.name, f.bytes)\n}"
+      }
+    ],
     "app_drag": [
       {
         "code": "await device.drag('@e3', '@e7')"
@@ -369,6 +377,11 @@
     "app_uninstall": [
       {
         "code": "await device.uninstall('com.example.shop')"
+      }
+    ],
+    "app_upload": [
+      {
+        "code": "const sent = await device.upload('invoice-42.txt')\nconsole.log(sent.where, sent.bytes, sent.checked)"
       }
     ],
     "app_wait_for": [

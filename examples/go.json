@@ -114,6 +114,14 @@
         "code": "report, err := dev.Doctor(ctx)\nif err != nil {\n\treturn err\n}\nfmt.Println(report)"
       }
     ],
+    "app_download": [
+      {
+        "code": "saved, err := dev.Download(ctx, \"mobium-report.txt\", \"report.txt\", \"\")\nif err != nil {\n\treturn err\n}\nfmt.Println(saved.Path, saved.Bytes)\n\n// Or the file itself, as bytes\nreport, err := dev.DownloadBytes(ctx, \"mobium-report.txt\", \"\")\nif err != nil {\n\treturn err\n}\nfmt.Println(len(report))"
+      },
+      {
+        "code": "files, err := dev.Downloads(ctx, \"\")\nif err != nil {\n\treturn err\n}\nfor _, f := range files {\n\tfmt.Println(f.Name, f.Bytes)\n}"
+      }
+    ],
     "app_drag": [
       {
         "code": "if err := dev.Drag(ctx, \"@e3\", \"@e7\"); err != nil {\n\treturn err\n}"
@@ -369,6 +377,11 @@
     "app_uninstall": [
       {
         "code": "if err := dev.Uninstall(ctx, \"com.example.shop\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_upload": [
+      {
+        "code": "sent, err := dev.Upload(ctx, \"invoice-42.txt\", nil)\nif err != nil {\n\treturn err\n}\nfmt.Println(sent.Where, sent.Bytes, sent.Checked)"
       }
     ],
     "app_wait_for": [

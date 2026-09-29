@@ -114,6 +114,14 @@
         "code": "report = device.doctor()\nprint(report)"
       }
     ],
+    "app_download": [
+      {
+        "code": "saved = device.download(\"mobium-report.txt\", path=\"report.txt\")\nprint(saved[\"path\"], saved[\"bytes\"])\n\n# Or the file itself, as bytes\nreport = device.download(\"mobium-report.txt\")"
+      },
+      {
+        "code": "for f in device.downloads():\n    print(f[\"name\"], f[\"bytes\"])"
+      }
+    ],
     "app_drag": [
       {
         "code": "device.drag(\"@e3\", \"@e7\")"
@@ -369,6 +377,11 @@
     "app_uninstall": [
       {
         "code": "device.uninstall(\"com.example.shop\")"
+      }
+    ],
+    "app_upload": [
+      {
+        "code": "sent = device.upload(\"invoice-42.txt\")\nprint(sent[\"where\"], sent[\"bytes\"], sent[\"checked\"])"
       }
     ],
     "app_wait_for": [

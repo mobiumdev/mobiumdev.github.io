@@ -114,6 +114,14 @@
         "code": "Console.WriteLine(device.Doctor());"
       }
     ],
+    "app_download": [
+      {
+        "code": "var saved = device.Download(\"mobium-report.txt\", \"report.txt\");\nConsole.WriteLine(saved[\"path\"]);\n\n// Or the file itself, as bytes\nbyte[] report = device.Download(\"mobium-report.txt\");"
+      },
+      {
+        "code": "foreach (var f in device.Downloads())\n{\n    Console.WriteLine($\"{f[\"name\"]} {f[\"bytes\"]}\");\n}"
+      }
+    ],
     "app_drag": [
       {
         "code": "device.Drag(\"@e3\", \"@e7\");"
@@ -369,6 +377,11 @@
     "app_uninstall": [
       {
         "code": "device.Uninstall(\"com.example.shop\");"
+      }
+    ],
+    "app_upload": [
+      {
+        "code": "var sent = device.Upload(\"invoice-42.txt\");\nConsole.WriteLine($\"{sent[\"where\"]} {sent[\"bytes\"]}\");"
       }
     ],
     "app_wait_for": [

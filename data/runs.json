@@ -646,5 +646,33 @@
   "output": "label=Card 8 is on screen after 7 scrolls right — @e5 Card 8 (button)",
   "caption": "`mobium scroll-to \"label=Card 8\" --direction right` on MobiumApp's Pager Demo, Android 15 emulator: from Card 1 to where Card 8 is in the pager's view and can be tapped — it stops as soon as it is, so here only Card 8's left edge shows, at the right",
   "after": "/img/shots/app_scroll_to-1-after.jpg"
+ },
+ "app_upload[0]": {
+  "tool": "app_upload",
+  "index": 0,
+  "command": "mobium upload invoice-42.txt",
+  "verbatim": true,
+  "exit": 0,
+  "output": "uploaded …/invoice-42.txt to Download/invoice-42.txt (24 bytes) — confirmed by its size read back on the device, and MediaStore listing it",
+  "caption": "After `mobium upload invoice-42.txt`, the Files Demo's Upload a file opened the system picker, the file was in it, and the line under the button says the name, size and first line of what arrived — on an Android 15 emulator",
+  "after": "/img/shots/app_upload-0-after.jpg"
+ },
+ "app_download[0]": {
+  "tool": "app_download",
+  "index": 0,
+  "command": "mobium download mobium-report.txt -o report.txt",
+  "verbatim": true,
+  "exit": 0,
+  "output": "downloaded mobium-report.txt from Download/mobium-report.txt to …/report.txt (44 bytes) — confirmed by the copy's size read back against the device's",
+  "caption": "The Files Demo's Download the report saved `mobium-report.txt` in the Download folder, and the line under it says how big and which save it was; `mobium download` brought that file back — on an Android 15 emulator",
+  "after": "/img/shots/app_download-0-after.jpg"
+ },
+ "app_download[1]": {
+  "tool": "app_download",
+  "index": 1,
+  "command": "mobium download",
+  "verbatim": true,
+  "exit": 0,
+  "output": "the Download folder holds 1 file\n  mobium-report.txt                                44 bytes  2026-09-29 03:41"
  }
 }
