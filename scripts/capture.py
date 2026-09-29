@@ -41,6 +41,11 @@ def cleared_shade():
     return ["notifications --shade open", "?tap 'text=Clear all'", "?notifications --shade close"]
 
 
+def web_storage():
+    return [f"terminate {APP}", f"launch {APP}", "tap testid=webviewhubBtn", "tap testid=webstorageBtn",
+            "wait text=Back", "context WEBVIEW_dev.mobium.mobiumapp"]
+
+
 def gesture(name):
     return app_screen("Gestures") + [f"tap 'text={name}'"]
 
@@ -100,7 +105,6 @@ PLAN = [
                                                    "wait 'text=Time zone'"],
          before=True, after=True, pause=2.0, restore=["timezone {timezone}"]),
     dict(tool="app_time", i=0),
-    dict(tool="app_battery", i=0),
     dict(tool="app_network", i=0, setup=settings_root() + ["tap 'text=Network & internet'"], before=True, after=True,
          pause=2.0, restore=["network --reset"]),
     dict(tool="app_network", i=1, restore=["network --reset"]),
@@ -148,6 +152,19 @@ PLAN = [
     dict(tool="app_cookies", i=0,
          setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back", "context WEBVIEW_dev.mobium.mobiumapp"],
          after=True, restore=["context NATIVE_APP"]),
+    # Web storage, on the page with an origin of its own.
+    dict(tool="app_storage", i=0, setup=web_storage() + ["eval \"document.getElementById('saveVisit').click()\""],
+         after=True),
+    # The page redraws what it holds once a second; the pause lets the cleared
+    # state show before the picture of it.
+    dict(tool="app_storage", i=1, setup=["storage clear", "$sleep 1.5"], before=True, after=True, pause=1.5,
+         restore=["storage clear", "context NATIVE_APP"]),
+    # The battery, set by the emulator's console, and the app's own reading.
+    dict(tool="app_battery", i=0,
+         setup=["$adb emu power ac off", "$adb emu power status discharging", "$adb emu power capacity 42",
+                f"terminate {APP}", f"launch {APP}", "tap testid=batteryBtn",
+                "wait testid=batteryLevel --for text --text 'level: 42%'"],
+         after=True, restore=["$adb emu power ac on", "$adb emu power status charging", "$adb emu power capacity 100"]),
     dict(tool="app_check", i=None, cmd="uncheck testid=termsCheck",
          setup=app_screen("Form Demo") + ["check testid=termsCheck"], before=True, after=True),
     dict(tool="app_open_url", i=None, cmd="open https://en.wikipedia.org/wiki/Mobile_app",
@@ -199,7 +216,11 @@ def main():
             continue
         key = f"{tool}[{i}]" if i is not None else f"{tool}:{p['cmd']}"
         for s in p.get("setup", []):
-            if s.startswith("?"):
+            if s.startswith("$"):
+                # A step that is not mobium's — the emulator console, which is
+                # the only thing that can set a battery.
+                subprocess.run(s[1:], shell=True, env=env, capture_output=True, check=True)
+            elif s.startswith("?"):
                 mobium(s[1:], check=False)
             else:
                 mobium(s)
@@ -227,7 +248,10 @@ def main():
         if p.get("shot_from"):
             entry["after"] = save(work / p["shot_from"], f"{tool}-{i}-after")
         for s in p.get("restore", []):
-            mobium(s.format(timezone=shlex.quote(timezone)), check=False)
+            if s.startswith("$"):
+                subprocess.run(s[1:], shell=True, env=env, capture_output=True)
+            else:
+                mobium(s.format(timezone=shlex.quote(timezone)), check=False)
         runs[key] = entry
         print(f"{'ok ' if r.returncode == 0 else 'ERR'} {key}: {shown} (exit {r.returncode})")
     RUNS.write_text(json.dumps(runs, indent=1, ensure_ascii=False) + "\n")

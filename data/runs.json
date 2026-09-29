@@ -334,7 +334,8 @@
   "command": "mobium battery",
   "verbatim": true,
   "exit": 0,
-  "output": "100%, charging, plugged into ac"
+  "output": "42%, discharging, not plugged in",
+  "after": "/img/shots/app_battery-0-after.jpg"
  },
  "app_network[0]": {
   "tool": "app_network",
@@ -603,5 +604,24 @@
   "exit": 0,
   "output": "opened https://en.wikipedia.org/wiki/Mobile_app in org.wikipedia",
   "after": "/img/shots/app_open_url-open-https-en-wikipedia-org-wiki-mobile--after.jpg"
+ },
+ "app_storage[0]": {
+  "tool": "app_storage",
+  "index": 0,
+  "command": "mobium storage -o state.json",
+  "verbatim": true,
+  "exit": 0,
+  "output": "saved state.json",
+  "after": "/img/shots/app_storage-0-after.jpg"
+ },
+ "app_storage[1]": {
+  "tool": "app_storage",
+  "index": 1,
+  "before": "/img/shots/app_storage-1-before.jpg",
+  "command": "mobium storage restore state.json",
+  "verbatim": true,
+  "exit": 0,
+  "output": "restored 1 cookie(s) and https://mobiumapp.test's storage\n{\n  \"cookies\": [\n    {\n      \"name\": \"visited\",\n      \"value\": \"yes\",\n      \"domain\": \"mobiumapp.test\",\n      \"path\": \"/\",\n      \"expires\": 1790759538.232578,\n      \"secure\": true\n    }\n  ],\n  \"origins\": [\n    {\n      \"origin\": \"https://mobiumapp.test\",\n      \"localStorage\": [\n        {\n          \"name\": \"visits\",\n          \"value\": \"2\"\n        }\n      ],\n      \"sessionStorage\": [\n        {\n          \"name\": \"lastVisit\",\n          \"value\": \"visit 2\"\n        }\n      ]\n    }\n  ]\n}",
+  "after": "/img/shots/app_storage-1-after.jpg"
  }
 }

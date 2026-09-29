@@ -1,7 +1,6 @@
 {
   "apps": "it lists what is installed, and nothing on the screen changes.",
   "background": "the app is off the screen for the seconds it is away, and back in front when the command returns.",
-  "battery": "it reads the battery, and nothing on the screen changes.",
   "clear-data": "it deletes an app's data, which shows only the next time the app starts.",
   "crashes": "it reads the device's crash reports, and nothing on the screen changes.",
   "current": "it names the app in front, and nothing on the screen changes.",
@@ -24,7 +23,6 @@
   "shake": "an emulator shows nothing for a shake; whether the app reacts is up to the app.",
   "source": "it reads the hierarchy, and nothing on the screen changes.",
   "state": "it reads whether an app is running, and nothing on the screen changes.",
-  "storage": "MobiumApp's WebView pages are inline HTML, which has no origin and so no storage to show — on one, the command refuses and says to load an http or https page first.",
   "time": "it reads the device's clock, and nothing on the screen changes.",
   "uninstall": "it removes an app, which shows nowhere on the screen in front."
 }
