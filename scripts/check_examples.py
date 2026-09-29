@@ -376,6 +376,9 @@ def main():
     ap.add_argument("--src", default=os.environ.get("MOBIUM_SRC", "../mobium"))
     ap.add_argument("--lang", action="append", choices=LANGS)
     a = ap.parse_args()
+    # Absolute: go.mod's replace and javac's sourcepath are read from a
+    # temporary directory, where a relative path means something else.
+    a.src = str(Path(a.src).expanduser().resolve())
     data, canon = load()
     errs = check_canonical(data, canon)
     print(f"canonical: {sum(len(v) for v in canon.values())} scenarios, {len(errs)} problems")
