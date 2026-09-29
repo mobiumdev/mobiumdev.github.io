@@ -55,7 +55,7 @@ The same locators work on both platforms:
 
 | Locator | Android | iOS |
 | --- | --- | --- |
-| `text=Sign In` | `text` | label or value |
+| `text=Sign In` | `text` | `value`, or the label of a control with no text of its own |
 | `label=Email` | `content-desc` | accessibility label |
 | `testid=submit` | `resource-id` | `accessibilityIdentifier` |
 | `role=button` | `android.widget.Button` and kin | `XCUIElementTypeButton` |
