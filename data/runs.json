@@ -72,6 +72,7 @@
  "app_scroll_to[0]": {
   "tool": "app_scroll_to",
   "index": 0,
+  "before": "/img/shots/app_scroll_to-0-before.jpg",
   "command": "mobium scroll-to text=System",
   "verbatim": true,
   "exit": 0,
@@ -634,5 +635,16 @@
   "output": "tapped testid=oneButtonBtn at (540, 877)\nanswered by a dialog rule on the way: \"Discard changes?\" — pressed \"Keep Editing\"",
   "caption": "With `mobium dialogs --when \"Discard changes\" --press \"Keep Editing\"` declared, `mobium tap testid=oneButtonBtn` met the Discard dialog in its way, pressed Keep Editing, and went on — its own alert is up, and the line under the title says what the app received — on an Android 15 emulator",
   "after": "/img/shots/app_dialogs-tap-testid-onebuttonbtn-after.jpg"
+ },
+ "app_scroll_to[1]": {
+  "tool": "app_scroll_to",
+  "index": 1,
+  "before": "/img/shots/app_scroll_to-1-before.jpg",
+  "command": "mobium scroll-to \"label=Card 8\" --direction right",
+  "verbatim": true,
+  "exit": 0,
+  "output": "label=Card 8 is on screen after 7 scrolls right — @e5 Card 8 (button)",
+  "caption": "`mobium scroll-to \"label=Card 8\" --direction right` on MobiumApp's Pager Demo, Android 15 emulator: from Card 1 to where Card 8 is in the pager's view and can be tapped — it stops as soon as it is, so here only Card 8's left edge shows, at the right",
+  "after": "/img/shots/app_scroll_to-1-after.jpg"
  }
 }

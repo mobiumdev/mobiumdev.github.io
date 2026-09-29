@@ -66,7 +66,13 @@ PLAN = [
     dict(tool="app_current", i=0),
     dict(tool="app_state", i=0),
     dict(tool="app_tap", i=0, setup=settings_root(), before=True, after=True),
-    dict(tool="app_scroll_to", i=0, setup=settings_root(), after=True),
+    dict(tool="app_scroll_to", i=0, setup=settings_root(), before=True, after=True),
+    # The horizontal case, on MobiumApp's Pager Demo: Card 8 starts off screen
+    # to the right, as mobium-app.sh checks.
+    dict(tool="app_scroll_to", i=1, setup=app_screen("Pager Demo") + ["wait 'label=Card 1'"], before=True, after=True,
+         caption="`mobium scroll-to \"label=Card 8\" --direction right` on MobiumApp's Pager Demo, Android 15 "
+                 "emulator: from Card 1 to where Card 8 is in the pager's view and can be tapped — it stops as soon "
+                 "as it is, so here only Card 8's left edge shows, at the right"),
     dict(tool="app_swipe", i=0, setup=settings_root(), before=True, after=True),
     dict(tool="app_batch", i=0, setup=settings_root(), files={"steps.json": "steps"}, after=True),
     dict(tool="app_press", i=1, setup=settings_root(), after=True),
