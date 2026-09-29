@@ -108,11 +108,21 @@ class Site:
             return ""
         return self.figure(r)
 
+    def cli_output(self, tool, i):
+        """What the same call printed when it was run, from the command line —
+        which is what ran, so it says so rather than claim a client's run."""
+        r = self.run_for(tool, i)
+        if not r:
+            return ""
+        how = "printed" if r["exit"] == 0 else f"was refused, exit {r['exit']}"
+        return (f"The same call from the command line, `{r['command']}`, {how} on an Android 15 emulator:"
+                f"\n\n```text\n{r['output']}\n```\n")
+
     def figure(self, r, caption=None):
         shots = [(k, r[k]) for k in ("before", "after") if r.get(k)]
         if not shots:
             return ""
-        cap = caption or f"`{r['command']}` on an Android 15 emulator"
+        cap = caption or r.get("caption") or f"`{r['command']}` on an Android 15 emulator"
         alt = cap.replace("`", "")
         if len(shots) == 1:
             return f"\n![{cell(alt)}]({shots[0][1]})\n\n*{cap}*\n"
@@ -123,7 +133,7 @@ class Site:
         out = []
         for key, r in self.runs.items():
             if r["tool"] == tool and r.get("index") is None:
-                out.append(self.figure(r, f"`{r['command']}` on an Android 15 emulator"))
+                out.append(self.figure(r, r.get("caption") or f"`{r['command']}` on an Android 15 emulator"))
         return "".join(out)
 
     # -- CLI -----------------------------------------------------------------
@@ -437,6 +447,7 @@ running script.
                 out.append(f"```{fence}\n{e['code']}\n```\n")
             else:
                 out.append(f":::note\n\nNot in this client: {e['unsupported']}\n\n:::\n")
+            out.append(self.cli_output(tool, i))
             out.append(self.pictures(tool, i))
         more = [(n, it) for n, items in self.ex[lang].get("members", {}).items() if n in names
                 for it in items]

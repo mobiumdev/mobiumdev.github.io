@@ -10,7 +10,6 @@
   "daemon-stop": "the daemon runs on this machine, not the device.",
   "daemon-up": "the daemon runs on this machine, not the device.",
   "devices": "it lists the devices this machine can see.",
-  "dialogs": "a rule does nothing when it is declared; it answers a dialog that gets in the way of a later action, and that action's answer says so.",
   "doctor": "it checks this machine, and needs no device.",
   "grant": "it changes what an app may do, not what is on the screen; the next dialog that does not appear is the evidence.",
   "install": "it installs an app, which shows nowhere until the app is launched.",

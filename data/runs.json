@@ -623,5 +623,16 @@
   "exit": 0,
   "output": "restored 1 cookie(s) and https://mobiumapp.test's storage\n{\n  \"cookies\": [\n    {\n      \"name\": \"visited\",\n      \"value\": \"yes\",\n      \"domain\": \"mobiumapp.test\",\n      \"path\": \"/\",\n      \"expires\": 1790759538.232578,\n      \"secure\": true\n    }\n  ],\n  \"origins\": [\n    {\n      \"origin\": \"https://mobiumapp.test\",\n      \"localStorage\": [\n        {\n          \"name\": \"visits\",\n          \"value\": \"2\"\n        }\n      ],\n      \"sessionStorage\": [\n        {\n          \"name\": \"lastVisit\",\n          \"value\": \"visit 2\"\n        }\n      ]\n    }\n  ]\n}",
   "after": "/img/shots/app_storage-1-after.jpg"
+ },
+ "app_dialogs:tap testid=oneButtonBtn": {
+  "tool": "app_dialogs",
+  "index": null,
+  "before": "/img/shots/app_dialogs-tap-testid-onebuttonbtn-before.jpg",
+  "command": "mobium tap testid=oneButtonBtn",
+  "verbatim": false,
+  "exit": 0,
+  "output": "tapped testid=oneButtonBtn at (540, 877)\nanswered by a dialog rule on the way: \"Discard changes?\" — pressed \"Keep Editing\"",
+  "caption": "With `mobium dialogs --when \"Discard changes\" --press \"Keep Editing\"` declared, `mobium tap testid=oneButtonBtn` met the Discard dialog in its way, pressed Keep Editing, and went on — its own alert is up, and the line under the title says what the app received — on an Android 15 emulator",
+  "after": "/img/shots/app_dialogs-tap-testid-onebuttonbtn-after.jpg"
  }
 }

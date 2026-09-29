@@ -70,8 +70,11 @@ PLAN = [
     dict(tool="app_swipe", i=0, setup=settings_root(), before=True, after=True),
     dict(tool="app_batch", i=0, setup=settings_root(), files={"steps.json": "steps"}, after=True),
     dict(tool="app_press", i=1, setup=settings_root(), after=True),
-    dict(tool="app_press", i=0, setup=settings_root() + ["tap 'text=Network & internet'"], before=True, after=True),
-    dict(tool="app_terminate", i=0, setup=[f"launch {SETTINGS}"], before=True, after=True),
+    dict(tool="app_press", i=0, setup=settings_root() + ["tap 'text=Network & internet'", "wait text=Internet"],
+         before=True, after=True),
+    # From the home screen, so what is left behind Settings is the launcher.
+    dict(tool="app_terminate", i=0, setup=["press home", f"terminate {SETTINGS}", f"launch {SETTINGS}",
+                                           "wait 'text=Network & internet'"], before=True, after=True),
     dict(tool="app_appearance", i=0, setup=settings_root(), after=True, restore=["appearance light"]),
     dict(tool="app_orientation", i=0, setup=settings_root(), after=True, restore=["orientation portrait"]),
     dict(tool="app_screen", i=0),
@@ -86,10 +89,12 @@ PLAN = [
     dict(tool="app_wait_for", i=2, setup=app_screen("Form Demo") + ["check testid=termsCheck"]),
     dict(tool="app_fill", i=None, cmd="fill testid=username mobium", setup=app_screen("Login Demo"), after=True),
     dict(tool="app_keyboard", i=0, setup=app_screen("Login Demo") + ["tap testid=username"], after=True),
-    dict(tool="app_keyboard", i=1, setup=app_screen("Login Demo") + ["tap testid=username"], before=True, after=True),
-    dict(tool="app_alert", i=0, setup=app_screen("Dialog Demo") + ["tap 'text=Two-button alert'"], after=True,
+    # The keyboard slides in after the tap; the pause lets the picture show it up.
+    dict(tool="app_keyboard", i=1, setup=app_screen("Login Demo") + ["tap testid=username", "$sleep 1.5"],
+         before=True, after=True),
+    dict(tool="app_alert", i=0, setup=app_screen("Dialog Demo") + ["tap 'text=Two-button alert'", "wait 'text=Discard changes?'"], after=True,
          restore=["alert dismiss"]),
-    dict(tool="app_alert", i=1, setup=app_screen("Dialog Demo") + ["tap 'text=Two-button alert'"], before=True, after=True),
+    dict(tool="app_alert", i=1, setup=app_screen("Dialog Demo") + ["tap 'text=Two-button alert'", "wait 'text=Discard changes?'"], before=True, after=True),
     dict(tool="app_locale", i=0, after=False,
          restore=["locale org.wikipedia ''"]),
     dict(tool="app_locale", i=None, cmd="launch org.wikipedia",
@@ -101,12 +106,15 @@ PLAN = [
     dict(tool="app_location", i=0, setup=[f"grant {APP} location"] + app_screen("Location Demo"), after=True,
          pause=3.0, restore=[f"reset-permissions {APP}"]),
     dict(tool="app_location", i=1),
-    dict(tool="app_timezone", i=0, setup=settings_root() + ["scroll-to text=System", "tap text=System", "tap 'text=Date & time'",
-                                                   "wait 'text=Time zone'"],
-         before=True, after=True, pause=2.0, restore=["timezone {timezone}"]),
+    # The Clock app's big digits, not Settings' Date & time: there the zone
+    # and the time are grey text, and the two pictures looked the same.
+    dict(tool="app_timezone", i=0,
+         setup=["terminate com.google.android.deskclock", "launch com.google.android.deskclock", "tap testid=tab_menu_clock",
+                "wait 'label=Add city'"],
+         before=True, after=True, pause=2.0, restore=["timezone {timezone}", "terminate com.google.android.deskclock"]),
     dict(tool="app_time", i=0),
-    dict(tool="app_network", i=0, setup=settings_root() + ["tap 'text=Network & internet'"], before=True, after=True,
-         pause=2.0, restore=["network --reset"]),
+    dict(tool="app_network", i=0, setup=settings_root() + ["tap 'text=Network & internet'", "wait text=Internet"],
+         before=True, after=True, pause=2.0, restore=["network --reset"]),
     dict(tool="app_network", i=1, restore=["network --reset"]),
     dict(tool="app_dialogs", i=0),
     dict(tool="app_dialogs", i=1),
@@ -115,7 +123,10 @@ PLAN = [
     dict(tool="app_call", i=1),
     dict(tool="app_background", i=0, setup=settings_root()),
     dict(tool="app_shake", i=0),
-    dict(tool="app_zoom", i=0, setup=gesture("Pinch and Spread"), before=True, after=True),
+    # The Pinch and Spread page shows its own scale; it has to have loaded before
+    # the first picture, or the pair shows the Gestures list and a blank page.
+    dict(tool="app_zoom", i=0, setup=gesture("Pinch and Spread") + ["wait testid=pinchWebview", "$sleep 3"],
+         before=True, after=True, pause=2.0),
     dict(tool="app_record", i=0, setup=settings_root()),
     dict(tool="app_record", i=1, setup=["swipe up"]),
     dict(tool="app_list_apps", i=0),
@@ -165,6 +176,16 @@ PLAN = [
                 f"terminate {APP}", f"launch {APP}", "tap testid=batteryBtn",
                 "wait testid=batteryLevel --for text --text 'level: 42%'"],
          after=True, restore=["$adb emu power ac on", "$adb emu power status charging", "$adb emu power capacity 100"]),
+    # A dialog rule, answering the dialog in the way of a later action.
+    dict(tool="app_dialogs", i=None, cmd="tap testid=oneButtonBtn",
+         setup=app_screen("Dialog Demo") + ["dialogs --clear",
+                                            "dialogs --when 'Discard changes' --press 'Keep Editing'",
+                                            "tap testid=twoButtonBtn", "$sleep 1.5"],
+         before=True, after=True, pause=1.5, restore=["?alert accept", "dialogs --clear"],
+         caption="With `mobium dialogs --when \"Discard changes\" --press \"Keep Editing\"` declared, "
+                 "`mobium tap testid=oneButtonBtn` met the Discard dialog in its way, pressed Keep Editing, and "
+                 "went on — its own alert is up, and the line under the title says what the app received — "
+                 "on an Android 15 emulator"),
     dict(tool="app_check", i=None, cmd="uncheck testid=termsCheck",
          setup=app_screen("Form Demo") + ["check testid=termsCheck"], before=True, after=True),
     dict(tool="app_open_url", i=None, cmd="open https://en.wikipedia.org/wiki/Mobile_app",
@@ -242,6 +263,8 @@ def main():
             # business, and a phone's id is somebody's.
             out = "\n".join(l for l in out.splitlines() if l.startswith("emulator-"))
         entry.update(command=shown, verbatim=p.get("cmd") is None, exit=r.returncode, output=out)
+        if p.get("caption"):
+            entry["caption"] = p["caption"]
         if p.get("after"):
             time.sleep(p.get("pause", 1.0))
             entry["after"] = shot(f"{stem}-after")
