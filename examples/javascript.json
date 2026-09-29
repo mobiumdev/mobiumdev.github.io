@@ -1,0 +1,478 @@
+{
+  "tools": {
+    "app_accessibility": [
+      {
+        "code": "const settings = await device.accessibility()\nconsole.log(settings.bold_text, settings.reduce_motion)"
+      },
+      {
+        "code": "await device.accessibility('bold_text', 'on')"
+      }
+    ],
+    "app_alert": [
+      {
+        "code": "const text = await device.alert()\nif (text) console.log(`A dialog is up: ${text}`)"
+      },
+      {
+        "code": "await device.answerAlert(true)"
+      }
+    ],
+    "app_appearance": [
+      {
+        "code": "await device.appearance('dark')"
+      }
+    ],
+    "app_background": [
+      {
+        "code": "await device.background(5)"
+      }
+    ],
+    "app_batch": [
+      {
+        "code": "const steps = await device.batch([\n  { name: 'app_tap', arguments: { target: 'text=Network & internet' } },\n  { name: 'app_wait_for', arguments: { target: 'text=Internet' } },\n])\nfor (const step of steps) console.log(step.name, step.text)"
+      }
+    ],
+    "app_battery": [
+      {
+        "code": "const battery = await device.battery()\nconsole.log(battery.level, battery.state)"
+      }
+    ],
+    "app_call": [
+      {
+        "code": "await device.incomingCall('ring', '5551234')"
+      },
+      {
+        "code": "await device.incomingCall('hang')"
+      }
+    ],
+    "app_check": [
+      {
+        "code": "await device.check('testid=termsCheck')"
+      },
+      {
+        "code": "await device.check('@e4', false)"
+      }
+    ],
+    "app_clear_data": [
+      {
+        "code": "const cleared = await device.clearData('com.example.shop')\nconsole.log(cleared.emptied, cleared.kept)"
+      }
+    ],
+    "app_clipboard": [
+      {
+        "code": "await device.setClipboard('hello there')"
+      },
+      {
+        "code": "const text = await device.clipboard()"
+      }
+    ],
+    "app_context": [
+      {
+        "code": "await device.context('WEBVIEW_com.example.shop')"
+      },
+      {
+        "code": "await device.context('NATIVE_APP')"
+      }
+    ],
+    "app_contexts": [
+      {
+        "code": "const contexts = await device.contexts()\n// ['NATIVE_APP', 'WEBVIEW_com.example.shop', ...]"
+      }
+    ],
+    "app_cookies": [
+      {
+        "code": "const cookies = await device.cookies()\nfor (const c of cookies) console.log(c.name, c.domain)"
+      },
+      {
+        "code": "await device.clearCookies('session')"
+      }
+    ],
+    "app_crashes": [
+      {
+        "code": "const crashes = await device.crashes({ app: 'com.example.shop' })\nfor (const c of crashes) console.log(c.time, c.kind, c.summary)"
+      }
+    ],
+    "app_current": [
+      {
+        "code": "const app = await device.current()\nconsole.log(app) // 'com.android.settings'"
+      }
+    ],
+    "app_devices": [
+      {
+        "code": "for (const d of await device.devices()) {\n  console.log(d.id, d.platform, d.model, d.emulator ? 'emulator' : 'hardware')\n}"
+      }
+    ],
+    "app_dialogs": [
+      {
+        "code": "await device.addDialogRule('Save password', 'Not now')"
+      },
+      {
+        "code": "await device.clearDialogRules()"
+      }
+    ],
+    "app_doctor": [
+      {
+        "code": "const report = await device.doctor()\nconsole.log(report)"
+      }
+    ],
+    "app_drag": [
+      {
+        "code": "await device.drag('@e3', '@e7')"
+      }
+    ],
+    "app_eval": [
+      {
+        "code": "const title = await device.eval('document.title')"
+      }
+    ],
+    "app_fill": [
+      {
+        "code": "await device.fill('testid=search', 'coffee')"
+      }
+    ],
+    "app_find": [
+      {
+        "code": "const buttons = await device.find('role=button')\nconsole.log(buttons.map((b) => b.label))"
+      }
+    ],
+    "app_grant": [
+      {
+        "code": "await device.grant('com.example.shop', 'camera', 'location')"
+      }
+    ],
+    "app_install": [
+      {
+        "code": "const installed = await device.install('./build/app-debug.apk')\nconsole.log(installed) // the absolute path"
+      }
+    ],
+    "app_keyboard": [
+      {
+        "code": "await device.keyboard({ text: 'coffee', key: 'enter' })"
+      },
+      {
+        "code": "await device.keyboard({ hide: true })"
+      }
+    ],
+    "app_launch": [
+      {
+        "code": "await device.launch('com.android.settings')"
+      }
+    ],
+    "app_list_apps": [
+      {
+        "code": "const apps = await device.apps()\nfor (const app of apps) console.log(app.id, app.version)"
+      }
+    ],
+    "app_locale": [
+      {
+        "code": "await device.setAppLocale('org.wikipedia', 'ja-JP')"
+      }
+    ],
+    "app_location": [
+      {
+        "code": "await device.setLocation(51.5074, -0.1278)"
+      },
+      {
+        "code": "await device.clearLocation()"
+      }
+    ],
+    "app_lock": [
+      {
+        "code": "await device.setScreenLocked(true)"
+      },
+      {
+        "code": "await device.setScreenLocked(false)"
+      }
+    ],
+    "app_logs": [
+      {
+        "code": "const { entries } = await device.deviceLogs({ app: 'com.example.shop', level: 'error' })\nfor (const e of entries) console.log(e.time, e.tag, e.message)"
+      }
+    ],
+    "app_long_press": [
+      {
+        "code": "await device.longPress('@e4', { durationMs: 2000 })"
+      }
+    ],
+    "app_map": [
+      {
+        "code": "const elements = await device.map()\nfor (const e of elements) console.log(e.ref, e.role, e.label)\n// @e1 button Network & internet ..."
+      }
+    ],
+    "app_network": [
+      {
+        "code": "await device.setOffline(true)"
+      },
+      {
+        "code": "await device.shapeNetwork({ latencyMs: 300, downloadKbps: 500 })"
+      }
+    ],
+    "app_notifications": [
+      {
+        "code": "await device.postNotification('Your code is 123456')"
+      },
+      {
+        "code": "await device.shade(true)"
+      }
+    ],
+    "app_open_url": [
+      {
+        "code": "await device.openUrl('myapp://cart')"
+      }
+    ],
+    "app_orientation": [
+      {
+        "code": "await device.setOrientation('landscape')"
+      }
+    ],
+    "app_press": [
+      {
+        "code": "await device.press('back')"
+      },
+      {
+        "code": "await device.press('home')"
+      }
+    ],
+    "app_press_drag": [
+      {
+        "code": "await device.pressDrag('@e3', '@e5', '@e9')"
+      }
+    ],
+    "app_press_tap": [
+      {
+        "code": "await device.pressTap('@e3', '@e7')"
+      }
+    ],
+    "app_record": [
+      {
+        "code": "await device.record({ action: 'start' })"
+      },
+      {
+        "code": "const video = await device.record({ action: 'stop', path: 'flow.mp4' })\nconsole.log(video.frames, video.duration)"
+      }
+    ],
+    "app_reset_permissions": [
+      {
+        "code": "await device.resetPermissions('com.example.shop')"
+      }
+    ],
+    "app_revoke": [
+      {
+        "code": "await device.revoke('com.example.shop', 'location')"
+      }
+    ],
+    "app_rotate": [
+      {
+        "code": "await device.rotate(90, '@e2')"
+      }
+    ],
+    "app_screen": [
+      {
+        "code": "const screen = await device.screen()\nconsole.log(screen)"
+      },
+      {
+        "code": "await device.screen('small-phone')\n// ... run the flow ...\nawait device.screen('reset')"
+      }
+    ],
+    "app_screenshot": [
+      {
+        "code": "await device.screenshot('screen.png')"
+      }
+    ],
+    "app_scroll_to": [
+      {
+        "code": "const system = await device.scrollTo('text=System')"
+      },
+      {
+        "code": "await device.scrollTo('label=Card 8', { direction: 'right' })"
+      }
+    ],
+    "app_session": [
+      {
+        "code": "import { start } from 'mobium'\nconst device = await start({ app: 'com.android.settings' })"
+      },
+      {
+        "code": "await device.quit()"
+      }
+    ],
+    "app_shake": [
+      {
+        "code": "await device.shake()"
+      }
+    ],
+    "app_sms": [
+      {
+        "code": "await device.sms('Your code is 123456', '5559876')"
+      }
+    ],
+    "app_source": [
+      {
+        "code": "import { writeFileSync } from 'node:fs'\nconst { source } = await device.source()\nwriteFileSync('screen.xml', String(source))"
+      }
+    ],
+    "app_state": [
+      {
+        "code": "const { state } = await device.appState('com.android.settings')\nconsole.log(state) // 'foreground', 'background', 'not_running' ..."
+      }
+    ],
+    "app_storage": [
+      {
+        "code": "import { writeFileSync } from 'node:fs'\nconst state = await device.storage()\nwriteFileSync('state.json', JSON.stringify(state))"
+      },
+      {
+        "code": "await device.setStorage({ cookies: [], origins: [] })"
+      }
+    ],
+    "app_swipe": [
+      {
+        "code": "await device.swipe('up')"
+      }
+    ],
+    "app_tap": [
+      {
+        "code": "await device.tap('text=Network & internet')"
+      },
+      {
+        "code": "await device.tap('@e2')"
+      },
+      {
+        "code": "await device.doubleTap('@e2')"
+      }
+    ],
+    "app_terminate": [
+      {
+        "code": "await device.terminate('com.android.settings')"
+      }
+    ],
+    "app_text": [
+      {
+        "code": "const text = await device.text()"
+      },
+      {
+        "code": "const title = await device.text('testid=title')"
+      }
+    ],
+    "app_time": [
+      {
+        "code": "const { time, zone } = await device.deviceTime()\nconsole.log(time, zone)"
+      }
+    ],
+    "app_timezone": [
+      {
+        "code": "const zone = await device.timezone('Asia/Tokyo')"
+      }
+    ],
+    "app_type": [
+      {
+        "code": "await device.type('testid=email', 'hello@example.com')"
+      }
+    ],
+    "app_uninstall": [
+      {
+        "code": "await device.uninstall('com.example.shop')"
+      }
+    ],
+    "app_wait_for": [
+      {
+        "code": "const welcome = await device.waitFor('text=Welcome back')\nconsole.log(welcome?.ref)"
+      },
+      {
+        "code": "await device.waitFor('role=progressbar', { condition: 'hidden' })"
+      },
+      {
+        "code": "await device.waitFor('testid=termsCheck', { condition: 'checked', timeoutMs: 5000 })"
+      }
+    ],
+    "app_zoom": [
+      {
+        "code": "await device.zoom('in')"
+      }
+    ]
+  },
+  "members": {
+    "start": [
+      {
+        "title": "Open a session on the one running device",
+        "code": "import { start } from 'mobium'\nconst device = await start()\ntry {\n  console.log(device.session?.platform, device.session?.driver)\n} finally {\n  await device.quit()\n}"
+      },
+      {
+        "title": "Pick the device and platform, and launch an app",
+        "code": "import { start } from 'mobium'\nconst device = await start({ platform: 'ios', device: 'booted', app: 'com.apple.Preferences' })"
+      }
+    ],
+    "connect": [
+      {
+        "title": "Connect without opening a session, and leave it open",
+        "code": "import { connect } from 'mobium'\nconst device = await connect({ device: 'emulator-5554' })\nconsole.log(await device.current())\nawait device.close()"
+      },
+      {
+        "title": "Give each parallel run a daemon of its own",
+        "code": "import { connect } from 'mobium'\nconst device = await connect({ device: 'emulator-5556', session: 'run2', callTimeoutMs: 60000 })"
+      }
+    ],
+    "findBinary": [
+      {
+        "title": "Find the mobium executable a connection would run",
+        "code": "import { findBinary } from 'mobium'\nconsole.log(findBinary()) // MOBIUM_BIN_PATH, else the first on PATH"
+      }
+    ],
+    "errorFrom": [
+      {
+        "title": "Turn a tool's error result into the matching exception",
+        "code": "import { errorFrom, NoSuchElementError } from 'mobium'\nconst err = errorFrom('no element matches text=Sign in', { code: 'no_such_element', remedy: 'run app_map' })\nconsole.log(err instanceof NoSuchElementError, err.remedy)"
+      }
+    ],
+    "session": [
+      {
+        "title": "See what start() opened",
+        "code": "const { device: id, platform, driver, reused } = device.session ?? {}\nconsole.log(id, platform, driver, reused)"
+      }
+    ],
+    "sessions": [
+      {
+        "title": "List the sessions open on the daemon",
+        "code": "for (const s of await device.sessions()) console.log(s.device, s.platform, s.driver)"
+      }
+    ],
+    "quit": [
+      {
+        "title": "End the session, whatever happens",
+        "code": "try {\n  await device.tap('text=Network & internet')\n} finally {\n  await device.quit()\n}"
+      }
+    ],
+    "close": [
+      {
+        "title": "Close the connection and keep the session for the CLI",
+        "code": "await device.close()"
+      }
+    ],
+    "MobiumError": [
+      {
+        "title": "Decide by the error's code, never its message",
+        "code": "import { MobiumError } from 'mobium'\ntry {\n  await device.tap('text=Sign in')\n} catch (e) {\n  if (!(e instanceof MobiumError)) throw e\n  console.log(e.code, e.remedy, e.retryable, e.details)\n}"
+      }
+    ],
+    "NoSuchElementError": [
+      {
+        "title": "Treat a missing element as an answer",
+        "code": "import { NoSuchElementError } from 'mobium'\ntry {\n  await device.tap('text=Skip')\n} catch (e) {\n  if (!(e instanceof NoSuchElementError)) throw e // no Skip button this time\n}"
+      }
+    ],
+    "TimedOutError": [
+      {
+        "title": "Wait, and say what happened if it never came",
+        "code": "import { TimedOutError } from 'mobium'\ntry {\n  await device.waitFor('text=Welcome back', { timeoutMs: 5000 })\n} catch (e) {\n  if (e instanceof TimedOutError) console.log(e.message) // what was on screen instead\n  else throw e\n}"
+      }
+    ],
+    "UnsupportedError": [
+      {
+        "title": "Skip what a platform cannot do",
+        "code": "import { UnsupportedError } from 'mobium'\ntry {\n  await device.press('back')\n} catch (e) {\n  if (!(e instanceof UnsupportedError)) throw e\n  console.log(e.remedy) // iOS has no back button\n}"
+      }
+    ]
+  },
+  "intro": {
+    "install": "git clone https://github.com/mobiumdev/mobium.git\nnpm install ./mobium/clients/javascript",
+    "code": "import { start } from 'mobium'\n\nconst device = await start({ platform: 'android', app: 'com.android.settings' })\nfor (const el of await device.map()) console.log(el.ref, el.label)\nawait device.quit()",
+    "note": "`device` below is what `start()` or `connect()` resolved to: a `Device`. Every method returns a promise."
+  }
+}

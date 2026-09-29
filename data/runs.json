@@ -1,0 +1,467 @@
+{
+ "app_devices[0]": {
+  "tool": "app_devices",
+  "index": 0,
+  "command": "mobium devices",
+  "verbatim": true,
+  "exit": 0,
+  "output": "emulator-5554                          device     (android emulator, model: sdk_gphone64_arm64)"
+ },
+ "app_launch[0]": {
+  "tool": "app_launch",
+  "index": 0,
+  "command": "mobium launch com.android.settings",
+  "verbatim": true,
+  "exit": 0,
+  "output": "launched com.android.settings",
+  "after": "/img/shots/app_launch-0-after.jpg"
+ },
+ "app_map[0]": {
+  "tool": "app_map",
+  "index": 0,
+  "command": "mobium map",
+  "verbatim": true,
+  "exit": 0,
+  "output": "@e1 settings_homepage_container (list)\n@e2 Profile picture, double tap to open Google Account (button)\n@e3 Search settings (button)\n@e4 main_content_scrollable_container (list)\n@e5 Network & internet Mobile, Wi‑Fi, hotspot (button)\n@e6 Connected devices Bluetooth, pairing (button)\n@e7 Apps Assistant, recent apps, default apps (button)\n@e8 Notifications Notification history, conversations (button)\n@e9 Battery 100% (button)\n@e10 Storage 51% used - 7.86 GB free (button)\n@e11 Sound & vibration Volume, haptics, Do Not Disturb (button)",
+  "after": "/img/shots/app_map-0-after.jpg"
+ },
+ "app_text[0]": {
+  "tool": "app_text",
+  "index": 0,
+  "command": "mobium text",
+  "verbatim": true,
+  "exit": 0,
+  "output": "Profile picture, double tap to open Google Account\nSettings\nSearch settings\nNetwork & internet\nMobile, Wi‑Fi, hotspot\nConnected devices\nBluetooth, pairing\nApps\nAssistant, recent apps, default apps\nNotifications\nNotification history, conversations\nBattery\n100%\nStorage\n51% used - 7.86 GB free\nSound & vibration\nVolume, haptics, Do Not Disturb"
+ },
+ "app_find[0]": {
+  "tool": "app_find",
+  "index": 0,
+  "command": "mobium find role=button",
+  "verbatim": true,
+  "exit": 0,
+  "output": "@e2 Profile picture, double tap to open Google Account (button)\n@e3 Search settings (button)\n(no ref)  [53,599][200,736]\n@e5 Network & internet Mobile, Wi‑Fi, hotspot (button)\n@e6 Connected devices Bluetooth, pairing (button)\n@e7 Apps Assistant, recent apps, default apps (button)\n@e8 Notifications Notification history, conversations (button)\n@e9 Battery 100% (button)\n@e10 Storage 51% used - 7.86 GB free (button)\n@e11 Sound & vibration Volume, haptics, Do Not Disturb (button)"
+ },
+ "app_current[0]": {
+  "tool": "app_current",
+  "index": 0,
+  "command": "mobium current",
+  "verbatim": true,
+  "exit": 0,
+  "output": "com.android.settings"
+ },
+ "app_state[0]": {
+  "tool": "app_state",
+  "index": 0,
+  "command": "mobium state com.android.settings",
+  "verbatim": true,
+  "exit": 0,
+  "output": "com.android.settings is in front"
+ },
+ "app_tap[0]": {
+  "tool": "app_tap",
+  "index": 0,
+  "before": "/img/shots/app_tap-0-before.jpg",
+  "command": "mobium tap \"text=Network & internet\"",
+  "verbatim": true,
+  "exit": 0,
+  "output": "tapped text=Network & internet at (407, 867)",
+  "after": "/img/shots/app_tap-0-after.jpg"
+ },
+ "app_scroll_to[0]": {
+  "tool": "app_scroll_to",
+  "index": 0,
+  "command": "mobium scroll-to text=System",
+  "verbatim": true,
+  "exit": 0,
+  "output": "text=System is on screen after 2 scrolls down — @e9 System Languages, gestures, time, backup (button)",
+  "after": "/img/shots/app_scroll_to-0-after.jpg"
+ },
+ "app_swipe[0]": {
+  "tool": "app_swipe",
+  "index": 0,
+  "before": "/img/shots/app_swipe-0-before.jpg",
+  "command": "mobium swipe up",
+  "verbatim": true,
+  "exit": 0,
+  "output": "swiped up: (540,1680) to (540,720)",
+  "after": "/img/shots/app_swipe-0-after.jpg"
+ },
+ "app_batch[0]": {
+  "tool": "app_batch",
+  "index": 0,
+  "command": "mobium batch steps.json",
+  "verbatim": true,
+  "exit": 0,
+  "output": "1. app_tap: tapped text=Network & internet at (407, 867)\n2. app_wait_for: text=Internet is visible after 1.283s — @e3 Internet AndroidWifi (button)",
+  "after": "/img/shots/app_batch-0-after.jpg"
+ },
+ "app_press[1]": {
+  "tool": "app_press",
+  "index": 1,
+  "command": "mobium press home",
+  "verbatim": true,
+  "exit": 0,
+  "output": "pressed home — com.google.android.apps.nexuslauncher is in the foreground",
+  "after": "/img/shots/app_press-1-after.jpg"
+ },
+ "app_press[0]": {
+  "tool": "app_press",
+  "index": 0,
+  "command": "mobium press back",
+  "verbatim": true,
+  "exit": 0,
+  "output": "pressed back"
+ },
+ "app_terminate[0]": {
+  "tool": "app_terminate",
+  "index": 0,
+  "command": "mobium terminate com.android.settings",
+  "verbatim": true,
+  "exit": 0,
+  "output": "terminated com.android.settings"
+ },
+ "app_appearance[0]": {
+  "tool": "app_appearance",
+  "index": 0,
+  "command": "mobium appearance dark",
+  "verbatim": true,
+  "exit": 0,
+  "output": "dark (was light)",
+  "after": "/img/shots/app_appearance-0-after.jpg"
+ },
+ "app_orientation[0]": {
+  "tool": "app_orientation",
+  "index": 0,
+  "command": "mobium orientation landscape",
+  "verbatim": true,
+  "exit": 0,
+  "output": "landscape (locked) (was portrait)",
+  "after": "/img/shots/app_orientation-0-after.jpg"
+ },
+ "app_screen[0]": {
+  "tool": "app_screen",
+  "index": 0,
+  "command": "mobium screen",
+  "verbatim": true,
+  "exit": 0,
+  "output": "1080x2400px @420dpi = 411x914dp (sw411dp)"
+ },
+ "app_screen:screen small-phone": {
+  "tool": "app_screen",
+  "index": null,
+  "command": "mobium screen small-phone",
+  "verbatim": false,
+  "exit": 0,
+  "output": "small-phone — 720x1520px @320dpi = 360x760dp (sw360dp) — overriding 1080x2400px @420dpi\nThis is an override. Call app_screen with profile=\"reset\" to put the device back.",
+  "after": "/img/shots/app_screen-x-after.jpg"
+ },
+ "app_accessibility[0]": {
+  "tool": "app_accessibility",
+  "index": 0,
+  "command": "mobium accessibility",
+  "verbatim": true,
+  "exit": 0,
+  "output": "reduce_motion                off\nbold_text                    off\nincrease_contrast            off\ninvert_colors                off\ngrayscale                    off\ntext_scale                   1.0"
+ },
+ "app_accessibility[1]": {
+  "tool": "app_accessibility",
+  "index": 1,
+  "command": "mobium accessibility bold_text on",
+  "verbatim": true,
+  "exit": 0,
+  "output": "bold_text on (was off) — put back when the session ends",
+  "after": "/img/shots/app_accessibility-1-after.jpg"
+ },
+ "app_notifications[0]": {
+  "tool": "app_notifications",
+  "index": 0,
+  "command": "mobium notifications --post \"Your code is 123456\"",
+  "verbatim": true,
+  "exit": 0,
+  "output": "android  Set a screen lock — For added security, set a PIN, pattern, or password for this device.\ncom.google.android.dialer  Missed calls — 3 missed calls\ncom.google.android.dialer  Missed call — Missed call\ncom.google.android.dialer  Missed call — Missed call\ncom.google.android.dialer  Missed call — Missed call\nandroid  Serial console enabled — Performance is impacted. To disable, check bootloader.\ncom.android.shell  Mobium — Your code is 123456"
+ },
+ "app_notifications[1]": {
+  "tool": "app_notifications",
+  "index": 1,
+  "command": "mobium notifications --shade open",
+  "verbatim": true,
+  "exit": 0,
+  "output": "com.android.shell  Mobium — Your code is 123456\nandroid  Set a screen lock — For added security, set a PIN, pattern, or password for this device.\ncom.google.android.dialer  Missed calls — 3 missed calls\ncom.google.android.dialer  Missed call — Missed call\ncom.google.android.dialer  Missed call — Missed call\ncom.google.android.dialer  Missed call — Missed call\nandroid  Serial console enabled — Performance is impacted. To disable, check bootloader.",
+  "after": "/img/shots/app_notifications-1-after.jpg"
+ },
+ "app_check[0]": {
+  "tool": "app_check",
+  "index": 0,
+  "before": "/img/shots/app_check-0-before.jpg",
+  "command": "mobium check testid=termsCheck",
+  "verbatim": true,
+  "exit": 0,
+  "output": "testid=termsCheck is now checked",
+  "after": "/img/shots/app_check-0-after.jpg"
+ },
+ "app_wait_for[2]": {
+  "tool": "app_wait_for",
+  "index": 2,
+  "command": "mobium wait testid=termsCheck --for checked --timeout 5s",
+  "verbatim": true,
+  "exit": 0,
+  "output": "testid=termsCheck is checked after 13ms — @e3 Accept terms (checkbox, checked)"
+ },
+ "app_fill:fill testid=username mobium": {
+  "tool": "app_fill",
+  "index": null,
+  "command": "mobium fill testid=username mobium",
+  "verbatim": false,
+  "exit": 0,
+  "output": "typed \"mobium\" into testid=username",
+  "after": "/img/shots/app_fill-x-after.jpg"
+ },
+ "app_keyboard[0]": {
+  "tool": "app_keyboard",
+  "index": 0,
+  "command": "mobium keyboard --text coffee --key enter",
+  "verbatim": true,
+  "exit": 0,
+  "output": "typed \"coffee\" into username, which now holds coffee; the keyboard is hidden",
+  "after": "/img/shots/app_keyboard-0-after.jpg"
+ },
+ "app_keyboard[1]": {
+  "tool": "app_keyboard",
+  "index": 1,
+  "before": "/img/shots/app_keyboard-1-before.jpg",
+  "command": "mobium keyboard --hide",
+  "verbatim": true,
+  "exit": 0,
+  "output": "hid the keyboard",
+  "after": "/img/shots/app_keyboard-1-after.jpg"
+ },
+ "app_alert[0]": {
+  "tool": "app_alert",
+  "index": 0,
+  "command": "mobium alert",
+  "verbatim": true,
+  "exit": 0,
+  "output": "a dialog is on screen: \"Discard changes?\\nThey will be lost.\"",
+  "after": "/img/shots/app_alert-0-after.jpg"
+ },
+ "app_locale[0]": {
+  "tool": "app_locale",
+  "index": 0,
+  "command": "mobium locale org.wikipedia ja-JP",
+  "verbatim": true,
+  "exit": 0,
+  "output": "org.wikipedia set to ja-JP — the device stored it; whether org.wikipedia has that translation is not something Android reports, so check the screen"
+ },
+ "app_locale:launch org.wikipedia": {
+  "tool": "app_locale",
+  "index": null,
+  "command": "mobium launch org.wikipedia",
+  "verbatim": false,
+  "exit": 0,
+  "output": "launched org.wikipedia",
+  "after": "/img/shots/app_locale-x-after.jpg"
+ },
+ "app_screenshot[0]": {
+  "tool": "app_screenshot",
+  "index": 0,
+  "command": "mobium screenshot -o screen.png",
+  "verbatim": true,
+  "exit": 0,
+  "output": "saved …/screen.png (154010 bytes)",
+  "after": "/img/shots/app_screenshot-0-after.jpg"
+ },
+ "app_clipboard[0]": {
+  "tool": "app_clipboard",
+  "index": 0,
+  "command": "mobium clipboard \"hello there\"",
+  "verbatim": true,
+  "exit": 0,
+  "output": "wrote \"hello there\" to the clipboard — Android cannot read it back, so this is the write reported as sent. Paste into a field to see it"
+ },
+ "app_clipboard[1]": {
+  "tool": "app_clipboard",
+  "index": 1,
+  "command": "mobium clipboard",
+  "verbatim": true,
+  "exit": 5,
+  "output": "error: the uiautomator2 backend cannot read the clipboard. On Android 10 and later only an app with focus may read it, and the UiAutomator2 server has no activity of its own — it answers with an empty string however full the clipboard is, which would be reported as \"empty\" rather than as \"unknown\". Pass text to write one; to check a write, paste into a field and read that"
+ },
+ "app_location[0]": {
+  "tool": "app_location",
+  "index": 0,
+  "command": "mobium location 51.5074 -0.1278",
+  "verbatim": true,
+  "exit": 0,
+  "output": "the device is at 51.507400,-0.127800, injected and read back"
+ },
+ "app_location[1]": {
+  "tool": "app_location",
+  "index": 1,
+  "command": "mobium location --clear",
+  "verbatim": true,
+  "exit": 0,
+  "output": "the test provider is removed — the device will report its own position the next time something asks for one. Its last known location is still the injected one until then; Android keeps that cache and nothing here can clear it"
+ },
+ "app_timezone[0]": {
+  "tool": "app_timezone",
+  "index": 0,
+  "command": "mobium timezone Asia/Tokyo",
+  "verbatim": true,
+  "exit": 0,
+  "output": "Asia/Tokyo (was America/Los_Angeles)"
+ },
+ "app_time[0]": {
+  "tool": "app_time",
+  "index": 0,
+  "command": "mobium time",
+  "verbatim": true,
+  "exit": 0,
+  "output": "2026-09-28T22:41:34.460-07:00 America/Los_Angeles"
+ },
+ "app_battery[0]": {
+  "tool": "app_battery",
+  "index": 0,
+  "command": "mobium battery",
+  "verbatim": true,
+  "exit": 0,
+  "output": "100%, charging, plugged into ac"
+ },
+ "app_network[0]": {
+  "tool": "app_network",
+  "index": 0,
+  "command": "mobium network --offline",
+  "verbatim": true,
+  "exit": 0,
+  "output": "offline (airplane mode)"
+ },
+ "app_network[1]": {
+  "tool": "app_network",
+  "index": 1,
+  "command": "mobium network --latency 300 --download 500",
+  "verbatim": true,
+  "exit": 0,
+  "output": "online; 300ms added to each round trip, download 500 kbit/s"
+ },
+ "app_dialogs[0]": {
+  "tool": "app_dialogs",
+  "index": 0,
+  "command": "mobium dialogs --when \"Save password\" --press \"Not now\"",
+  "verbatim": true,
+  "exit": 0,
+  "output": "1 dialog rule(s)\n  when \"Save password\": press \"Not now\"  (answered 0)"
+ },
+ "app_dialogs[1]": {
+  "tool": "app_dialogs",
+  "index": 1,
+  "command": "mobium dialogs --clear",
+  "verbatim": true,
+  "exit": 0,
+  "output": "no dialog rules"
+ },
+ "app_sms[0]": {
+  "tool": "app_sms",
+  "index": 0,
+  "command": "mobium sms \"Your code is 123456\" --from 5559876",
+  "verbatim": true,
+  "exit": 0,
+  "output": "delivered a message from 5559876"
+ },
+ "app_call[0]": {
+  "tool": "app_call",
+  "index": 0,
+  "command": "mobium call --number 5551234",
+  "verbatim": true,
+  "exit": 0,
+  "output": "ringing a call from 5551234"
+ },
+ "app_call[1]": {
+  "tool": "app_call",
+  "index": 1,
+  "command": "mobium call hang",
+  "verbatim": true,
+  "exit": 0,
+  "output": "ended a call from 5551234"
+ },
+ "app_background[0]": {
+  "tool": "app_background",
+  "index": 0,
+  "command": "mobium background 5",
+  "verbatim": true,
+  "exit": 0,
+  "output": "com.android.settings was in the background for 5s and is in front again"
+ },
+ "app_shake[0]": {
+  "tool": "app_shake",
+  "index": 0,
+  "command": "mobium shake",
+  "verbatim": true,
+  "exit": 0,
+  "output": "sent a shake on the emulator's accelerometer, ±20 m/s² side to side for about 1.5s, then back at rest; whether the app reacts is up to its own shake detector"
+ },
+ "app_zoom[0]": {
+  "tool": "app_zoom",
+  "index": 0,
+  "command": "mobium zoom in",
+  "verbatim": true,
+  "exit": 0,
+  "output": "pinched in about the screen at (540, 1200), fingers 160 to 640px apart — the gesture was delivered, which is all this can confirm: neither platform reports a zoom level in the hierarchy, so ask the thing you zoomed (a WebView knows its own visualViewport.scale)"
+ },
+ "app_record[0]": {
+  "tool": "app_record",
+  "index": 0,
+  "command": "mobium record start",
+  "verbatim": true,
+  "exit": 0,
+  "output": "recording — stop it with action \"stop\" and a path"
+ },
+ "app_record[1]": {
+  "tool": "app_record",
+  "index": 1,
+  "command": "mobium record stop -o flow.mp4",
+  "verbatim": true,
+  "exit": 0,
+  "output": "saved …/flow.mp4: 38 frames, 1.474s of video, recorded over 1.528s"
+ },
+ "app_list_apps[0]": {
+  "tool": "app_list_apps",
+  "index": 0,
+  "command": "mobium apps",
+  "verbatim": true,
+  "exit": 0,
+  "output": "com.nextcloud.client  (340010190)\ncom.google.android.calculator  (85022643)\nio.appium.uiautomator2.server.test  (0)\norg.wikipedia  (50606)\ncom.stoutner.privacybrowser.standard  (81)\nio.appium.uiautomator2.server  (278)\ndev.mobium.mobiumapp  (1)\norg.fdroid.fdroid  (1023052)\ncom.beemdevelopment.aegis  (82)"
+ },
+ "app_contexts[0]": {
+  "tool": "app_contexts",
+  "index": 0,
+  "command": "mobium contexts",
+  "verbatim": true,
+  "exit": 0,
+  "output": "NATIVE_APP  (current)\nWEBVIEW_dev.mobium.mobiumapp  — about:blank about:blank"
+ },
+ "app_session[0]": {
+  "tool": "app_session",
+  "index": 0,
+  "command": "mobium session start --app com.android.settings",
+  "verbatim": true,
+  "exit": 0,
+  "output": "session already open on emulator-5554 (android, uiautomator2); com.android.settings was launched fresh and is in the foreground"
+ },
+ "app_session[1]": {
+  "tool": "app_session",
+  "index": 1,
+  "command": "mobium session end",
+  "verbatim": true,
+  "exit": 0,
+  "output": "session ended on emulator-5554; anything it changed for the session is put back; com.android.settings, which the session launched, was stopped"
+ },
+ "app_alert[1]": {
+  "tool": "app_alert",
+  "index": 1,
+  "before": "/img/shots/app_alert-1-before.jpg",
+  "command": "mobium alert accept",
+  "verbatim": true,
+  "exit": 0,
+  "output": "accepted the dialog \"Discard changes?\\nThey will be lost.\" — this answered it and did not choose an outcome: on a permission prompt accept and dismiss do not mean grant and deny, and on iOS they are the other way round. Tap the button by ref if you need a particular answer",
+  "after": "/img/shots/app_alert-1-after.jpg"
+ }
+}

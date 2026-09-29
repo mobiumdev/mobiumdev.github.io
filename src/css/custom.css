@@ -1,0 +1,36 @@
+/* Mobium's palette: the mark runs blue-violet to cyan (assets/branding in
+   the mobium repository). */
+:root {
+  --ifm-color-primary: #3552fd;
+  --ifm-color-primary-dark: #1b3bfd;
+  --ifm-color-primary-darker: #0e2ffc;
+  --ifm-color-primary-darkest: #0226d6;
+  --ifm-color-primary-light: #4f69fd;
+  --ifm-color-primary-lighter: #5c74fd;
+  --ifm-color-primary-lightest: #8394fe;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #00bafc;
+  --ifm-color-primary-dark: #00a8e3;
+  --ifm-color-primary-darker: #009ed6;
+  --ifm-color-primary-darkest: #0082b0;
+  --ifm-color-primary-light: #17c3ff;
+  --ifm-color-primary-lighter: #26c7ff;
+  --ifm-color-primary-lightest: #52d3ff;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-background-color: #141826;
+}
+
+/* Screenshots of a phone: not the full width of the page. */
+.markdown img {
+  max-height: 520px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+}
+
+.markdown table img {
+  max-height: 440px;
+}

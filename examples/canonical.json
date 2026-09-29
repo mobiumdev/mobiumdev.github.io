@@ -1,0 +1,754 @@
+{
+  "_comment": "One scenario per example, the same on every surface: `cli` is the command, `args` the MCP arguments, and each client's examples/<lang>.json translates the scenario of the same tool and index. scripts/check_examples.py holds all three to the tool's schema and the command's flags.",
+  "app_accessibility": [
+    {
+      "title": "Read every accessibility setting",
+      "cli": "mobium accessibility",
+      "args": {}
+    },
+    {
+      "title": "Turn bold text on for the session",
+      "cli": "mobium accessibility bold_text on",
+      "args": {
+        "setting": "bold_text",
+        "value": "on"
+      }
+    }
+  ],
+  "app_alert": [
+    {
+      "title": "Ask whether a system dialog is up, and what it says",
+      "cli": "mobium alert",
+      "args": {}
+    },
+    {
+      "title": "Answer it with the platform's accept button",
+      "cli": "mobium alert accept",
+      "args": {
+        "action": "accept"
+      }
+    }
+  ],
+  "app_appearance": [
+    {
+      "title": "Switch to dark mode",
+      "cli": "mobium appearance dark",
+      "args": {
+        "appearance": "dark"
+      }
+    }
+  ],
+  "app_background": [
+    {
+      "title": "Send the app away for five seconds, and bring it back",
+      "cli": "mobium background 5",
+      "args": {
+        "seconds": 5
+      }
+    }
+  ],
+  "app_batch": [
+    {
+      "title": "Tap through two screens in one call",
+      "cli": "mobium batch steps.json",
+      "args": {
+        "steps": [
+          {
+            "name": "app_tap",
+            "arguments": {
+              "target": "text=Network & internet"
+            }
+          },
+          {
+            "name": "app_wait_for",
+            "arguments": {
+              "target": "text=Internet"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "app_battery": [
+    {
+      "title": "Read the battery",
+      "cli": "mobium battery",
+      "args": {}
+    }
+  ],
+  "app_call": [
+    {
+      "title": "Ring the device with an incoming call",
+      "cli": "mobium call --number 5551234",
+      "args": {
+        "number": "5551234"
+      }
+    },
+    {
+      "title": "Hang up",
+      "cli": "mobium call hang",
+      "args": {
+        "action": "hang"
+      }
+    }
+  ],
+  "app_check": [
+    {
+      "title": "Tick a checkbox, whatever state it is in",
+      "cli": "mobium check testid=termsCheck",
+      "args": {
+        "target": "testid=termsCheck"
+      }
+    },
+    {
+      "title": "Turn a switch off",
+      "cli": "mobium uncheck @e4",
+      "args": {
+        "target": "@e4",
+        "checked": false
+      }
+    }
+  ],
+  "app_clear_data": [
+    {
+      "title": "Delete an app's data, and keep it installed",
+      "cli": "mobium clear-data com.example.shop",
+      "args": {
+        "app": "com.example.shop"
+      }
+    }
+  ],
+  "app_clipboard": [
+    {
+      "title": "Put text on the clipboard",
+      "cli": "mobium clipboard \"hello there\"",
+      "args": {
+        "text": "hello there"
+      }
+    },
+    {
+      "title": "Read the clipboard",
+      "cli": "mobium clipboard",
+      "args": {}
+    }
+  ],
+  "app_context": [
+    {
+      "title": "Drive the web content of a WebView",
+      "cli": "mobium context WEBVIEW_com.example.shop",
+      "args": {
+        "context": "WEBVIEW_com.example.shop"
+      }
+    },
+    {
+      "title": "Go back to the native app",
+      "cli": "mobium context NATIVE_APP",
+      "args": {
+        "context": "NATIVE_APP"
+      }
+    }
+  ],
+  "app_contexts": [
+    {
+      "title": "List the native app and its WebViews",
+      "cli": "mobium contexts",
+      "args": {}
+    }
+  ],
+  "app_cookies": [
+    {
+      "title": "Read the WebView's cookies",
+      "cli": "mobium cookies",
+      "args": {}
+    },
+    {
+      "title": "Delete one cookie",
+      "cli": "mobium cookies clear session",
+      "args": {
+        "action": "clear",
+        "name": "session"
+      }
+    }
+  ],
+  "app_crashes": [
+    {
+      "title": "List one app's crashes",
+      "cli": "mobium crashes --app com.example.shop",
+      "args": {
+        "app": "com.example.shop"
+      }
+    }
+  ],
+  "app_current": [
+    {
+      "title": "Ask which app is in front",
+      "cli": "mobium current",
+      "args": {}
+    }
+  ],
+  "app_devices": [
+    {
+      "title": "List the devices mobium can see",
+      "cli": "mobium devices",
+      "args": {}
+    }
+  ],
+  "app_dialogs": [
+    {
+      "title": "Answer a dialog whenever it gets in the way",
+      "cli": "mobium dialogs --when \"Save password\" --press \"Not now\"",
+      "args": {
+        "when": "Save password",
+        "press": "Not now"
+      }
+    },
+    {
+      "title": "Remove every rule",
+      "cli": "mobium dialogs --clear",
+      "args": {
+        "clear": true
+      }
+    }
+  ],
+  "app_doctor": [
+    {
+      "title": "Check the environment",
+      "cli": "mobium doctor",
+      "args": {}
+    }
+  ],
+  "app_drag": [
+    {
+      "title": "Drag one element onto another",
+      "cli": "mobium drag @e3 @e7",
+      "args": {
+        "from": "@e3",
+        "to": "@e7"
+      }
+    }
+  ],
+  "app_eval": [
+    {
+      "title": "Read the page title in a WebView",
+      "cli": "mobium eval \"document.title\"",
+      "args": {
+        "expression": "document.title"
+      }
+    }
+  ],
+  "app_fill": [
+    {
+      "title": "Replace what a field holds",
+      "cli": "mobium fill testid=search \"coffee\"",
+      "args": {
+        "target": "testid=search",
+        "text": "coffee"
+      }
+    }
+  ],
+  "app_find": [
+    {
+      "title": "Find every button on screen, without tapping",
+      "cli": "mobium find role=button",
+      "args": {
+        "locator": "role=button"
+      }
+    }
+  ],
+  "app_grant": [
+    {
+      "title": "Grant two permissions before a flow",
+      "cli": "mobium grant com.example.shop camera location",
+      "args": {
+        "app": "com.example.shop",
+        "permissions": [
+          "camera",
+          "location"
+        ]
+      }
+    }
+  ],
+  "app_install": [
+    {
+      "title": "Install an app from a file",
+      "cli": "mobium install ./build/app-debug.apk",
+      "args": {
+        "path": "./build/app-debug.apk"
+      }
+    }
+  ],
+  "app_keyboard": [
+    {
+      "title": "Type into the focused field and press Enter",
+      "cli": "mobium keyboard --text coffee --key enter",
+      "args": {
+        "text": "coffee",
+        "key": "enter"
+      }
+    },
+    {
+      "title": "Hide the keyboard",
+      "cli": "mobium keyboard --hide",
+      "args": {
+        "hide": true
+      }
+    }
+  ],
+  "app_launch": [
+    {
+      "title": "Bring an app to the front",
+      "cli": "mobium launch com.android.settings",
+      "args": {
+        "app": "com.android.settings"
+      }
+    }
+  ],
+  "app_list_apps": [
+    {
+      "title": "List the apps you installed",
+      "cli": "mobium apps",
+      "args": {}
+    }
+  ],
+  "app_locale": [
+    {
+      "title": "Run one app in Japanese",
+      "cli": "mobium locale org.wikipedia ja-JP",
+      "args": {
+        "app": "org.wikipedia",
+        "locale": "ja-JP"
+      }
+    }
+  ],
+  "app_location": [
+    {
+      "title": "Put the device in London",
+      "cli": "mobium location 51.5074 -0.1278",
+      "args": {
+        "latitude": 51.5074,
+        "longitude": -0.1278
+      }
+    },
+    {
+      "title": "Give it back its own position",
+      "cli": "mobium location --clear",
+      "args": {
+        "clear": true
+      }
+    }
+  ],
+  "app_lock": [
+    {
+      "title": "Lock the screen",
+      "cli": "mobium lock lock",
+      "args": {
+        "state": "lock"
+      }
+    },
+    {
+      "title": "Unlock it",
+      "cli": "mobium lock unlock",
+      "args": {
+        "state": "unlock"
+      }
+    }
+  ],
+  "app_logs": [
+    {
+      "title": "Read one app's errors from the device log",
+      "cli": "mobium logs --source device --app com.example.shop --level error",
+      "args": {
+        "source": "device",
+        "app": "com.example.shop",
+        "level": "error"
+      }
+    }
+  ],
+  "app_long_press": [
+    {
+      "title": "Press and hold for two seconds",
+      "cli": "mobium long-press @e4 --duration 2s",
+      "args": {
+        "target": "@e4",
+        "duration_ms": 2000
+      }
+    }
+  ],
+  "app_map": [
+    {
+      "title": "Map what can be acted on, with a ref for each",
+      "cli": "mobium map",
+      "args": {}
+    }
+  ],
+  "app_network": [
+    {
+      "title": "Go offline",
+      "cli": "mobium network --offline",
+      "args": {
+        "offline": true
+      }
+    },
+    {
+      "title": "A slow connection, on an emulator",
+      "cli": "mobium network --latency 300 --download 500",
+      "args": {
+        "latency_ms": 300,
+        "download_kbps": 500
+      }
+    }
+  ],
+  "app_notifications": [
+    {
+      "title": "Post a notification",
+      "cli": "mobium notifications --post \"Your code is 123456\"",
+      "args": {
+        "text": "Your code is 123456"
+      }
+    },
+    {
+      "title": "Pull the shade down",
+      "cli": "mobium notifications --shade open",
+      "args": {
+        "shade": "open"
+      }
+    }
+  ],
+  "app_open_url": [
+    {
+      "title": "Open a deep link",
+      "cli": "mobium open myapp://cart",
+      "args": {
+        "url": "myapp://cart"
+      }
+    }
+  ],
+  "app_orientation": [
+    {
+      "title": "Turn the screen to landscape",
+      "cli": "mobium orientation landscape",
+      "args": {
+        "orientation": "landscape"
+      }
+    }
+  ],
+  "app_press": [
+    {
+      "title": "Press Back",
+      "cli": "mobium press back",
+      "args": {
+        "button": "back"
+      }
+    },
+    {
+      "title": "Go to the home screen",
+      "cli": "mobium press home",
+      "args": {
+        "button": "home"
+      }
+    }
+  ],
+  "app_press_drag": [
+    {
+      "title": "Hold one thing and drag another",
+      "cli": "mobium press-drag @e3 @e5 @e9",
+      "args": {
+        "hold": "@e3",
+        "from": "@e5",
+        "to": "@e9"
+      }
+    }
+  ],
+  "app_press_tap": [
+    {
+      "title": "Hold one thing and tap another",
+      "cli": "mobium press-tap @e3 @e7",
+      "args": {
+        "hold": "@e3",
+        "tap": "@e7"
+      }
+    }
+  ],
+  "app_record": [
+    {
+      "title": "Start recording the screen",
+      "cli": "mobium record start",
+      "args": {
+        "action": "start"
+      }
+    },
+    {
+      "title": "Stop, and save the video",
+      "cli": "mobium record stop -o flow.mp4",
+      "args": {
+        "action": "stop",
+        "path": "flow.mp4"
+      }
+    }
+  ],
+  "app_reset_permissions": [
+    {
+      "title": "Put one app's permissions back to their defaults",
+      "cli": "mobium reset-permissions com.example.shop",
+      "args": {
+        "app": "com.example.shop"
+      }
+    }
+  ],
+  "app_revoke": [
+    {
+      "title": "Deny a permission, to test the app without it",
+      "cli": "mobium revoke com.example.shop location",
+      "args": {
+        "app": "com.example.shop",
+        "permissions": [
+          "location"
+        ]
+      }
+    }
+  ],
+  "app_rotate": [
+    {
+      "title": "Turn a map a quarter turn clockwise",
+      "cli": "mobium rotate 90 --target @e2",
+      "args": {
+        "degrees": 90,
+        "target": "@e2"
+      }
+    }
+  ],
+  "app_screen": [
+    {
+      "title": "Read the screen: size, density, and the profiles it can pretend to be",
+      "cli": "mobium screen",
+      "args": {}
+    },
+    {
+      "title": "Pretend to be a small phone, and back",
+      "cli": "mobium screen small-phone && mobium screen reset",
+      "args": {
+        "profile": "small-phone"
+      }
+    }
+  ],
+  "app_screenshot": [
+    {
+      "title": "Save a screenshot",
+      "cli": "mobium screenshot -o screen.png",
+      "args": {
+        "path": "screen.png"
+      }
+    }
+  ],
+  "app_scroll_to": [
+    {
+      "title": "Scroll down until an element is on screen",
+      "cli": "mobium scroll-to text=System",
+      "args": {
+        "target": "text=System"
+      }
+    },
+    {
+      "title": "Scroll a horizontal pager",
+      "cli": "mobium scroll-to \"label=Card 8\" --direction right",
+      "args": {
+        "target": "label=Card 8",
+        "direction": "right"
+      }
+    }
+  ],
+  "app_session": [
+    {
+      "title": "Start a session and launch the app fresh",
+      "cli": "mobium session start --app com.android.settings",
+      "args": {
+        "action": "start",
+        "app": "com.android.settings"
+      }
+    },
+    {
+      "title": "End it, putting back what it changed",
+      "cli": "mobium session end",
+      "args": {
+        "action": "end"
+      }
+    }
+  ],
+  "app_shake": [
+    {
+      "title": "Shake the device",
+      "cli": "mobium shake",
+      "args": {}
+    }
+  ],
+  "app_sms": [
+    {
+      "title": "Deliver a text message",
+      "cli": "mobium sms \"Your code is 123456\" --from 5559876",
+      "args": {
+        "text": "Your code is 123456",
+        "from": "5559876"
+      }
+    }
+  ],
+  "app_source": [
+    {
+      "title": "Save the raw hierarchy",
+      "cli": "mobium source > screen.xml",
+      "args": {}
+    }
+  ],
+  "app_state": [
+    {
+      "title": "Ask whether an app is running",
+      "cli": "mobium state com.android.settings",
+      "args": {
+        "app": "com.android.settings"
+      }
+    }
+  ],
+  "app_storage": [
+    {
+      "title": "Save the WebView's cookies and web storage",
+      "cli": "mobium storage -o state.json",
+      "args": {}
+    },
+    {
+      "title": "Restore them in a later run",
+      "cli": "mobium storage restore state.json",
+      "args": {
+        "action": "restore",
+        "state": {
+          "cookies": [],
+          "origins": []
+        }
+      }
+    }
+  ],
+  "app_swipe": [
+    {
+      "title": "Swipe up, to scroll the page down",
+      "cli": "mobium swipe up",
+      "args": {
+        "direction": "up"
+      }
+    }
+  ],
+  "app_tap": [
+    {
+      "title": "Tap an element by its visible text",
+      "cli": "mobium tap \"text=Network & internet\"",
+      "args": {
+        "target": "text=Network & internet"
+      }
+    },
+    {
+      "title": "Tap a ref from the last map",
+      "cli": "mobium tap @e2",
+      "args": {
+        "target": "@e2"
+      }
+    },
+    {
+      "title": "Double-tap",
+      "cli": "mobium double-tap @e2",
+      "args": {
+        "target": "@e2",
+        "double": true
+      }
+    }
+  ],
+  "app_terminate": [
+    {
+      "title": "Stop an app",
+      "cli": "mobium terminate com.android.settings",
+      "args": {
+        "app": "com.android.settings"
+      }
+    }
+  ],
+  "app_text": [
+    {
+      "title": "Read everything on screen",
+      "cli": "mobium text",
+      "args": {}
+    },
+    {
+      "title": "Read one element's text",
+      "cli": "mobium text testid=title",
+      "args": {
+        "target": "testid=title"
+      }
+    }
+  ],
+  "app_time": [
+    {
+      "title": "Read the device's clock",
+      "cli": "mobium time",
+      "args": {}
+    }
+  ],
+  "app_timezone": [
+    {
+      "title": "Move the device to Tokyo time",
+      "cli": "mobium timezone Asia/Tokyo",
+      "args": {
+        "timezone": "Asia/Tokyo"
+      }
+    }
+  ],
+  "app_type": [
+    {
+      "title": "Type after what a field holds",
+      "cli": "mobium type testid=email \"hello@example.com\"",
+      "args": {
+        "target": "testid=email",
+        "text": "hello@example.com"
+      }
+    }
+  ],
+  "app_uninstall": [
+    {
+      "title": "Remove an app",
+      "cli": "mobium uninstall com.example.shop",
+      "args": {
+        "app": "com.example.shop"
+      }
+    }
+  ],
+  "app_wait_for": [
+    {
+      "title": "Wait for text to appear",
+      "cli": "mobium wait \"text=Welcome back\"",
+      "args": {
+        "target": "text=Welcome back"
+      }
+    },
+    {
+      "title": "Wait for a spinner to go",
+      "cli": "mobium wait role=progressbar --for hidden",
+      "args": {
+        "target": "role=progressbar",
+        "condition": "hidden"
+      }
+    },
+    {
+      "title": "Wait for a checkbox to be checked, for up to five seconds",
+      "cli": "mobium wait testid=termsCheck --for checked --timeout 5s",
+      "args": {
+        "target": "testid=termsCheck",
+        "condition": "checked",
+        "timeout_ms": 5000
+      }
+    }
+  ],
+  "app_zoom": [
+    {
+      "title": "Pinch out, to zoom in",
+      "cli": "mobium zoom in",
+      "args": {
+        "direction": "in"
+      }
+    }
+  ]
+}

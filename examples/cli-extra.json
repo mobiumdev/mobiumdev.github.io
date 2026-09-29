@@ -1,0 +1,26 @@
+{
+  "daemon": [
+    {"title": "Look at the daemon, then stop it", "cli": "mobium daemon status && mobium daemon stop"}
+  ],
+  "daemon status": [
+    {"title": "Is the daemon running?", "cli": "mobium daemon status"}
+  ],
+  "daemon stop": [
+    {"title": "Stop the daemon, after rebuilding mobium", "cli": "mobium daemon stop"}
+  ],
+  "daemon up": [
+    {"title": "Start the daemon ahead of the first command", "cli": "mobium daemon up"}
+  ],
+  "grid": [
+    {"title": "The devices of two nodes, and who holds them", "cli": "MOBIUM_GRID=node1,node2 mobium grid status"}
+  ],
+  "grid status": [
+    {"title": "The devices of two nodes, and who holds them", "cli": "MOBIUM_GRID=node1,node2 mobium grid status"}
+  ],
+  "grid ui": [
+    {"title": "Serve the grid as a page on this machine", "cli": "MOBIUM_GRID=node1,node2 mobium grid ui --port 8080"}
+  ],
+  "show-report": [
+    {"title": "Open the report of the last test run", "cli": "mobium test && mobium show-report"}
+  ]
+}

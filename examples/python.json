@@ -1,0 +1,534 @@
+{
+  "tools": {
+    "app_accessibility": [
+      {
+        "code": "for setting, value in device.accessibility().items():\n    print(setting, value)"
+      },
+      {
+        "code": "device.accessibility(\"bold_text\", \"on\")"
+      }
+    ],
+    "app_alert": [
+      {
+        "code": "text = device.alert()\nif text:\n    print(\"dialog up:\", text)"
+      },
+      {
+        "code": "device.answer_alert(accept=True)"
+      }
+    ],
+    "app_appearance": [
+      {
+        "code": "device.appearance(\"dark\")"
+      }
+    ],
+    "app_background": [
+      {
+        "code": "device.background(5)"
+      }
+    ],
+    "app_batch": [
+      {
+        "code": "device.batch([\n    (\"app_tap\", {\"target\": \"text=Network & internet\"}),\n    (\"app_wait_for\", {\"target\": \"text=Internet\"}),\n])"
+      }
+    ],
+    "app_battery": [
+      {
+        "code": "battery = device.battery()\nprint(battery[\"level\"], battery[\"state\"])"
+      }
+    ],
+    "app_call": [
+      {
+        "code": "device.incoming_call(number=\"5551234\")"
+      },
+      {
+        "code": "device.incoming_call(\"hang\")"
+      }
+    ],
+    "app_check": [
+      {
+        "code": "device.check(\"testid=termsCheck\")"
+      },
+      {
+        "code": "device.check(\"@e4\", checked=False)"
+      }
+    ],
+    "app_clear_data": [
+      {
+        "code": "result = device.clear_data(\"com.example.shop\")\nprint(result[\"emptied\"])"
+      }
+    ],
+    "app_clipboard": [
+      {
+        "code": "device.set_clipboard(\"hello there\")"
+      },
+      {
+        "code": "print(device.clipboard())"
+      }
+    ],
+    "app_context": [
+      {
+        "code": "device.context(\"WEBVIEW_com.example.shop\")"
+      },
+      {
+        "code": "device.context(\"NATIVE_APP\")"
+      }
+    ],
+    "app_contexts": [
+      {
+        "code": "for name in device.contexts():\n    print(name)"
+      }
+    ],
+    "app_cookies": [
+      {
+        "code": "for cookie in device.cookies():\n    print(cookie[\"name\"], cookie[\"value\"])"
+      },
+      {
+        "code": "device.clear_cookies(\"session\")"
+      }
+    ],
+    "app_crashes": [
+      {
+        "code": "for crash in device.crashes(app=\"com.example.shop\"):\n    print(crash[\"time\"], crash[\"kind\"], crash[\"summary\"])"
+      }
+    ],
+    "app_current": [
+      {
+        "code": "print(device.current())"
+      }
+    ],
+    "app_devices": [
+      {
+        "code": "for info in device.devices():\n    print(info.id, info.platform, info.state)"
+      }
+    ],
+    "app_dialogs": [
+      {
+        "code": "device.add_dialog_rule(when=\"Save password\", press=\"Not now\")"
+      },
+      {
+        "code": "device.clear_dialog_rules()"
+      }
+    ],
+    "app_doctor": [
+      {
+        "code": "report = device.doctor()\nprint(report)"
+      }
+    ],
+    "app_drag": [
+      {
+        "code": "device.drag(\"@e3\", \"@e7\")"
+      }
+    ],
+    "app_eval": [
+      {
+        "code": "title = device.eval(\"document.title\")\nprint(title)"
+      }
+    ],
+    "app_fill": [
+      {
+        "code": "device.fill(\"testid=search\", \"coffee\")"
+      }
+    ],
+    "app_find": [
+      {
+        "code": "for el in device.find(\"role=button\"):\n    print(el.ref, el.label)"
+      }
+    ],
+    "app_grant": [
+      {
+        "code": "device.grant(\"com.example.shop\", \"camera\", \"location\")"
+      }
+    ],
+    "app_install": [
+      {
+        "code": "installed = device.install(\"./build/app-debug.apk\")\nprint(installed)"
+      }
+    ],
+    "app_keyboard": [
+      {
+        "code": "device.keyboard(text=\"coffee\", key=\"enter\")"
+      },
+      {
+        "code": "device.keyboard(hide=True)"
+      }
+    ],
+    "app_launch": [
+      {
+        "code": "device.launch(\"com.android.settings\")"
+      }
+    ],
+    "app_list_apps": [
+      {
+        "code": "for app in device.apps():\n    print(app[\"id\"], app[\"version\"])"
+      }
+    ],
+    "app_locale": [
+      {
+        "code": "device.set_app_locale(\"org.wikipedia\", \"ja-JP\")"
+      }
+    ],
+    "app_location": [
+      {
+        "code": "device.set_location(51.5074, -0.1278)"
+      },
+      {
+        "code": "device.clear_location()"
+      }
+    ],
+    "app_lock": [
+      {
+        "code": "device.set_screen_locked(True)"
+      },
+      {
+        "code": "device.set_screen_locked(False)"
+      }
+    ],
+    "app_logs": [
+      {
+        "code": "logs = device.device_logs(app=\"com.example.shop\", level=\"error\")\nfor entry in logs[\"entries\"]:\n    print(entry[\"time\"], entry[\"tag\"], entry[\"message\"])"
+      }
+    ],
+    "app_long_press": [
+      {
+        "code": "device.long_press(\"@e4\", duration_ms=2000)"
+      }
+    ],
+    "app_map": [
+      {
+        "code": "for el in device.map():\n    print(el.ref, el.label)"
+      }
+    ],
+    "app_network": [
+      {
+        "code": "device.set_offline()"
+      },
+      {
+        "code": "device.shape_network(latency_ms=300, download_kbps=500)"
+      }
+    ],
+    "app_notifications": [
+      {
+        "code": "device.post_notification(\"Your code is 123456\")"
+      },
+      {
+        "code": "device.shade(open=True)"
+      }
+    ],
+    "app_open_url": [
+      {
+        "code": "device.open_url(\"myapp://cart\")"
+      }
+    ],
+    "app_orientation": [
+      {
+        "code": "device.set_orientation(\"landscape\")"
+      }
+    ],
+    "app_press": [
+      {
+        "code": "device.press(\"back\")"
+      },
+      {
+        "code": "device.press(\"home\")"
+      }
+    ],
+    "app_press_drag": [
+      {
+        "code": "device.press_drag(\"@e3\", \"@e5\", \"@e9\")"
+      }
+    ],
+    "app_press_tap": [
+      {
+        "code": "device.press_tap(\"@e3\", \"@e7\")"
+      }
+    ],
+    "app_record": [
+      {
+        "code": "device.record(\"start\")"
+      },
+      {
+        "code": "video = device.record(\"stop\", path=\"flow.mp4\")\nprint(video[\"frames\"], video[\"duration\"])"
+      }
+    ],
+    "app_reset_permissions": [
+      {
+        "code": "device.reset_permissions(\"com.example.shop\")"
+      }
+    ],
+    "app_revoke": [
+      {
+        "code": "device.revoke(\"com.example.shop\", \"location\")"
+      }
+    ],
+    "app_rotate": [
+      {
+        "code": "device.rotate(90, target=\"@e2\")"
+      }
+    ],
+    "app_screen": [
+      {
+        "code": "screen = device.screen()\nprint(screen)"
+      },
+      {
+        "code": "device.screen(\"small-phone\")\n# ... check the layout ...\ndevice.screen(\"reset\")"
+      }
+    ],
+    "app_screenshot": [
+      {
+        "code": "png = device.screenshot(\"screen.png\")\nprint(len(png), \"bytes\")"
+      }
+    ],
+    "app_scroll_to": [
+      {
+        "code": "el = device.scroll_to(\"text=System\")\nprint(el.ref)"
+      },
+      {
+        "code": "device.scroll_to(\"label=Card 8\", direction=\"right\")"
+      }
+    ],
+    "app_session": [
+      {
+        "code": "device = mobium.start(app=\"com.android.settings\")\nprint(device.session.platform, device.session.driver)"
+      },
+      {
+        "code": "device.quit()"
+      }
+    ],
+    "app_shake": [
+      {
+        "code": "device.shake()"
+      }
+    ],
+    "app_sms": [
+      {
+        "code": "device.sms(\"Your code is 123456\", sender=\"5559876\")"
+      }
+    ],
+    "app_source": [
+      {
+        "code": "source = device.source()\nwith open(\"screen.xml\", \"w\") as f:\n    print(source[\"source\"], file=f)"
+      }
+    ],
+    "app_state": [
+      {
+        "code": "state = device.app_state(\"com.android.settings\")\nprint(state[\"state\"])"
+      }
+    ],
+    "app_storage": [
+      {
+        "code": "import json\n\nwith open(\"state.json\", \"w\") as f:\n    json.dump(device.storage(), f)"
+      },
+      {
+        "code": "device.set_storage({\"cookies\": [], \"origins\": []})"
+      }
+    ],
+    "app_swipe": [
+      {
+        "code": "device.swipe(\"up\")"
+      }
+    ],
+    "app_tap": [
+      {
+        "code": "device.tap(\"text=Network & internet\")"
+      },
+      {
+        "code": "device.tap(\"@e2\")"
+      },
+      {
+        "code": "device.double_tap(\"@e2\")"
+      }
+    ],
+    "app_terminate": [
+      {
+        "code": "device.terminate(\"com.android.settings\")"
+      }
+    ],
+    "app_text": [
+      {
+        "code": "print(device.text())"
+      },
+      {
+        "code": "title = device.text(\"testid=title\")\nprint(title)"
+      }
+    ],
+    "app_time": [
+      {
+        "code": "clock = device.device_time()\nprint(clock[\"time\"], clock[\"zone\"])"
+      }
+    ],
+    "app_timezone": [
+      {
+        "code": "device.timezone(\"Asia/Tokyo\")"
+      }
+    ],
+    "app_type": [
+      {
+        "code": "device.type(\"testid=email\", \"hello@example.com\")"
+      }
+    ],
+    "app_uninstall": [
+      {
+        "code": "device.uninstall(\"com.example.shop\")"
+      }
+    ],
+    "app_wait_for": [
+      {
+        "code": "el = device.wait_for(\"text=Welcome back\")\ndevice.tap(el.ref)"
+      },
+      {
+        "code": "device.wait_for(\"role=progressbar\", condition=\"hidden\")"
+      },
+      {
+        "code": "device.wait_for(\"testid=termsCheck\", condition=\"checked\", timeout_ms=5000)"
+      }
+    ],
+    "app_zoom": [
+      {
+        "code": "device.zoom(\"in\")"
+      }
+    ]
+  },
+  "members": {
+    "connect": [
+      {
+        "title": "Connect without opening a session first",
+        "code": "import mobium\n\ndevice = mobium.connect()\nprint(device.current())\ndevice.close()"
+      },
+      {
+        "title": "Pick one of several devices, with a daemon of its own",
+        "code": "from mobium import connect\n\ndevice = connect(device=\"emulator-5554\", session=\"pixel\")"
+      }
+    ],
+    "close": [
+      {
+        "title": "Close the connection and leave the session open",
+        "code": "device = mobium.connect()\ntry:\n    print(device.current())\nfinally:\n    device.close()"
+      }
+    ],
+    "Device": [
+      {
+        "title": "Use a device in a with block, which quits on the way out",
+        "code": "with mobium.start(platform=\"android\", app=\"com.android.settings\") as device:\n    for el in device.map():\n        print(el.ref, el.label)"
+      }
+    ],
+    "Element": [
+      {
+        "title": "Read an element's fields",
+        "code": "for el in device.map():\n    print(el.ref, el.label, el.role, el.locator, el.checked)"
+      }
+    ],
+    "Bounds": [
+      {
+        "title": "Find where an element is on screen",
+        "code": "el = device.find(\"text=System\")[0]\nprint(el.bounds.center, el.bounds.width, el.bounds.height)"
+      }
+    ],
+    "DeviceInfo": [
+      {
+        "title": "Tell emulators from real hardware",
+        "code": "for info in device.devices():\n    kind = \"emulator\" if info.emulator else \"device\"\n    print(info.id, info.model, kind)"
+      }
+    ],
+    "Session": [
+      {
+        "title": "See what start() opened",
+        "code": "device = mobium.start(platform=\"ios\")\nprint(device.session.device, device.session.driver, device.session.reused)"
+      }
+    ],
+    "MobiumError": [
+      {
+        "title": "Catch any failure, and read its code and remedy",
+        "code": "try:\n    device.tap(\"text=Continue\")\nexcept mobium.MobiumError as e:\n    print(e.code, e.message)\n    print(e.remedy)"
+      }
+    ],
+    "NoSuchElementError": [
+      {
+        "title": "Scroll for an element that is not on screen",
+        "code": "from mobium import NoSuchElementError\n\ntry:\n    device.tap(\"text=Continue\")\nexcept NoSuchElementError:\n    device.scroll_to(\"text=Continue\")"
+      }
+    ],
+    "AmbiguousLocatorError": [
+      {
+        "title": "Fall back to a ref when a locator matches more than one element",
+        "code": "try:\n    device.tap(\"text=OK\")\nexcept mobium.AmbiguousLocatorError:\n    device.tap(device.find(\"text=OK\")[0].ref)"
+      }
+    ],
+    "TimedOutError": [
+      {
+        "title": "Handle a wait that never came true",
+        "code": "try:\n    device.wait_for(\"text=Welcome back\", timeout_ms=5000)\nexcept mobium.TimedOutError as e:\n    print(\"still not there:\", e.message)"
+      }
+    ],
+    "UnsupportedError": [
+      {
+        "title": "Skip what a platform cannot do",
+        "code": "try:\n    device.press(\"back\")\nexcept mobium.UnsupportedError:\n    device.tap(\"label=Back\")  # iOS has no back button"
+      }
+    ],
+    "NoDeviceError": [
+      {
+        "title": "Report that no device is running",
+        "code": "try:\n    device = mobium.start()\nexcept mobium.NoDeviceError as e:\n    print(e.remedy)"
+      }
+    ],
+    "DeviceNotReadyError": [
+      {
+        "title": "Unlock a device that is not ready",
+        "code": "try:\n    device.launch(\"com.android.settings\")\nexcept mobium.DeviceNotReadyError:\n    device.set_screen_locked(False)\n    device.launch(\"com.android.settings\")"
+      }
+    ],
+    "NotConfirmedError": [
+      {
+        "title": "Notice an action the device did not confirm",
+        "code": "try:\n    device.timezone(\"Asia/Tokyo\")\nexcept mobium.NotConfirmedError as e:\n    print(\"not applied:\", e.message)"
+      }
+    ],
+    "NoSuchContextError": [
+      {
+        "title": "Handle a WebView that is not there",
+        "code": "try:\n    device.context(\"WEBVIEW_com.example.shop\")\nexcept mobium.NoSuchContextError:\n    print(device.contexts())"
+      }
+    ],
+    "NoSuchAlertError": [
+      {
+        "title": "Answer a dialog only if one is up",
+        "code": "try:\n    device.answer_alert(accept=False)\nexcept mobium.NoSuchAlertError:\n    pass"
+      }
+    ],
+    "ElementNotReachableError": [
+      {
+        "title": "Handle an element that exists but cannot be touched",
+        "code": "try:\n    device.tap(\"text=Buy\")\nexcept mobium.ElementNotReachableError as e:\n    print(e.details)"
+      }
+    ],
+    "InvalidArgumentError": [
+      {
+        "title": "Catch an argument the tool refused",
+        "code": "try:\n    device.set_orientation(\"left\")\nexcept mobium.InvalidArgumentError as e:\n    print(e.message)"
+      }
+    ],
+    "ToolchainMissingError": [
+      {
+        "title": "Point at doctor when a tool is missing",
+        "code": "try:\n    device = mobium.start(platform=\"ios\")\nexcept mobium.ToolchainMissingError as e:\n    print(e.remedy)"
+      }
+    ],
+    "DeviceServerError": [
+      {
+        "title": "Read the device server's own code",
+        "code": "try:\n    device.tap(\"@e2\")\nexcept mobium.DeviceServerError as e:\n    print(e.details.get(\"w3c\"))"
+      }
+    ],
+    "InternalError": [
+      {
+        "title": "Retry only what can succeed again",
+        "code": "try:\n    device.map()\nexcept mobium.InternalError as e:\n    if e.retryable:\n        device.map()"
+      }
+    ]
+  },
+  "intro": {
+    "install": "pip install \"mobium @ git+https://github.com/mobiumdev/mobium.git#subdirectory=clients/python\"",
+    "code": "from mobium import start\n\nwith start(platform=\"android\", app=\"com.android.settings\") as device:\n    for el in device.map():\n        print(el.ref, el.label)",
+    "note": "`device` below is what `start()` or `connect()` returned: a `mobium.Device`."
+  }
+}

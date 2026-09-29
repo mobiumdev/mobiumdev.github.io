@@ -1,0 +1,694 @@
+{
+  "tools": {
+    "app_accessibility": [
+      {
+        "code": "Map<String, String> settings = device.accessibility();\nSystem.out.println(settings.get(\"bold_text\"));"
+      },
+      {
+        "code": "String now = device.setAccessibility(\"bold_text\", \"on\");   // \"on\", read back"
+      }
+    ],
+    "app_alert": [
+      {
+        "code": "String says = device.alert();   // \"\" when no dialog is up\nif (!says.isEmpty()) System.out.println(says);"
+      },
+      {
+        "code": "device.answerAlert(true);"
+      }
+    ],
+    "app_appearance": [
+      {
+        "code": "String mode = device.appearance(\"dark\");   // \"dark\", read back"
+      }
+    ],
+    "app_background": [
+      {
+        "code": "device.background(5);   // back in front, resumed, when this returns"
+      }
+    ],
+    "app_batch": [
+      {
+        "code": "List<Map<String, Object>> results = device.batch(List.of(\n    Mobium.step(\"app_tap\", Map.of(\"target\", \"text=Network & internet\")),\n    Mobium.step(\"app_wait_for\", Map.of(\"target\", \"text=Internet\"))));"
+      }
+    ],
+    "app_battery": [
+      {
+        "code": "Map<String, Object> battery = device.battery();\nSystem.out.println(battery.get(\"level\") + \"% \" + battery.get(\"state\"));"
+      }
+    ],
+    "app_call": [
+      {
+        "code": "// incomingCall() takes only the action; call() sets the number\ndevice.call(\"app_call\", Map.of(\"number\", \"5551234\"));"
+      },
+      {
+        "code": "device.incomingCall(\"hang\");"
+      }
+    ],
+    "app_check": [
+      {
+        "code": "device.check(\"testid=termsCheck\", true);   // does nothing if it is already ticked"
+      },
+      {
+        "code": "device.check(\"@e4\", false);"
+      }
+    ],
+    "app_clear_data": [
+      {
+        "code": "Map<String, Object> result = device.clearData(\"com.example.shop\");\nSystem.out.println(result.get(\"emptied\"));"
+      }
+    ],
+    "app_clipboard": [
+      {
+        "code": "device.setClipboard(\"hello there\");"
+      },
+      {
+        "code": "String held = device.clipboard();"
+      }
+    ],
+    "app_context": [
+      {
+        "code": "device.context(\"WEBVIEW_com.example.shop\");"
+      },
+      {
+        "code": "device.context(\"NATIVE_APP\");"
+      }
+    ],
+    "app_contexts": [
+      {
+        "code": "List<String> contexts = device.contexts();   // e.g. [NATIVE_APP, WEBVIEW_com.example.shop]"
+      }
+    ],
+    "app_cookies": [
+      {
+        "code": "for (Map<String, Object> cookie : device.cookies()) {\n    System.out.println(cookie.get(\"name\") + \"=\" + cookie.get(\"value\"));\n}"
+      },
+      {
+        "code": "device.clearCookies(\"session\");"
+      }
+    ],
+    "app_crashes": [
+      {
+        "code": "List<Map<String, Object>> crashes = device.crashes(\"com.example.shop\", 0);   // 0: the default limit\nfor (var c : crashes) System.out.println(c.get(\"time\") + \" \" + c.get(\"summary\"));"
+      }
+    ],
+    "app_current": [
+      {
+        "code": "String app = device.current();   // e.g. \"com.android.settings\""
+      }
+    ],
+    "app_devices": [
+      {
+        "code": "for (DeviceInfo d : device.devices()) {\n    System.out.println(d.id() + \" \" + d.platform() + \" \" + d.state());\n}"
+      }
+    ],
+    "app_dialogs": [
+      {
+        "code": "device.addDialogRule(\"Save password\", \"Not now\");"
+      },
+      {
+        "code": "device.clearDialogRules();"
+      }
+    ],
+    "app_doctor": [
+      {
+        "code": "System.out.println(device.doctor());"
+      }
+    ],
+    "app_drag": [
+      {
+        "code": "device.drag(\"@e3\", \"@e7\");"
+      }
+    ],
+    "app_eval": [
+      {
+        "code": "String title = device.eval(\"document.title\");"
+      }
+    ],
+    "app_fill": [
+      {
+        "code": "device.fill(\"testid=search\", \"coffee\");"
+      }
+    ],
+    "app_find": [
+      {
+        "code": "List<Element> buttons = device.find(\"role=button\");\nfor (Element b : buttons) System.out.println(b.ref() + \" \" + b.label());"
+      }
+    ],
+    "app_grant": [
+      {
+        "code": "device.grant(\"com.example.shop\", \"camera\", \"location\");"
+      }
+    ],
+    "app_install": [
+      {
+        "code": "String installed = device.install(Path.of(\"./build/app-debug.apk\"));   // the absolute path"
+      }
+    ],
+    "app_keyboard": [
+      {
+        "code": "device.keyboard(\"coffee\", \"enter\", false);"
+      },
+      {
+        "code": "device.keyboard(null, null, true);"
+      }
+    ],
+    "app_launch": [
+      {
+        "code": "device.launch(\"com.android.settings\");   // returns once it is in front"
+      }
+    ],
+    "app_list_apps": [
+      {
+        "code": "for (App app : device.apps()) System.out.println(app.id() + \" \" + app.version());"
+      }
+    ],
+    "app_locale": [
+      {
+        "code": "List<String> pinned = device.appLocale(\"org.wikipedia\", \"ja-JP\");   // [ja-JP]"
+      }
+    ],
+    "app_location": [
+      {
+        "code": "device.setLocation(51.5074, -0.1278);"
+      },
+      {
+        "code": "device.clearLocation();"
+      }
+    ],
+    "app_lock": [
+      {
+        "code": "boolean locked = device.screenLocked(true);   // true, read back"
+      },
+      {
+        "code": "device.screenLocked(false);"
+      }
+    ],
+    "app_logs": [
+      {
+        "code": "Map<String, Object> log = device.deviceLogs(\"com.example.shop\", \"error\", 0);   // 0: the default line limit\nSystem.out.println(log.get(\"entries\"));"
+      }
+    ],
+    "app_long_press": [
+      {
+        "code": "device.longPress(\"@e4\", Duration.ofSeconds(2));"
+      }
+    ],
+    "app_map": [
+      {
+        "code": "for (Element e : device.map()) {\n    System.out.println(e.ref() + \" \" + e.role() + \" \" + e.label());\n}"
+      }
+    ],
+    "app_network": [
+      {
+        "code": "Map<String, Object> network = device.setOffline(true);   // read back once airplane mode holds"
+      },
+      {
+        "code": "device.shapeNetwork(300, 500, 0);   // 0: no upload limit"
+      }
+    ],
+    "app_notifications": [
+      {
+        "code": "// postNotification() needs a title; call() leaves it at the default\ndevice.call(\"app_notifications\", Map.of(\"text\", \"Your code is 123456\"));"
+      },
+      {
+        "code": "device.shade(true);"
+      }
+    ],
+    "app_open_url": [
+      {
+        "code": "String app = device.openUrl(\"myapp://cart\");   // the app that ended up in front"
+      }
+    ],
+    "app_orientation": [
+      {
+        "code": "String now = device.orientation(\"landscape\");"
+      }
+    ],
+    "app_press": [
+      {
+        "code": "device.press(\"back\");"
+      },
+      {
+        "code": "device.press(\"home\");"
+      }
+    ],
+    "app_press_drag": [
+      {
+        "code": "device.pressDrag(\"@e3\", \"@e5\", \"@e9\");"
+      }
+    ],
+    "app_press_tap": [
+      {
+        "code": "device.pressTap(\"@e3\", \"@e7\");"
+      }
+    ],
+    "app_record": [
+      {
+        "code": "device.record(\"start\", null);"
+      },
+      {
+        "code": "Map<String, Object> video = device.record(\"stop\", \"flow.mp4\");\nSystem.out.println(video.get(\"frames\") + \" frames\");"
+      }
+    ],
+    "app_reset_permissions": [
+      {
+        "code": "device.resetPermissions(\"com.example.shop\");"
+      }
+    ],
+    "app_revoke": [
+      {
+        "code": "device.revoke(\"com.example.shop\", \"location\");"
+      }
+    ],
+    "app_rotate": [
+      {
+        "code": "device.rotate(90, \"@e2\");"
+      }
+    ],
+    "app_screen": [
+      {
+        "code": "Map<String, Object> screen = device.screen();\nSystem.out.println(screen);"
+      },
+      {
+        "code": "device.screen(\"small-phone\", false);\n// ... check the layout ...\ndevice.screen(\"reset\", false);"
+      }
+    ],
+    "app_screenshot": [
+      {
+        "code": "byte[] png = device.screenshot(Path.of(\"screen.png\"));"
+      }
+    ],
+    "app_scroll_to": [
+      {
+        "code": "Element row = device.scrollTo(\"text=System\");   // down is the default"
+      },
+      {
+        "code": "Element card = device.scrollTo(\"label=Card 8\", \"right\");"
+      }
+    ],
+    "app_session": [
+      {
+        "code": "Mobium phone = Mobium.builder().app(\"com.android.settings\").start();\nSystem.out.println(phone.session().device());"
+      },
+      {
+        "code": "device.quit();   // also closes the connection"
+      }
+    ],
+    "app_shake": [
+      {
+        "code": "device.shake();"
+      }
+    ],
+    "app_sms": [
+      {
+        "code": "// sms() takes only the body; call() sets the sender\ndevice.call(\"app_sms\", Map.of(\"text\", \"Your code is 123456\", \"from\", \"5559876\"));"
+      }
+    ],
+    "app_source": [
+      {
+        "code": "Map<String, Object> source = device.source();\nFiles.writeString(Path.of(\"screen.xml\"), (String) source.get(\"source\"));"
+      }
+    ],
+    "app_state": [
+      {
+        "code": "Map<String, Object> state = device.appState(\"com.android.settings\");\nboolean running = !\"not_running\".equals(state.get(\"state\"));"
+      }
+    ],
+    "app_storage": [
+      {
+        "code": "Map<String, Object> state = device.storage();   // cookies, and each origin's storage"
+      },
+      {
+        "code": "device.setStorage(Map.of(\"cookies\", List.of(), \"origins\", List.of()));"
+      }
+    ],
+    "app_swipe": [
+      {
+        "code": "device.swipe(\"up\");"
+      }
+    ],
+    "app_tap": [
+      {
+        "code": "device.tap(\"text=Network & internet\");"
+      },
+      {
+        "code": "device.tap(\"@e2\");"
+      },
+      {
+        "code": "device.doubleTap(\"@e2\");"
+      }
+    ],
+    "app_terminate": [
+      {
+        "code": "device.terminate(\"com.android.settings\");"
+      }
+    ],
+    "app_text": [
+      {
+        "code": "String screen = device.text();"
+      },
+      {
+        "code": "String title = device.text(\"testid=title\");"
+      }
+    ],
+    "app_time": [
+      {
+        "code": "Map<String, Object> clock = device.deviceTime();\nSystem.out.println(clock.get(\"time\") + \" \" + clock.get(\"zone\"));"
+      }
+    ],
+    "app_timezone": [
+      {
+        "code": "String zone = device.timezone(\"Asia/Tokyo\");   // read back"
+      }
+    ],
+    "app_type": [
+      {
+        "code": "device.type(\"testid=email\", \"hello@example.com\");"
+      }
+    ],
+    "app_uninstall": [
+      {
+        "code": "device.uninstall(\"com.example.shop\");"
+      }
+    ],
+    "app_wait_for": [
+      {
+        "code": "Element welcome = device.waitFor(\"text=Welcome back\");\ndevice.tap(welcome.ref());"
+      },
+      {
+        "code": "device.waitFor(\"role=progressbar\", WaitFor.hidden());   // returns null: nothing left to point at"
+      },
+      {
+        "code": "device.waitFor(\"testid=termsCheck\", WaitFor.checked().timeout(Duration.ofSeconds(5)));"
+      }
+    ],
+    "app_zoom": [
+      {
+        "code": "device.zoom(\"in\", \"\");   // \"\": about the middle of the screen"
+      }
+    ]
+  },
+  "members": {
+    "builder": [
+      {
+        "title": "Configure, then start or connect",
+        "code": "try (Mobium phone = Mobium.builder().platform(\"android\").app(\"com.example.shop\").start()) {\n    phone.tap(\"text=Sign in\");\n}"
+      }
+    ],
+    "start": [
+      {
+        "title": "Open a session and launch the app fresh",
+        "code": "try (Mobium phone = Mobium.builder().platform(\"ios\").app(\"com.example.shop\").start()) {\n    Session s = phone.session();\n    System.out.println(s.device() + \" \" + s.driver());\n}   // try-with-resources quits: the session ends here"
+      }
+    ],
+    "connect": [
+      {
+        "title": "Connect without touching the device",
+        "code": "try (Mobium phone = Mobium.connect()) {\n    System.out.println(phone.current());\n}   // close() leaves the session open for whoever started it"
+      },
+      {
+        "title": "Connect with options",
+        "code": "try (Mobium phone = Mobium.builder().device(\"emulator-5554\").connect()) {\n    phone.map();\n}"
+      }
+    ],
+    "platform": [
+      {
+        "title": "Pick iOS when both are attached",
+        "code": "try (Mobium phone = Mobium.builder().platform(\"ios\").start()) {\n    phone.launch(\"com.apple.Preferences\");\n}"
+      }
+    ],
+    "app": [
+      {
+        "title": "Launch an app as the session starts",
+        "code": "try (Mobium phone = Mobium.builder().app(\"com.android.settings\").start()) {\n    phone.waitFor(\"text=Network & internet\");\n}"
+      }
+    ],
+    "binary": [
+      {
+        "title": "Use a mobium binary that is not on PATH",
+        "code": "try (Mobium phone = Mobium.builder().binary(\"/opt/mobium/bin/mobium\").connect()) {\n    System.out.println(phone.doctor());\n}"
+      }
+    ],
+    "device": [
+      {
+        "title": "Target one of several devices",
+        "code": "try (Mobium phone = Mobium.builder().device(\"emulator-5556\").start()) {\n    phone.press(\"home\");\n}"
+      }
+    ],
+    "driver": [
+      {
+        "title": "Use the zero-install Android driver",
+        "code": "try (Mobium phone = Mobium.builder().driver(\"uiautomator\").connect()) {\n    System.out.println(phone.text());\n}"
+      }
+    ],
+    "callTimeout": [
+      {
+        "title": "Bound every call",
+        "code": "try (Mobium phone = Mobium.builder().callTimeout(Duration.ofMinutes(2)).connect()) {\n    phone.map();   // a call past two minutes ends the connection\n}"
+      }
+    ],
+    "session": [
+      {
+        "title": "Name a session of your own",
+        "code": "try (Mobium phone = Mobium.builder().session(\"checkout\").connect()) {\n    phone.map();\n}"
+      },
+      {
+        "title": "Read what start() opened",
+        "code": "try (Mobium phone = Mobium.builder().start()) {\n    Session s = phone.session();   // null from connect()\n    System.out.println(s.platform() + \" \" + s.device());\n}"
+      }
+    ],
+    "quit": [
+      {
+        "title": "End the session explicitly",
+        "code": "Mobium phone = Mobium.builder().app(\"com.example.shop\").start();\ntry {\n    phone.tap(\"text=Sign in\");\n} finally {\n    phone.quit();   // puts back what the session changed\n}"
+      }
+    ],
+    "close": [
+      {
+        "title": "Close a connection, leaving the session open",
+        "code": "Mobium phone = Mobium.connect();\nphone.tap(\"@e2\");\nphone.close();   // safe to call twice"
+      }
+    ],
+    "sessions": [
+      {
+        "title": "List the sessions open on the daemon",
+        "code": "for (Map<String, Object> s : device.sessions()) {\n    System.out.println(s.get(\"device\") + \" \" + s.get(\"platform\"));\n}"
+      }
+    ],
+    "call": [
+      {
+        "title": "Call any tool by name",
+        "code": "Map<String, Object> result = device.call(\"app_tap\", Map.of(\"target\", \"@e2\", \"fingers\", 2));"
+      }
+    ],
+    "step": [
+      {
+        "title": "Build steps for a batch",
+        "code": "var steps = List.of(\n    Mobium.step(\"app_launch\", Map.of(\"app\", \"com.android.settings\")),\n    Mobium.step(\"app_map\", null));\ndevice.batch(steps);"
+      }
+    ],
+    "MobiumException": [
+      {
+        "title": "Read what failed and what to do",
+        "code": "try {\n    device.tap(\"text=Continue\");\n} catch (MobiumException e) {\n    System.err.println(e.tool() + \" \" + e.code() + \": \" + e.remedy());\n    if (!e.retryable()) throw e;\n}"
+      }
+    ],
+    "details": [
+      {
+        "title": "Find the step a batch stopped at",
+        "code": "try {\n    device.batch(List.of(Mobium.step(\"app_tap\", Map.of(\"target\", \"text=Sign in\"))));\n} catch (MobiumException e) {\n    System.err.println(\"stopped at step \" + e.details().get(\"step\"));\n}"
+      }
+    ],
+    "NoSuchElementException": [
+      {
+        "title": "Scroll when a tap finds nothing",
+        "code": "try {\n    device.tap(\"text=Continue\");\n} catch (dev.mobium.NoSuchElementException e) {   // not java.util's\n    device.scrollTo(\"text=Continue\", \"down\");\n}"
+      }
+    ],
+    "TimedOutException": [
+      {
+        "title": "Handle a wait that never held",
+        "code": "try {\n    device.waitFor(\"text=Welcome\", WaitFor.visible().timeout(Duration.ofSeconds(3)));\n} catch (TimedOutException e) {\n    System.err.println(e.getMessage());   // says what was on screen instead\n}"
+      }
+    ],
+    "AmbiguousLocatorException": [
+      {
+        "title": "Narrow a locator that matched twice",
+        "code": "try {\n    device.tap(\"text=OK\");\n} catch (AmbiguousLocatorException e) {\n    device.tap(device.find(\"text=OK\").get(0).ref());\n}"
+      }
+    ],
+    "UnsupportedException": [
+      {
+        "title": "Skip what a platform lacks",
+        "code": "try {\n    device.press(\"back\");\n} catch (UnsupportedException e) {   // iOS has no back button\n    System.err.println(e.remedy());\n}"
+      }
+    ],
+    "DeviceNotReadyException": [
+      {
+        "title": "Unlock before launching",
+        "code": "try {\n    device.launch(\"com.example.shop\");\n} catch (DeviceNotReadyException e) {\n    device.screenLocked(false);\n    device.launch(\"com.example.shop\");\n}"
+      }
+    ],
+    "NoDeviceException": [
+      {
+        "title": "Report that nothing is attached",
+        "code": "try {\n    device.map();\n} catch (NoDeviceException e) {\n    System.err.println(\"start an emulator first: \" + e.remedy());\n}"
+      }
+    ],
+    "NoSuchAlertException": [
+      {
+        "title": "Answer a dialog only if one is up",
+        "code": "try {\n    device.answerAlert(false);\n} catch (NoSuchAlertException e) {\n    // nothing was up\n}"
+      }
+    ],
+    "NoSuchContextException": [
+      {
+        "title": "Switch to a WebView that may not be there",
+        "code": "try {\n    device.context(\"WEBVIEW_com.example.shop\");\n} catch (NoSuchContextException e) {\n    System.err.println(device.contexts());\n}"
+      }
+    ],
+    "ElementNotReachableException": [
+      {
+        "title": "Handle a target that cannot be reached",
+        "code": "try {\n    device.tap(\"text=Delete\");\n} catch (ElementNotReachableException e) {\n    System.err.println(e.remedy());\n}"
+      }
+    ],
+    "NotConfirmedException": [
+      {
+        "title": "Handle a change the device did not confirm",
+        "code": "try {\n    device.timezone(\"Asia/Tokyo\");\n} catch (NotConfirmedException e) {\n    System.err.println(e.getMessage());\n}"
+      }
+    ],
+    "InvalidArgumentException": [
+      {
+        "title": "A null is refused before anything is sent",
+        "code": "try {\n    device.tap(null);\n} catch (InvalidArgumentException e) {\n    System.err.println(e.getMessage());   // names the argument\n}"
+      }
+    ],
+    "ToolchainMissingException": [
+      {
+        "title": "Report a missing toolchain",
+        "code": "try {\n    device.launch(\"com.example.shop\");\n} catch (ToolchainMissingException e) {\n    System.err.println(e.remedy());\n}"
+      }
+    ],
+    "DeviceServerException": [
+      {
+        "title": "Retry once when the device server says so",
+        "code": "try {\n    device.tap(\"@e2\");\n} catch (DeviceServerException e) {\n    if (e.retryable()) device.tap(\"@e2\");\n}"
+      }
+    ],
+    "InternalException": [
+      {
+        "title": "Report an internal failure",
+        "code": "try {\n    device.map();\n} catch (InternalException e) {\n    System.err.println(\"mobium bug: \" + e.getMessage());\n}"
+      }
+    ],
+    "visible": [
+      {
+        "title": "Wait for an element to appear",
+        "code": "Element e = device.waitFor(\"text=Sign in\", WaitFor.visible());"
+      }
+    ],
+    "hidden": [
+      {
+        "title": "Wait for a spinner to go",
+        "code": "device.waitFor(\"role=progressbar\", WaitFor.hidden());"
+      }
+    ],
+    "text": [
+      {
+        "title": "Wait until an element's text contains a string",
+        "code": "device.waitFor(\"testid=status\", WaitFor.text(\"Done\"));"
+      }
+    ],
+    "exactText": [
+      {
+        "title": "Wait for an exact text",
+        "code": "device.waitFor(\"testid=total\", WaitFor.exactText(\"$12.00\"));"
+      }
+    ],
+    "value": [
+      {
+        "title": "Wait for a field's value",
+        "code": "device.waitFor(\"testid=email\", WaitFor.value(\"hello@example.com\"));"
+      }
+    ],
+    "enabled": [
+      {
+        "title": "Wait for a button to become tappable",
+        "code": "device.waitFor(\"text=Continue\", WaitFor.enabled());"
+      }
+    ],
+    "disabled": [
+      {
+        "title": "Wait for a button to be disabled",
+        "code": "device.waitFor(\"text=Submit\", WaitFor.disabled());"
+      }
+    ],
+    "checked": [
+      {
+        "title": "Wait for a checkbox to be checked",
+        "code": "device.waitFor(\"testid=termsCheck\", WaitFor.checked());"
+      }
+    ],
+    "unchecked": [
+      {
+        "title": "Wait for a switch to be off",
+        "code": "device.waitFor(\"@e4\", WaitFor.unchecked());"
+      }
+    ],
+    "focused": [
+      {
+        "title": "Wait for a field to take focus",
+        "code": "device.waitFor(\"testid=search\", WaitFor.focused());"
+      }
+    ],
+    "count": [
+      {
+        "title": "Wait for exactly three rows",
+        "code": "device.waitFor(\"role=cell\", WaitFor.count(3));"
+      }
+    ],
+    "not": [
+      {
+        "title": "Wait for a text to stop matching",
+        "code": "device.waitFor(\"testid=status\", WaitFor.text(\"Loading\").not());"
+      }
+    ],
+    "timeout": [
+      {
+        "title": "Wait longer than ten seconds",
+        "code": "device.waitFor(\"text=Done\", WaitFor.visible().timeout(Duration.ofSeconds(30)));"
+      }
+    ],
+    "centerX": [
+      {
+        "title": "Tap the middle of an element's bounds",
+        "code": "Bounds b = device.find(\"testid=map\").get(0).bounds();\ndevice.tap(b.centerX(), b.centerY());"
+      }
+    ],
+    "width": [
+      {
+        "title": "Measure an element",
+        "code": "Bounds b = device.waitFor(\"testid=banner\").bounds();\nSystem.out.println(b.width() + \"x\" + b.height() + \" px\");"
+      }
+    ],
+    "Element": [
+      {
+        "title": "Read what map hands out",
+        "code": "Element e = device.find(\"text=Sign in\").get(0);\nSystem.out.println(e.ref() + \" \" + e.role() + \" \" + e.bounds() + \" checked=\" + e.checked());"
+      }
+    ],
+    "Location": [
+      {
+        "title": "Read where the device believes it is",
+        "code": "Location here = device.location();\nif (here.mock) System.out.println(here.latitude + \", \" + here.longitude);"
+      }
+    ]
+  },
+  "intro": {
+    "install": "git clone https://github.com/mobiumdev/mobium.git\ncd mobium/clients/java && ./mvnw -q install -DskipTests",
+    "code": "try (Mobium device = Mobium.builder().platform(\"android\").app(\"com.android.settings\").start()) {\n    for (Element el : device.map()) System.out.println(el.ref() + \" \" + el.label());\n}",
+    "note": "`device` below is a `dev.mobium.Mobium` from `Mobium.builder()...start()` or `Mobium.connect()`."
+  }
+}

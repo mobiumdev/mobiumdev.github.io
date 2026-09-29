@@ -1,0 +1,30 @@
+# Dependencies
+/node_modules
+
+# Production
+/build
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Generated from the Mobium repository by scripts/extract.py and
+# scripts/generate.py, in CI and by `npm run gen`. The examples, the emulator
+# runs and their screenshots are not: they are checked in.
+/data/mobium.json
+/docs/reference
+/docs/quickstart
+/docs/guides
+/static/img/quickstart
+/static/img/guides

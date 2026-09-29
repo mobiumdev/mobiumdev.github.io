@@ -1,0 +1,89 @@
+# Build the site from the Mobium repository, check every example against the
+# surface it is written for, and publish it to GitHub Pages.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  # The reference follows mobiumdev/mobium's main; rebuild daily so a change
+  # there reaches the site without a commit here.
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Which Mobium
+        id: ref
+        run: echo "ref=$(cat mobium.ref)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: mobiumdev/mobium
+          ref: ${{ steps.ref.outputs.ref }}
+          path: mobium
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: mobium/go.mod
+          cache-dependency-path: mobium/go.sum
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Build mobium
+        run: go build -C mobium -o "$RUNNER_TEMP/mobium" ./cmd/mobium
+
+      - run: npm ci
+
+      - name: Read the surfaces
+        run: python3 scripts/extract.py --src mobium --bin "$RUNNER_TEMP/mobium"
+
+      - name: Check every example
+        env:
+          DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+          DOTNET_NOLOGO: "1"
+        run: python3 scripts/check_examples.py --src mobium
+
+      - name: Write the pages
+        run: python3 scripts/generate.py --src mobium
+
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

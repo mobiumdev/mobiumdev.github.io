@@ -1,0 +1,652 @@
+{
+  "tools": {
+    "app_accessibility": [
+      {
+        "code": "foreach (var setting in device.Accessibility())\n    Console.WriteLine($\"{setting.Key} = {setting.Value}\");"
+      },
+      {
+        "code": "device.SetAccessibility(\"bold_text\", \"on\");"
+      }
+    ],
+    "app_alert": [
+      {
+        "code": "var text = device.Alert(); // empty when no dialog is up\nif (text != \"\") Console.WriteLine(text);"
+      },
+      {
+        "code": "device.AnswerAlert(true);"
+      }
+    ],
+    "app_appearance": [
+      {
+        "code": "device.Appearance(\"dark\");"
+      }
+    ],
+    "app_background": [
+      {
+        "code": "device.Background(5);"
+      }
+    ],
+    "app_batch": [
+      {
+        "code": "var results = device.Batch(\n    Device.Step(\"app_tap\", new Dictionary<string, object?> { [\"target\"] = \"text=Network & internet\" }),\n    Device.Step(\"app_wait_for\", new Dictionary<string, object?> { [\"target\"] = \"text=Internet\" }));"
+      }
+    ],
+    "app_battery": [
+      {
+        "code": "var battery = device.Battery();\nConsole.WriteLine(battery[\"state\"]); // charging, discharging, full..."
+      }
+    ],
+    "app_call": [
+      {
+        "code": "// IncomingCall has no number; Call passes one\ndevice.Call(\"app_call\", new Dictionary<string, object?> { [\"number\"] = \"5551234\" });"
+      },
+      {
+        "code": "device.IncomingCall(\"hang\");"
+      }
+    ],
+    "app_check": [
+      {
+        "code": "device.Check(\"testid=termsCheck\");"
+      },
+      {
+        "code": "device.Check(\"@e4\", false);"
+      }
+    ],
+    "app_clear_data": [
+      {
+        "code": "device.ClearData(\"com.example.shop\");"
+      }
+    ],
+    "app_clipboard": [
+      {
+        "code": "device.SetClipboard(\"hello there\");"
+      },
+      {
+        "code": "string text = device.Clipboard();"
+      }
+    ],
+    "app_context": [
+      {
+        "code": "device.Context(\"WEBVIEW_com.example.shop\");"
+      },
+      {
+        "code": "device.Context(\"NATIVE_APP\");"
+      }
+    ],
+    "app_contexts": [
+      {
+        "code": "foreach (var context in device.Contexts())\n    Console.WriteLine(context);"
+      }
+    ],
+    "app_cookies": [
+      {
+        "code": "foreach (var cookie in device.Cookies())\n    Console.WriteLine($\"{cookie[\"name\"]} = {cookie[\"value\"]}\");"
+      },
+      {
+        "code": "device.ClearCookies(\"session\");"
+      }
+    ],
+    "app_crashes": [
+      {
+        "code": "foreach (var crash in device.Crashes(\"com.example.shop\"))\n    Console.WriteLine(crash[\"id\"]);"
+      }
+    ],
+    "app_current": [
+      {
+        "code": "string app = device.Current();"
+      }
+    ],
+    "app_devices": [
+      {
+        "code": "foreach (var d in device.Devices())\n    Console.WriteLine(d);"
+      }
+    ],
+    "app_dialogs": [
+      {
+        "code": "device.AddDialogRule(\"Save password\", \"Not now\");"
+      },
+      {
+        "code": "device.ClearDialogRules();"
+      }
+    ],
+    "app_doctor": [
+      {
+        "code": "Console.WriteLine(device.Doctor());"
+      }
+    ],
+    "app_drag": [
+      {
+        "code": "device.Drag(\"@e3\", \"@e7\");"
+      }
+    ],
+    "app_eval": [
+      {
+        "code": "string title = device.Eval(\"document.title\");"
+      }
+    ],
+    "app_fill": [
+      {
+        "code": "device.Fill(\"testid=search\", \"coffee\");"
+      }
+    ],
+    "app_find": [
+      {
+        "code": "var buttons = device.Find(\"role=button\");\nConsole.WriteLine($\"{buttons.Count} buttons\");"
+      }
+    ],
+    "app_grant": [
+      {
+        "code": "device.Grant(\"com.example.shop\", \"camera\", \"location\");"
+      }
+    ],
+    "app_install": [
+      {
+        "code": "string id = device.Install(\"./build/app-debug.apk\");"
+      }
+    ],
+    "app_keyboard": [
+      {
+        "code": "device.Keyboard(text: \"coffee\", key: \"enter\");"
+      },
+      {
+        "code": "device.Keyboard(hide: true);"
+      }
+    ],
+    "app_launch": [
+      {
+        "code": "device.Launch(\"com.android.settings\");"
+      }
+    ],
+    "app_list_apps": [
+      {
+        "code": "foreach (var app in device.Apps())\n    Console.WriteLine(app);"
+      }
+    ],
+    "app_locale": [
+      {
+        "code": "device.AppLocale(\"org.wikipedia\", \"ja-JP\");"
+      }
+    ],
+    "app_location": [
+      {
+        "code": "device.SetLocation(51.5074, -0.1278);"
+      },
+      {
+        "code": "device.ClearLocation();"
+      }
+    ],
+    "app_lock": [
+      {
+        "code": "device.ScreenLocked(true);"
+      },
+      {
+        "code": "device.ScreenLocked(false);"
+      }
+    ],
+    "app_logs": [
+      {
+        "code": "var log = device.DeviceLogs(app: \"com.example.shop\", level: \"error\");\nvar entries = log[\"entries\"];"
+      }
+    ],
+    "app_long_press": [
+      {
+        "code": "device.LongPress(\"@e4\", TimeSpan.FromSeconds(2));"
+      }
+    ],
+    "app_map": [
+      {
+        "code": "foreach (var e in device.Map())\n    Console.WriteLine($\"{e.Ref} {e.Role} {e.Label}\");"
+      }
+    ],
+    "app_network": [
+      {
+        "code": "device.SetOffline();"
+      },
+      {
+        "code": "device.ShapeNetwork(latencyMs: 300, downloadKbps: 500);"
+      }
+    ],
+    "app_notifications": [
+      {
+        "code": "// \"Mobium\" is the title the tool uses when none is given\ndevice.PostNotification(\"Mobium\", \"Your code is 123456\");"
+      },
+      {
+        "code": "device.Shade(true);"
+      }
+    ],
+    "app_open_url": [
+      {
+        "code": "device.OpenUrl(\"myapp://cart\");"
+      }
+    ],
+    "app_orientation": [
+      {
+        "code": "device.Orientation(\"landscape\");"
+      }
+    ],
+    "app_press": [
+      {
+        "code": "device.Press(\"back\");"
+      },
+      {
+        "code": "device.Press(\"home\");"
+      }
+    ],
+    "app_press_drag": [
+      {
+        "code": "device.PressDrag(\"@e3\", \"@e5\", \"@e9\");"
+      }
+    ],
+    "app_press_tap": [
+      {
+        "code": "device.PressTap(\"@e3\", \"@e7\");"
+      }
+    ],
+    "app_record": [
+      {
+        "code": "device.Record(\"start\");"
+      },
+      {
+        "code": "var video = device.Record(\"stop\", \"flow.mp4\");"
+      }
+    ],
+    "app_reset_permissions": [
+      {
+        "code": "device.ResetPermissions(\"com.example.shop\");"
+      }
+    ],
+    "app_revoke": [
+      {
+        "code": "device.Revoke(\"com.example.shop\", \"location\");"
+      }
+    ],
+    "app_rotate": [
+      {
+        "code": "device.Rotate(90, \"@e2\");"
+      }
+    ],
+    "app_screen": [
+      {
+        "code": "var screen = device.Screen();\nforeach (var profile in (IList<object?>)screen[\"profiles\"]!)\n    Console.WriteLine(profile);"
+      },
+      {
+        "code": "device.Screen(\"small-phone\");\n// ... check the layout ...\ndevice.Screen(\"reset\");"
+      }
+    ],
+    "app_screenshot": [
+      {
+        "code": "device.Screenshot(\"screen.png\");"
+      }
+    ],
+    "app_scroll_to": [
+      {
+        "code": "var row = device.ScrollTo(\"text=System\");"
+      },
+      {
+        "code": "device.ScrollTo(\"label=Card 8\", \"right\");"
+      }
+    ],
+    "app_session": [
+      {
+        "code": "using var session = Device.Builder().App(\"com.android.settings\").Start();\nConsole.WriteLine(session.Session);"
+      },
+      {
+        "code": "device.Quit();"
+      }
+    ],
+    "app_shake": [
+      {
+        "code": "device.Shake();"
+      }
+    ],
+    "app_sms": [
+      {
+        "code": "// Sms has no sender; Call passes one\ndevice.Call(\"app_sms\", new Dictionary<string, object?> { [\"text\"] = \"Your code is 123456\", [\"from\"] = \"5559876\" });"
+      }
+    ],
+    "app_source": [
+      {
+        "code": "var source = device.Source();\nFile.WriteAllText(\"screen.xml\", (string)source[\"source\"]!);"
+      }
+    ],
+    "app_state": [
+      {
+        "code": "var state = device.AppState(\"com.android.settings\");\nConsole.WriteLine(state[\"state\"]);"
+      }
+    ],
+    "app_storage": [
+      {
+        "code": "var state = device.Storage(); // cookies and origins"
+      },
+      {
+        "code": "device.SetStorage(new Dictionary<string, object?>\n{\n    [\"cookies\"] = new List<object?>(),\n    [\"origins\"] = new List<object?>(),\n});"
+      }
+    ],
+    "app_swipe": [
+      {
+        "code": "device.Swipe(\"up\");"
+      }
+    ],
+    "app_tap": [
+      {
+        "code": "device.Tap(\"text=Network & internet\");"
+      },
+      {
+        "code": "device.Tap(\"@e2\");"
+      },
+      {
+        "code": "device.DoubleTap(\"@e2\");"
+      }
+    ],
+    "app_terminate": [
+      {
+        "code": "device.Terminate(\"com.android.settings\");"
+      }
+    ],
+    "app_text": [
+      {
+        "code": "string screen = device.Text();"
+      },
+      {
+        "code": "string title = device.Text(\"testid=title\");"
+      }
+    ],
+    "app_time": [
+      {
+        "code": "var time = device.DeviceTime();"
+      }
+    ],
+    "app_timezone": [
+      {
+        "code": "string zone = device.Timezone(\"Asia/Tokyo\");"
+      }
+    ],
+    "app_type": [
+      {
+        "code": "device.Type(\"testid=email\", \"hello@example.com\");"
+      }
+    ],
+    "app_uninstall": [
+      {
+        "code": "device.Uninstall(\"com.example.shop\");"
+      }
+    ],
+    "app_wait_for": [
+      {
+        "code": "var welcome = device.WaitFor(\"text=Welcome back\");"
+      },
+      {
+        "code": "device.WaitFor(\"role=progressbar\", Until.Hidden()); // null: nothing left to point at"
+      },
+      {
+        "code": "device.WaitFor(\"testid=termsCheck\", Until.Checked().Timeout(TimeSpan.FromSeconds(5)));"
+      }
+    ],
+    "app_zoom": [
+      {
+        "code": "device.Zoom(\"in\");"
+      }
+    ]
+  },
+  "members": {
+    "Connect": [
+      {
+        "title": "Connect to whichever device is running",
+        "code": "using var dev = Device.Connect();\nConsole.WriteLine(dev.Current());"
+      },
+      {
+        "title": "Connect to one device, with a named driver",
+        "code": "using var dev = Device.Builder()\n    .OnDevice(\"emulator-5554\")\n    .Driver(\"uiautomator2\")\n    .Connect();"
+      }
+    ],
+    "Builder": [
+      {
+        "title": "Configure a session before starting it",
+        "code": "var builder = Device.Builder().Platform(\"ios\").App(\"com.apple.Preferences\");\nusing var dev = builder.Start();"
+      }
+    ],
+    "Start": [
+      {
+        "title": "Open a session and launch the app fresh",
+        "code": "using var dev = Device.Builder().Platform(\"android\").App(\"com.android.settings\").Start();\ndev.Tap(\"text=Network & internet\");"
+      }
+    ],
+    "Binary": [
+      {
+        "title": "Use a mobium binary that is not on PATH",
+        "code": "using var dev = Device.Builder().Binary(\"/opt/mobium/bin/mobium\").Connect();"
+      }
+    ],
+    "OnDevice": [
+      {
+        "title": "Pick one of several devices",
+        "code": "using var dev = Device.Builder().OnDevice(\"emulator-5554\").Connect();"
+      }
+    ],
+    "Driver": [
+      {
+        "title": "Use the zero-install Android driver",
+        "code": "using var dev = Device.Builder().Driver(\"uiautomator\").Connect();"
+      }
+    ],
+    "CallTimeout": [
+      {
+        "title": "Bound how long any one call may take",
+        "code": "using var dev = Device.Builder()\n    .CallTimeout(TimeSpan.FromMinutes(2))\n    .Connect();"
+      }
+    ],
+    "Session": [
+      {
+        "title": "Name the daemon session",
+        "code": "using var dev = Device.Builder().Session(\"checkout\").Connect();"
+      }
+    ],
+    "Platform": [
+      {
+        "title": "Start a session on an iOS simulator",
+        "code": "using var dev = Device.Builder().Platform(\"ios\").Start();"
+      }
+    ],
+    "App": [
+      {
+        "title": "Launch an app as the session starts",
+        "code": "using var dev = Device.Builder().App(\"com.example.shop\").Start();"
+      }
+    ],
+    "Quit": [
+      {
+        "title": "End the session, putting back what it changed",
+        "code": "var dev = Device.Builder().App(\"com.android.settings\").Start();\ntry { dev.Tap(\"text=Display\"); }\nfinally { dev.Quit(); }"
+      }
+    ],
+    "Dispose": [
+      {
+        "title": "Let a using block quit the session",
+        "code": "using (var dev = Device.Builder().App(\"com.android.settings\").Start())\n{\n    dev.Tap(\"text=Display\");\n} // quit here"
+      }
+    ],
+    "Sessions": [
+      {
+        "title": "List the sessions open on the daemon",
+        "code": "foreach (var s in device.Sessions())\n    Console.WriteLine($\"{s[\"device\"]} {s[\"platform\"]} {s[\"driver\"]}\");"
+      }
+    ],
+    "Call": [
+      {
+        "title": "Run any tool by name",
+        "code": "var result = device.Call(\"app_battery\", null);"
+      },
+      {
+        "title": "Pass arguments the typed methods do not take",
+        "code": "device.Call(\"app_sms\", new Dictionary<string, object?> { [\"text\"] = \"Hi\", [\"from\"] = \"5559876\" });"
+      }
+    ],
+    "Step": [
+      {
+        "title": "Build steps for Batch",
+        "code": "var step = Device.Step(\"app_tap\", new Dictionary<string, object?> { [\"target\"] = \"@e2\" });\ndevice.Batch(step, Device.Step(\"app_map\"));"
+      }
+    ],
+    "WaitFor": [
+      {
+        "title": "Wait until an element is visible",
+        "code": "Element? e = device.WaitFor(\"text=Welcome\");\nif (e != null) device.Tap(e.Ref);"
+      }
+    ],
+    "ScrollTo": [
+      {
+        "title": "Scroll down to an element and tap it",
+        "code": "var row = device.ScrollTo(\"text=About phone\");\nif (row != null) device.Tap(row.Ref);"
+      }
+    ],
+    "Apps": [
+      {
+        "title": "Include the apps the platform ships",
+        "code": "var all = device.Apps(true);\nConsole.WriteLine(all.Count(a => a.System));"
+      }
+    ],
+    "MobiumException": [
+      {
+        "title": "Catch any failure",
+        "code": "try { device.Tap(\"text=Nope\"); }\ncatch (MobiumException e)\n{\n    Console.WriteLine($\"{e.Tool} {e.Code}: {e.Message} ({e.Remedy})\");\n}"
+      }
+    ],
+    "NoSuchElementException": [
+      {
+        "title": "Scroll when an element is not there",
+        "code": "try { device.Tap(\"text=Continue\"); }\ncatch (NoSuchElementException) { device.ScrollTo(\"text=Continue\", \"down\"); }"
+      }
+    ],
+    "AmbiguousLocatorException": [
+      {
+        "title": "Fall back to a ref when a locator matches more than one",
+        "code": "try { device.Tap(\"text=OK\"); }\ncatch (AmbiguousLocatorException) { device.Tap(device.Find(\"text=OK\").First().Ref); }"
+      }
+    ],
+    "TimedOutException": [
+      {
+        "title": "Tell a timeout from other failures",
+        "code": "try { device.WaitFor(\"text=Done\", Until.Visible().Timeout(TimeSpan.FromSeconds(3))); }\ncatch (TimedOutException e) { Console.WriteLine(e.Retryable); }"
+      }
+    ],
+    "UnsupportedException": [
+      {
+        "title": "Skip what a platform cannot do",
+        "code": "try { device.Press(\"back\"); }\ncatch (UnsupportedException e) { Console.WriteLine(e.Remedy); } // iOS has no back button"
+      }
+    ],
+    "NoSuchAlertException": [
+      {
+        "title": "Answer a dialog only if one is up",
+        "code": "try { device.AnswerAlert(false); }\ncatch (NoSuchAlertException) { }"
+      }
+    ],
+    "NoDeviceException": [
+      {
+        "title": "Report that nothing is running",
+        "code": "try { device.Map(); }\ncatch (NoDeviceException e) { Console.WriteLine(e.Remedy); }"
+      }
+    ],
+    "DeviceNotReadyException": [
+      {
+        "title": "Unlock before launching",
+        "code": "try { device.Launch(\"com.android.settings\"); }\ncatch (DeviceNotReadyException) { device.ScreenLocked(false); device.Launch(\"com.android.settings\"); }"
+      }
+    ],
+    "NotConfirmedException": [
+      {
+        "title": "Notice an action the device did not confirm",
+        "code": "try { device.Check(\"@e4\"); }\ncatch (NotConfirmedException e) { Console.WriteLine(e.Details.Count); }"
+      }
+    ],
+    "Until": [
+      {
+        "title": "Pass a condition to WaitFor",
+        "code": "device.WaitFor(\"@e4\", Until.Text(\"Sent\").Timeout(TimeSpan.FromSeconds(30)));"
+      }
+    ],
+    "ExactText": [
+      {
+        "title": "Wait for an element's whole text",
+        "code": "device.WaitFor(\"testid=status\", Until.ExactText(\"Paid\"));"
+      }
+    ],
+    "Count": [
+      {
+        "title": "Wait for a list to hold three rows",
+        "code": "device.WaitFor(\"role=row\", Until.Count(3));"
+      }
+    ],
+    "Not": [
+      {
+        "title": "Wait for a condition to stop holding",
+        "code": "device.WaitFor(\"testid=submit\", Until.Enabled().Not());"
+      }
+    ],
+    "Visible": [
+      {
+        "title": "Wait for an element to be on screen",
+        "code": "device.WaitFor(\"text=Welcome\", Until.Visible());"
+      }
+    ],
+    "Hidden": [
+      {
+        "title": "Wait for a spinner to go",
+        "code": "device.WaitFor(\"role=progressbar\", Until.Hidden());"
+      }
+    ],
+    "Text": [
+      {
+        "title": "Wait for text within an element",
+        "code": "device.WaitFor(\"@e4\", Until.Text(\"Sent\"));"
+      }
+    ],
+    "Value": [
+      {
+        "title": "Wait for a field's value",
+        "code": "device.WaitFor(\"testid=email\", Until.Value(\"someone@example.com\"));"
+      }
+    ],
+    "Enabled": [
+      {
+        "title": "Wait for a button to be enabled",
+        "code": "var button = device.WaitFor(\"testid=submit\", Until.Enabled());"
+      }
+    ],
+    "Disabled": [
+      {
+        "title": "Wait for a button to be disabled",
+        "code": "device.WaitFor(\"testid=submit\", Until.Disabled());"
+      }
+    ],
+    "Checked": [
+      {
+        "title": "Wait for a checkbox to be checked",
+        "code": "device.WaitFor(\"testid=termsCheck\", Until.Checked());"
+      }
+    ],
+    "Unchecked": [
+      {
+        "title": "Wait for a switch to be off",
+        "code": "device.WaitFor(\"@e4\", Until.Unchecked());"
+      }
+    ],
+    "Focused": [
+      {
+        "title": "Wait for a field to take focus",
+        "code": "device.WaitFor(\"testid=search\", Until.Focused());"
+      }
+    ],
+    "Timeout": [
+      {
+        "title": "Wait longer than the ten-second default",
+        "code": "device.WaitFor(\"text=Ready\", Until.Visible().Timeout(TimeSpan.FromSeconds(30)));"
+      }
+    ]
+  },
+  "intro": {
+    "install": "git clone https://github.com/mobiumdev/mobium.git\ndotnet add reference mobium/clients/dotnet/Mobium/Mobium.csproj",
+    "code": "using var device = Device.Builder().Platform(\"android\").App(\"com.android.settings\").Start();\nforeach (var el in device.Map()) Console.WriteLine($\"{el.Ref} {el.Label}\");",
+    "note": "`device` below is a `Mobium.Device` from `Device.Builder()...Start()` or `Device.Connect()`."
+  }
+}

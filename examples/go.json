@@ -1,0 +1,552 @@
+{
+  "tools": {
+    "app_accessibility": [
+      {
+        "code": "settings, err := dev.Accessibility(ctx)\nif err != nil {\n\treturn err\n}\nfmt.Println(settings[\"reduce_motion\"], settings[\"bold_text\"])"
+      },
+      {
+        "code": "value, err := dev.SetAccessibility(ctx, \"bold_text\", \"on\")\nif err != nil {\n\treturn err\n}\nfmt.Println(\"bold_text is\", value)"
+      }
+    ],
+    "app_alert": [
+      {
+        "code": "text, err := dev.Alert(ctx)\nif err != nil {\n\treturn err\n}\nif text != \"\" {\n\tfmt.Println(\"dialog up:\", text)\n}"
+      },
+      {
+        "code": "if err := dev.AnswerAlert(ctx, true); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_appearance": [
+      {
+        "code": "mode, err := dev.Appearance(ctx, \"dark\")\nif err != nil {\n\treturn err\n}\nfmt.Println(\"appearance is now\", mode)"
+      }
+    ],
+    "app_background": [
+      {
+        "code": "// \"\" means the app in front.\nif err := dev.Background(ctx, 5, \"\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_batch": [
+      {
+        "code": "results, err := dev.Batch(ctx,\n\tmobium.Step{Name: \"app_tap\", Arguments: map[string]any{\"target\": \"text=Network & internet\"}},\n\tmobium.Step{Name: \"app_wait_for\", Arguments: map[string]any{\"target\": \"text=Internet\"}},\n)\nif err != nil {\n\treturn err\n}\nfmt.Println(len(results), \"steps ran\")"
+      }
+    ],
+    "app_battery": [
+      {
+        "code": "battery, err := dev.Battery(ctx)\nif err != nil {\n\treturn err\n}\nif battery.Present && battery.Level != nil {\n\tfmt.Printf(\"%d%%, %s\\n\", *battery.Level, battery.State)\n}"
+      }
+    ],
+    "app_call": [
+      {
+        "code": "if err := dev.IncomingCall(ctx, \"ring\", \"5551234\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.IncomingCall(ctx, \"hang\", \"\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_check": [
+      {
+        "code": "if err := dev.Check(ctx, \"testid=termsCheck\", true); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.Check(ctx, \"@e4\", false); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_clear_data": [
+      {
+        "code": "cleared, err := dev.ClearData(ctx, \"com.example.shop\")\nif err != nil {\n\treturn err\n}\nfmt.Println(\"emptied:\", cleared.Emptied, \"still granted:\", cleared.StillGranted)"
+      }
+    ],
+    "app_clipboard": [
+      {
+        "code": "if err := dev.SetClipboard(ctx, \"hello there\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "text, err := dev.Clipboard(ctx)\nif err != nil {\n\treturn err\n}\nfmt.Println(text)"
+      }
+    ],
+    "app_context": [
+      {
+        "code": "if _, err := dev.Context(ctx, \"WEBVIEW_com.example.shop\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if _, err := dev.Context(ctx, \"NATIVE_APP\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_contexts": [
+      {
+        "code": "names, err := dev.Contexts(ctx)\nif err != nil {\n\treturn err\n}\nfmt.Println(names) // [NATIVE_APP WEBVIEW_...]"
+      }
+    ],
+    "app_cookies": [
+      {
+        "code": "cookies, err := dev.Cookies(ctx)\nif err != nil {\n\treturn err\n}\nfor _, c := range cookies {\n\tfmt.Println(c.Name, c.Domain)\n}"
+      },
+      {
+        "code": "if err := dev.ClearCookies(ctx, \"session\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_crashes": [
+      {
+        "code": "// A limit of 0 takes the tool's default.\ncrashes, err := dev.Crashes(ctx, \"com.example.shop\", 0)\nif err != nil {\n\treturn err\n}\nfor _, c := range crashes {\n\tfmt.Println(c.Time, c.Kind, c.Summary)\n}"
+      }
+    ],
+    "app_current": [
+      {
+        "code": "app, err := dev.Current(ctx)\nif err != nil {\n\treturn err\n}\nfmt.Println(\"in front:\", app)"
+      }
+    ],
+    "app_devices": [
+      {
+        "code": "devices, err := dev.Devices(ctx)\nif err != nil {\n\treturn err\n}\nfor _, d := range devices {\n\tfmt.Println(d.ID, d.Platform, d.State)\n}"
+      }
+    ],
+    "app_dialogs": [
+      {
+        "code": "if err := dev.AddDialogRule(ctx, \"Save password\", \"Not now\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.ClearDialogRules(ctx); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_doctor": [
+      {
+        "code": "report, err := dev.Doctor(ctx)\nif err != nil {\n\treturn err\n}\nfmt.Println(report)"
+      }
+    ],
+    "app_drag": [
+      {
+        "code": "if err := dev.Drag(ctx, \"@e3\", \"@e7\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_eval": [
+      {
+        "code": "title, err := dev.Eval(ctx, \"document.title\")\nif err != nil {\n\treturn err\n}\nfmt.Println(title)"
+      }
+    ],
+    "app_fill": [
+      {
+        "code": "if err := dev.Fill(ctx, \"testid=search\", \"coffee\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_find": [
+      {
+        "code": "buttons, err := dev.Find(ctx, \"role=button\")\nif err != nil {\n\treturn err\n}\nfor _, b := range buttons {\n\tfmt.Println(b.Ref, b.Label)\n}"
+      }
+    ],
+    "app_grant": [
+      {
+        "code": "if err := dev.Grant(ctx, \"com.example.shop\", \"camera\", \"location\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_install": [
+      {
+        "code": "path, err := dev.Install(ctx, \"./build/app-debug.apk\")\nif err != nil {\n\treturn err\n}\nfmt.Println(\"installed\", path)"
+      }
+    ],
+    "app_keyboard": [
+      {
+        "code": "text := \"coffee\"\nif _, err := dev.Keyboard(ctx, mobium.KeyboardOptions{Text: &text, Key: \"enter\"}); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "state, err := dev.Keyboard(ctx, mobium.KeyboardOptions{Hide: true})\nif err != nil {\n\treturn err\n}\nfmt.Println(\"shown:\", state.Shown)"
+      }
+    ],
+    "app_launch": [
+      {
+        "code": "if err := dev.Launch(ctx, \"com.android.settings\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_list_apps": [
+      {
+        "code": "apps, err := dev.Apps(ctx, false)\nif err != nil {\n\treturn err\n}\nfor _, a := range apps {\n\tfmt.Println(a.ID, a.Version)\n}"
+      }
+    ],
+    "app_locale": [
+      {
+        "code": "if err := dev.SetAppLocale(ctx, \"org.wikipedia\", \"ja-JP\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_location": [
+      {
+        "code": "if err := dev.SetLocation(ctx, 51.5074, -0.1278); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.ClearLocation(ctx); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_lock": [
+      {
+        "code": "if err := dev.SetScreenLocked(ctx, true); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.SetScreenLocked(ctx, false); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_logs": [
+      {
+        "code": "// 0 lines takes the tool's default.\nentries, skipped, err := dev.DeviceLogs(ctx, \"com.example.shop\", \"error\", 0)\nif err != nil {\n\treturn err\n}\nfor _, e := range entries {\n\tfmt.Println(e.Time, e.Tag, e.Message)\n}\nfmt.Println(skipped, \"lines skipped\")"
+      }
+    ],
+    "app_long_press": [
+      {
+        "code": "if err := dev.LongPress(ctx, \"@e4\", 2*time.Second); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_map": [
+      {
+        "code": "elements, err := dev.Map(ctx)\nif err != nil {\n\treturn err\n}\nfor _, el := range elements {\n\tfmt.Println(el.Ref, el.Role, el.Label)\n}"
+      }
+    ],
+    "app_network": [
+      {
+        "code": "status, err := dev.SetOffline(ctx, true)\nif err != nil {\n\treturn err\n}\nfmt.Println(\"online:\", status.Online)"
+      },
+      {
+        "code": "// Latency in ms, download and upload in kbit/s; 0 is no limit.\nif _, err := dev.ShapeNetwork(ctx, 300, 500, 0); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_notifications": [
+      {
+        "code": "// An empty title posts the text alone.\nif err := dev.PostNotification(ctx, \"\", \"Your code is 123456\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.SetShade(ctx, true); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_open_url": [
+      {
+        "code": "app, err := dev.OpenURL(ctx, \"myapp://cart\")\nif err != nil {\n\treturn err\n}\nfmt.Println(\"opened in\", app)"
+      }
+    ],
+    "app_orientation": [
+      {
+        "code": "if err := dev.SetOrientation(ctx, \"landscape\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_press": [
+      {
+        "code": "if err := dev.Press(ctx, \"back\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.Press(ctx, \"home\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_press_drag": [
+      {
+        "code": "if err := dev.PressDrag(ctx, \"@e3\", \"@e5\", \"@e9\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_press_tap": [
+      {
+        "code": "if err := dev.PressTap(ctx, \"@e3\", \"@e7\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_record": [
+      {
+        "code": "if _, err := dev.Record(ctx, \"start\", \"\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "rec, err := dev.Record(ctx, \"stop\", \"flow.mp4\")\nif err != nil {\n\treturn err\n}\nfmt.Println(rec.Path, rec.Frames, \"frames\")"
+      }
+    ],
+    "app_reset_permissions": [
+      {
+        "code": "if err := dev.ResetPermissions(ctx, \"com.example.shop\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_revoke": [
+      {
+        "code": "if err := dev.Revoke(ctx, \"com.example.shop\", \"location\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_rotate": [
+      {
+        "code": "if err := dev.Rotate(ctx, 90, \"@e2\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_screen": [
+      {
+        "code": "screen, err := dev.Screen(ctx, \"\", false)\nif err != nil {\n\treturn err\n}\nfmt.Println(screen.WidthPx, screen.HeightPx, screen.DPI, screen.Profiles)"
+      },
+      {
+        "code": "if _, err := dev.Screen(ctx, \"small-phone\", false); err != nil {\n\treturn err\n}\n// ... the flow, on a small phone ...\nif _, err := dev.Screen(ctx, \"reset\", false); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_screenshot": [
+      {
+        "code": "// With a path the file is written, and the PNG comes back too.\npng, err := dev.Screenshot(ctx, \"screen.png\")\nif err != nil {\n\treturn err\n}\nfmt.Println(len(png), \"bytes\")"
+      }
+    ],
+    "app_scroll_to": [
+      {
+        "code": "el, err := dev.ScrollTo(ctx, \"text=System\", \"\")\nif err != nil {\n\treturn err\n}\nfmt.Println(el.Ref)"
+      },
+      {
+        "code": "el, err := dev.ScrollTo(ctx, \"label=Card 8\", \"right\")\nif err != nil {\n\treturn err\n}\nfmt.Println(el.Ref)"
+      }
+    ],
+    "app_session": [
+      {
+        "code": "dev, err := mobium.Start(ctx, mobium.WithApp(\"com.android.settings\"))\nif err != nil {\n\treturn err\n}\ndefer dev.Quit(ctx)\nfmt.Println(dev.Session().Device, dev.Session().Driver)"
+      },
+      {
+        "code": "if err := dev.Quit(ctx); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_shake": [
+      {
+        "code": "if err := dev.Shake(ctx); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_sms": [
+      {
+        "code": "if err := dev.SendSMS(ctx, \"5559876\", \"Your code is 123456\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_source": [
+      {
+        "code": "src, err := dev.Source(ctx)\nif err != nil {\n\treturn err\n}\nif err := os.WriteFile(\"screen.xml\", []byte(src.Source), 0o644); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_state": [
+      {
+        "code": "state, err := dev.AppState(ctx, \"com.android.settings\")\nif err != nil {\n\treturn err\n}\nfmt.Println(state.State) // not_installed, not_running, background or foreground"
+      }
+    ],
+    "app_storage": [
+      {
+        "code": "state, err := dev.Storage(ctx)\nif err != nil {\n\treturn err\n}\nfmt.Println(len(state.Cookies), \"cookies,\", len(state.Origins), \"origins\")"
+      },
+      {
+        "code": "// Empty slices, not nil: nil would go on the wire as null.\nstate := mobium.StorageState{Cookies: []mobium.Cookie{}, Origins: []mobium.OriginStorage{}}\nif err := dev.SetStorage(ctx, state); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_swipe": [
+      {
+        "code": "if err := dev.Swipe(ctx, \"up\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_tap": [
+      {
+        "code": "if err := dev.Tap(ctx, \"text=Network & internet\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.Tap(ctx, \"@e2\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.DoubleTap(ctx, \"@e2\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_terminate": [
+      {
+        "code": "if err := dev.Terminate(ctx, \"com.android.settings\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_text": [
+      {
+        "code": "text, err := dev.Text(ctx, \"\")\nif err != nil {\n\treturn err\n}\nfmt.Println(text)"
+      },
+      {
+        "code": "title, err := dev.Text(ctx, \"testid=title\")\nif err != nil {\n\treturn err\n}\nfmt.Println(title)"
+      }
+    ],
+    "app_time": [
+      {
+        "code": "clock, err := dev.DeviceTime(ctx)\nif err != nil {\n\treturn err\n}\nfmt.Println(clock.Time, clock.Zone)"
+      }
+    ],
+    "app_timezone": [
+      {
+        "code": "if err := dev.SetTimezone(ctx, \"Asia/Tokyo\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_type": [
+      {
+        "code": "if err := dev.Type(ctx, \"testid=email\", \"hello@example.com\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_uninstall": [
+      {
+        "code": "if err := dev.Uninstall(ctx, \"com.example.shop\"); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_wait_for": [
+      {
+        "code": "el, err := dev.WaitFor(ctx, \"text=Welcome back\", nil)\nif err != nil {\n\treturn err\n}\nfmt.Println(el.Ref)"
+      },
+      {
+        "code": "// Nothing is left to point at, so the element is nil.\nif _, err := dev.WaitFor(ctx, \"role=progressbar\", &mobium.WaitOptions{Condition: mobium.Hidden}); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "opts := &mobium.WaitOptions{Condition: mobium.Checked, Timeout: 5 * time.Second}\nif _, err := dev.WaitFor(ctx, \"testid=termsCheck\", opts); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "app_zoom": [
+      {
+        "code": "// true pinches out, which zooms in; \"\" is the middle of the screen.\nif err := dev.Zoom(ctx, true, \"\"); err != nil {\n\treturn err\n}"
+      }
+    ]
+  },
+  "members": {
+    "Start": [
+      {
+        "title": "Start a session on Android and launch an app",
+        "code": "dev, err := mobium.Start(ctx, mobium.WithPlatform(\"android\"), mobium.WithApp(\"com.example.shop\"))\nif err != nil {\n\tlog.Fatal(err)\n}\ndefer dev.Quit(ctx)"
+      },
+      {
+        "title": "Start on an iOS simulator and see what you got",
+        "code": "dev, err := mobium.Start(ctx, mobium.WithPlatform(\"ios\"))\nif err != nil {\n\treturn err\n}\ndefer dev.Quit(ctx)\ns := dev.Session()\nfmt.Println(s.Device, s.Platform, s.Driver, s.Reused)"
+      }
+    ],
+    "Quit": [
+      {
+        "title": "End the session, even when the test fails",
+        "code": "dev, err := mobium.Start(ctx)\nif err != nil {\n\treturn err\n}\ndefer dev.Quit(ctx) // a second Quit does nothing"
+      }
+    ],
+    "Connect": [
+      {
+        "title": "Connect without touching the device",
+        "code": "dev, err := mobium.Connect()\nif err != nil {\n\treturn err\n}\ndefer dev.Close() // leaves the session open for the CLI"
+      },
+      {
+        "title": "Connect to one device, on a daemon of its own",
+        "code": "dev, err := mobium.Connect(mobium.WithDevice(\"emulator-5554\"), mobium.WithSession(\"pixel\"))\nif err != nil {\n\treturn err\n}\ndefer dev.Close()"
+      }
+    ],
+    "Close": [
+      {
+        "title": "Close the connection and keep the session",
+        "code": "if err := dev.Close(); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "Session": [
+      {
+        "title": "Ask which device Start opened",
+        "code": "if s := dev.Session(); s != nil {\n\tfmt.Println(s.Device, s.Driver)\n} // nil for a Device from Connect"
+      }
+    ],
+    "Sessions": [
+      {
+        "title": "List the sessions open on the daemon",
+        "code": "sessions, err := dev.Sessions(ctx)\nif err != nil {\n\treturn err\n}\nfor _, s := range sessions {\n\tfmt.Println(s.Device, s.Platform, s.Driver)\n}"
+      }
+    ],
+    "WithBinary": [
+      {
+        "title": "Pin the mobium binary",
+        "code": "dev, err := mobium.Connect(mobium.WithBinary(\"/usr/local/bin/mobium\"))\nif err != nil {\n\treturn err\n}\ndefer dev.Close()"
+      }
+    ],
+    "WithDevice": [
+      {
+        "title": "Target one device by serial or UDID",
+        "code": "dev, err := mobium.Start(ctx, mobium.WithDevice(\"emulator-5554\"))\nif err != nil {\n\treturn err\n}\ndefer dev.Quit(ctx)"
+      }
+    ],
+    "WithDriver": [
+      {
+        "title": "Use the zero-install uiautomator driver",
+        "code": "dev, err := mobium.Connect(mobium.WithDriver(\"uiautomator\"))\nif err != nil {\n\treturn err\n}\ndefer dev.Close()"
+      }
+    ],
+    "WithPlatform": [
+      {
+        "title": "Start on iOS, which picks the wda driver",
+        "code": "dev, err := mobium.Start(ctx, mobium.WithPlatform(\"ios\"))\nif err != nil {\n\treturn err\n}\ndefer dev.Quit(ctx)"
+      }
+    ],
+    "WithSession": [
+      {
+        "title": "Give each of two parallel runs its own daemon",
+        "code": "a, err := mobium.Start(ctx, mobium.WithDevice(\"emulator-5554\"), mobium.WithSession(\"a\"))\nif err != nil {\n\treturn err\n}\ndefer a.Quit(ctx)\nb, err := mobium.Start(ctx, mobium.WithPlatform(\"ios\"), mobium.WithSession(\"b\"))\nif err != nil {\n\treturn err\n}\ndefer b.Quit(ctx)"
+      }
+    ],
+    "WithApp": [
+      {
+        "title": "Launch an app fresh when the session starts",
+        "code": "dev, err := mobium.Start(ctx, mobium.WithApp(\"com.android.settings\"))\nif err != nil {\n\treturn err\n}\ndefer dev.Quit(ctx)"
+      }
+    ],
+    "FindBinary": [
+      {
+        "title": "Find the mobium binary the client would run",
+        "code": "path, err := mobium.FindBinary(\"\") // MOBIUM_BIN_PATH, then PATH\nif err != nil {\n\treturn err\n}\nfmt.Println(path)"
+      }
+    ],
+    "Call": [
+      {
+        "title": "Call a tool by name, decoding its answer",
+        "code": "var out struct {\n\tRules []mobium.DialogRule `json:\"rules\"`\n}\nif err := dev.Call(ctx, \"app_dialogs\", map[string]any{}, &out); err != nil {\n\treturn err\n}\nfmt.Println(len(out.Rules), \"rules\")"
+      },
+      {
+        "title": "Call a tool for its effect alone",
+        "code": "args := map[string]any{\"action\": \"accept\", \"text\": \"Allow\"}\nif err := dev.Call(ctx, \"app_alert\", args, nil); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "Is": [
+      {
+        "title": "Decide by the error's code, never its message",
+        "code": "err := dev.Tap(ctx, \"text=Sign in\")\nif errors.Is(err, mobium.ErrNoSuchElement) {\n\tfmt.Println(\"not on this screen\")\n} else if err != nil {\n\treturn err\n}"
+      },
+      {
+        "title": "Tell a refusal from a failure",
+        "code": "err := dev.PressTap(ctx, \"@e3\", \"@e7\")\nif errors.Is(err, mobium.ErrUnsupported) {\n\tfmt.Println(\"skipped: this platform cannot land a second finger mid-gesture\")\n} else if err != nil {\n\treturn err\n}"
+      }
+    ],
+    "Error": [
+      {
+        "title": "Read the code, remedy and details of a failure",
+        "code": "var merr *mobium.Error\nif err := dev.Tap(ctx, \"@e9\"); errors.As(err, &merr) {\n\tfmt.Println(merr.Code, merr.Remedy, merr.Retryable)\n\treturn fmt.Errorf(\"tap failed: %w\", err)\n}"
+      }
+    ],
+    "Center": [
+      {
+        "title": "Find the middle of an element",
+        "code": "elements, err := dev.Map(ctx)\nif err != nil || len(elements) == 0 {\n\treturn err\n}\nx, y := elements[0].Bounds.Center()\nif err := dev.TapPoint(ctx, x, y); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "Width": [
+      {
+        "title": "Measure an element in device pixels",
+        "code": "el, err := dev.WaitFor(ctx, \"testid=search\", nil)\nif err != nil {\n\treturn err\n}\nfmt.Println(el.Bounds.Width(), \"x\", el.Bounds.Height())"
+      }
+    ],
+    "Height": [
+      {
+        "title": "Flag a touch target shorter than 48 pixels",
+        "code": "buttons, err := dev.Find(ctx, \"role=button\")\nif err != nil {\n\treturn err\n}\nfor _, b := range buttons {\n\tif b.Bounds.Height() < 48 {\n\t\tfmt.Println(\"short:\", b.Label)\n\t}\n}"
+      }
+    ],
+    "String": [
+      {
+        "title": "Keep a ref's locator for a later screen",
+        "code": "el, err := dev.WaitFor(ctx, \"text=Sign in\", nil)\nif err != nil || el.Locator == nil {\n\treturn err\n}\nlocator := el.Locator.String() // e.g. \"text=Sign in\"\nif err := dev.Tap(ctx, locator); err != nil {\n\treturn err\n}"
+      }
+    ],
+    "Network": [
+      {
+        "title": "Read the network conditions",
+        "code": "status, err := dev.Network(ctx)\nif err != nil {\n\treturn err\n}\nfmt.Println(status.Online, status.Airplane, status.LatencyMs)"
+      }
+    ],
+    "SetOffline": [
+      {
+        "title": "Go offline, then back",
+        "code": "if _, err := dev.SetOffline(ctx, true); err != nil {\n\treturn err\n}\ndefer dev.SetOffline(ctx, false)"
+      }
+    ],
+    "ShapeNetwork": [
+      {
+        "title": "A slow connection on an emulator, then no shaping",
+        "code": "if _, err := dev.ShapeNetwork(ctx, 300, 500, 100); err != nil {\n\treturn err\n}\ndefer dev.ResetNetwork(ctx)"
+      }
+    ]
+  },
+  "intro": {
+    "install": "go get github.com/mobiumdev/mobium/clients/go",
+    "code": "dev, err := mobium.Start(ctx, mobium.WithPlatform(\"android\"), mobium.WithApp(\"com.android.settings\"))\nif err != nil {\n\treturn err\n}\ndefer dev.Quit(ctx)\n\nels, err := dev.Map(ctx)\nif err != nil {\n\treturn err\n}\nfor _, el := range els {\n\tfmt.Println(el.Ref, el.Label)\n}",
+    "note": "`dev` below is a `*mobium.Device` from `Start` or `Connect`, and `ctx` a `context.Context`. Each example is the body of a function that returns an `error`."
+  }
+}

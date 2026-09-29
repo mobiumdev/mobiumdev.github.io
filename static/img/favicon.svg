@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 586 580" width="32" height="32"
+     role="img" aria-label="Mobium">
+  <title>Mobium</title>
+  <!--
+    The mark: an M built from four shapes that read as a butterfly.
+
+    Traced by measurement rather than by an autotracer. Each shape's outline
+    was extracted from mobium-logo.png by connected-component labeling, and
+    each curve fitted to it — the wings are two cubics apiece, the feet one
+    cubic against a straight edge. Worst deviation from the raster is under
+    5px on a 585px mark, and the shapes cover 97-98% of it by area. That is
+    why this is eight curves rather than the thousands of points a trace
+    gives, and why it can be edited by hand.
+
+    Coordinates are the source PNG's own pixel space, shifted into the viewBox
+    by the transform below, so any number here can be checked against the
+    raster directly.
+
+    The right half is the left reflected about x=628, computed rather than
+    retyped. The raster is asymmetric by a few pixels; the vector is not,
+    deliberately — that asymmetry is an artifact of how the original image was
+    produced, not part of the design. The halves are written out separately
+    rather than shared with <use> because they carry different gradients, and
+    a mirrored <use> would mirror the colors too.
+  -->
+  <defs>
+    <linearGradient id="wingL" x1="334" y1="0" x2="624" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4C59FC"/><stop offset="1" stop-color="#3552FD"/>
+    </linearGradient>
+    <linearGradient id="wingR" x1="632" y1="0" x2="919" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F70FC"/><stop offset="1" stop-color="#00BAFC"/>
+    </linearGradient>
+    <linearGradient id="footL" x1="337" y1="0" x2="530" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#763CFB"/><stop offset="1" stop-color="#5832FA"/>
+    </linearGradient>
+    <linearGradient id="footR" x1="726" y1="0" x2="917" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#02BCC1"/><stop offset="1" stop-color="#01CBDD"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(-334,-226)">
+    <path fill="url(#footL)" d="M337,450 C617,490 563,819 337,805 Z"/>
+    <path fill="url(#footR)" d="M919,450 C639,490 693,819 919,805 Z"/>
+    <path fill="url(#wingL)" d="M342,226 C490,235 640,380 624,584 C440,428 296,480 342,226 Z"/>
+    <path fill="url(#wingR)" d="M914,226 C766,235 616,380 632,584 C816,428 960,480 914,226 Z"/>
+  </g>
+</svg>
