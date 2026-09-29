@@ -468,6 +468,12 @@
         "title": "Skip what a platform cannot do",
         "code": "import { UnsupportedError } from 'mobium'\ntry {\n  await device.press('back')\n} catch (e) {\n  if (!(e instanceof UnsupportedError)) throw e\n  console.log(e.remedy) // iOS has no back button\n}"
       }
+    ],
+    "answerAlert": [
+      {
+        "title": "Fill a prompt's field and accept it, in one call",
+        "code": "await device.answerAlert(true, { text: 'Groceries' })"
+      }
     ]
   },
   "intro": {

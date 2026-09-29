@@ -542,6 +542,12 @@
         "title": "A slow connection on an emulator, then no shaping",
         "code": "if _, err := dev.ShapeNetwork(ctx, 300, 500, 100); err != nil {\n\treturn err\n}\ndefer dev.ResetNetwork(ctx)"
       }
+    ],
+    "AnswerPrompt": [
+      {
+        "title": "Fill a prompt's field and accept it, in one call",
+        "code": "if err := dev.AnswerPrompt(ctx, \"Groceries\", true); err != nil {\n\treturn err\n}"
+      }
     ]
   },
   "intro": {

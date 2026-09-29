@@ -38,7 +38,7 @@
     ],
     "app_call": [
       {
-        "code": "// incomingCall() takes only the action; call() sets the number\ndevice.call(\"app_call\", Map.of(\"number\", \"5551234\"));"
+        "code": "device.incomingCall(\"ring\", \"5551234\");"
       },
       {
         "code": "device.incomingCall(\"hang\");"
@@ -208,7 +208,7 @@
     ],
     "app_notifications": [
       {
-        "code": "// postNotification() needs a title; call() leaves it at the default\ndevice.call(\"app_notifications\", Map.of(\"text\", \"Your code is 123456\"));"
+        "code": "device.postNotification(\"Your code is 123456\");"
       },
       {
         "code": "device.shade(true);"
@@ -301,7 +301,7 @@
     ],
     "app_sms": [
       {
-        "code": "// sms() takes only the body; call() sets the sender\ndevice.call(\"app_sms\", Map.of(\"text\", \"Your code is 123456\", \"from\", \"5559876\"));"
+        "code": "device.sms(\"Your code is 123456\", \"5559876\");"
       }
     ],
     "app_source": [
@@ -683,6 +683,12 @@
       {
         "title": "Read where the device believes it is",
         "code": "Location here = device.location();\nif (here.mock) System.out.println(here.latitude + \", \" + here.longitude);"
+      }
+    ],
+    "answerAlert": [
+      {
+        "title": "Fill a prompt's field and accept it, in one call",
+        "code": "device.answerAlert(true, \"Groceries\");"
       }
     ]
   },

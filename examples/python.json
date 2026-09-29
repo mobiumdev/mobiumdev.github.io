@@ -524,6 +524,12 @@
         "title": "Retry only what can succeed again",
         "code": "try:\n    device.map()\nexcept mobium.InternalError as e:\n    if e.retryable:\n        device.map()"
       }
+    ],
+    "answer_alert": [
+      {
+        "title": "Fill a prompt's field and accept it, in one call",
+        "code": "device.answer_alert(True, text=\"Groceries\")"
+      }
     ]
   },
   "intro": {

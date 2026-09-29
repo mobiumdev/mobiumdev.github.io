@@ -38,7 +38,7 @@
     ],
     "app_call": [
       {
-        "code": "// IncomingCall has no number; Call passes one\ndevice.Call(\"app_call\", new Dictionary<string, object?> { [\"number\"] = \"5551234\" });"
+        "code": "device.IncomingCall(\"ring\", \"5551234\");"
       },
       {
         "code": "device.IncomingCall(\"hang\");"
@@ -208,7 +208,7 @@
     ],
     "app_notifications": [
       {
-        "code": "// \"Mobium\" is the title the tool uses when none is given\ndevice.PostNotification(\"Mobium\", \"Your code is 123456\");"
+        "code": "device.PostNotification(\"Your code is 123456\");"
       },
       {
         "code": "device.Shade(true);"
@@ -301,7 +301,7 @@
     ],
     "app_sms": [
       {
-        "code": "// Sms has no sender; Call passes one\ndevice.Call(\"app_sms\", new Dictionary<string, object?> { [\"text\"] = \"Your code is 123456\", [\"from\"] = \"5559876\" });"
+        "code": "device.Sms(\"Your code is 123456\", \"5559876\");"
       }
     ],
     "app_source": [
@@ -641,6 +641,12 @@
       {
         "title": "Wait longer than the ten-second default",
         "code": "device.WaitFor(\"text=Ready\", Until.Visible().Timeout(TimeSpan.FromSeconds(30)));"
+      }
+    ],
+    "AnswerAlert": [
+      {
+        "title": "Fill a prompt's field and accept it, in one call",
+        "code": "device.AnswerAlert(true, \"Groceries\");"
       }
     ]
   },
