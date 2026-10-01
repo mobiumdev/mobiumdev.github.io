@@ -410,6 +410,34 @@
       {
         "code": "device.Zoom(\"in\");"
       }
+    ],
+    "app_audit": [
+      {
+        "code": "var found = device.Audit();\nConsole.WriteLine(found[\"findings\"]);"
+      }
+    ],
+    "app_hit_test": [
+      {
+        "code": "var hit = device.HitTest(\"testid=submit\");\nConsole.WriteLine(hit[\"reaches\"]);"
+      }
+    ],
+    "app_biometric": [
+      {
+        "code": "device.Biometric(\"enroll\");"
+      },
+      {
+        "code": "var said = device.Biometric(\"match\");\nConsole.WriteLine(said[\"outcome\"]);"
+      }
+    ],
+    "app_boot": [
+      {
+        "code": "var booted = device.Boot(\"mobium-test\");\nConsole.WriteLine(booted[\"device\"]);"
+      }
+    ],
+    "app_shutdown": [
+      {
+        "code": "device.Shutdown(\"mobium-test\");"
+      }
     ]
   },
   "members": {

@@ -799,5 +799,55 @@
         "direction": "in"
       }
     }
+  ],
+  "app_audit": [
+    {
+      "title": "Run the platform's own accessibility audit on the screen in front",
+      "cli": "mobium audit",
+      "args": {}
+    }
+  ],
+  "app_hit_test": [
+    {
+      "title": "Ask where a tap on an element would really land",
+      "cli": "mobium hit-test testid=submit",
+      "args": {
+        "target": "testid=submit"
+      }
+    }
+  ],
+  "app_biometric": [
+    {
+      "title": "Enroll a face or a finger",
+      "cli": "mobium biometric enroll",
+      "args": {
+        "action": "enroll"
+      }
+    },
+    {
+      "title": "Present a matching one to the prompt that is up",
+      "cli": "mobium biometric match",
+      "args": {
+        "action": "match"
+      }
+    }
+  ],
+  "app_boot": [
+    {
+      "title": "Boot an emulator by its AVD's name, and wait until it is up",
+      "cli": "mobium boot mobium-test",
+      "args": {
+        "name": "mobium-test"
+      }
+    }
+  ],
+  "app_shutdown": [
+    {
+      "title": "Shut it down, its session ended first",
+      "cli": "mobium shutdown mobium-test",
+      "args": {
+        "name": "mobium-test"
+      }
+    }
   ]
 }
