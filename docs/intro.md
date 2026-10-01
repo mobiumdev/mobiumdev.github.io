@@ -22,7 +22,7 @@ that changed a login screen should be able to open the app, read what is
 actually on screen, tap through the flow and look at the result — without a
 person driving an emulator for it. People get the same commands.
 
-It drives native, hybrid and React Native apps, and pages in a mobile browser
+It drives native, hybrid and cross-platform apps, and pages in a mobile browser
 or installed as a PWA, the way [Vibium](https://github.com/VibiumDev/vibium)
 drives browsers: a `map` → `@ref` → act loop that an agent can follow
 without learning a new model.
