@@ -410,6 +410,34 @@
       {
         "code": "device.zoom(\"in\", \"\");   // \"\": about the middle of the screen"
       }
+    ],
+    "app_audit": [
+      {
+        "code": "Map<String, Object> found = device.audit();\nSystem.out.println(found.get(\"findings\"));"
+      }
+    ],
+    "app_hit_test": [
+      {
+        "code": "Map<String, Object> hit = device.hitTest(\"testid=submit\");\nSystem.out.println(hit.get(\"reaches\"));"
+      }
+    ],
+    "app_biometric": [
+      {
+        "code": "device.biometric(\"enroll\");"
+      },
+      {
+        "code": "Map<String, Object> said = device.biometric(\"match\");\nSystem.out.println(said.get(\"outcome\"));"
+      }
+    ],
+    "app_boot": [
+      {
+        "code": "Map<String, Object> booted = device.boot(\"mobium-test\");\nSystem.out.println(booted.get(\"device\"));"
+      }
+    ],
+    "app_shutdown": [
+      {
+        "code": "device.shutdown(\"mobium-test\");"
+      }
     ]
   },
   "members": {

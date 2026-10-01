@@ -410,6 +410,34 @@
       {
         "code": "await device.zoom('in')"
       }
+    ],
+    "app_audit": [
+      {
+        "code": "const found = await device.audit()\nconsole.log(found.findings)"
+      }
+    ],
+    "app_hit_test": [
+      {
+        "code": "const hit = await device.hitTest('testid=submit')\nconsole.log(hit.reaches)"
+      }
+    ],
+    "app_biometric": [
+      {
+        "code": "await device.biometric('enroll')"
+      },
+      {
+        "code": "const said = await device.biometric('match')\nconsole.log(said.outcome)"
+      }
+    ],
+    "app_boot": [
+      {
+        "code": "const booted = await device.boot('mobium-test')\nconsole.log(booted.device)"
+      }
+    ],
+    "app_shutdown": [
+      {
+        "code": "await device.shutdown('mobium-test')"
+      }
     ]
   },
   "members": {

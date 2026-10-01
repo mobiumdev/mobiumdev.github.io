@@ -410,6 +410,34 @@
       {
         "code": "// true pinches out, which zooms in; \"\" is the middle of the screen.\nif err := dev.Zoom(ctx, true, \"\"); err != nil {\n\treturn err\n}"
       }
+    ],
+    "app_audit": [
+      {
+        "code": "found, err := dev.Audit(ctx)\nif err != nil {\n\treturn err\n}\nfor _, f := range found.Findings {\n\tfmt.Println(f.Type, f.Summary)\n}"
+      }
+    ],
+    "app_hit_test": [
+      {
+        "code": "hit, err := dev.HitTest(ctx, \"testid=submit\")\nif err != nil {\n\treturn err\n}\nfmt.Println(hit.Reaches)"
+      }
+    ],
+    "app_biometric": [
+      {
+        "code": "if _, err := dev.Biometric(ctx, \"enroll\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "said, err := dev.Biometric(ctx, \"match\")\nif err != nil {\n\treturn err\n}\nfmt.Println(said.Outcome)"
+      }
+    ],
+    "app_boot": [
+      {
+        "code": "booted, err := dev.Boot(ctx, \"mobium-test\", false)\nif err != nil {\n\treturn err\n}\nfmt.Println(booted.Device)"
+      }
+    ],
+    "app_shutdown": [
+      {
+        "code": "if err := dev.Shutdown(ctx, \"mobium-test\"); err != nil {\n\treturn err\n}"
+      }
     ]
   },
   "members": {

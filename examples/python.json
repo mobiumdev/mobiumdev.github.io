@@ -410,6 +410,34 @@
       {
         "code": "device.zoom(\"in\")"
       }
+    ],
+    "app_audit": [
+      {
+        "code": "found = device.audit()\nfor f in found[\"findings\"]:\n    print(f[\"type\"], f[\"summary\"])"
+      }
+    ],
+    "app_hit_test": [
+      {
+        "code": "hit = device.hit_test(\"testid=submit\")\nprint(hit[\"reaches\"])"
+      }
+    ],
+    "app_biometric": [
+      {
+        "code": "device.biometric(\"enroll\")"
+      },
+      {
+        "code": "said = device.biometric(\"match\")\nprint(said[\"outcome\"])"
+      }
+    ],
+    "app_boot": [
+      {
+        "code": "booted = device.boot(\"mobium-test\")\nprint(booted[\"device\"])"
+      }
+    ],
+    "app_shutdown": [
+      {
+        "code": "device.shutdown(\"mobium-test\")"
+      }
     ]
   },
   "members": {
