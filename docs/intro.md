@@ -2,14 +2,14 @@
 title: Introduction
 slug: /
 sidebar_position: 0
-description: Native app automation for AI agents and humans — Android emulators and phones, iOS simulators and iPhones, from one Go binary.
+description: Mobile app automation for AI agents and humans — Android emulators and phones, iOS simulators and iPhones, from one Go binary.
 ---
 
 # Mobium
 
 *Mutatis mutandis.*
 
-**Native app automation for AI agents and humans.** Android emulators,
+**Mobile app automation for AI agents and humans.** Android emulators,
 Android phones, iOS simulators and iPhones, driven through one tool layer
 from a single Go binary with no runtime dependencies.
 
@@ -22,9 +22,13 @@ that changed a login screen should be able to open the app, read what is
 actually on screen, tap through the flow and look at the result — without a
 person driving an emulator for it. People get the same commands.
 
-It drives native apps the way [Vibium](https://github.com/VibiumDev/vibium)
+It drives native, hybrid and cross-platform apps, and pages in a mobile browser
+or installed as a PWA, the way [Vibium](https://github.com/VibiumDev/vibium)
 drives browsers: a `map` → `@ref` → act loop that an agent can follow
 without learning a new model.
+
+What each app type needs, and which apps of each type were driven, is in
+[APP-TYPES](https://github.com/mobiumdev/mobium/blob/main/docs/APP-TYPES.md).
 
 ## The loop
 
