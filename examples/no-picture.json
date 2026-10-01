@@ -23,6 +23,6 @@
   "source": "it reads the hierarchy, and nothing on the screen changes.",
   "state": "it reads whether an app is running, and nothing on the screen changes.",
   "time": "it reads the device's clock, and nothing on the screen changes.",
-  "trace": "what it keeps is a zip, which opens in the Playwright trace viewer: every step, and the screen after each with the map drawn over it.",
+  "trace": "what it keeps is a zip in Vibium's record format, which opens in Vibium's player at player.vibium.dev: every step, and the screen after each with the map drawn over it.",
   "uninstall": "it removes an app, which shows nowhere on the screen in front."
 }
