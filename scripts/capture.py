@@ -113,7 +113,7 @@ PLAN = [
          pause=3.0, restore=[f"reset-permissions {APP}"]),
     dict(tool="app_location", i=1),
     # The Clock app's big digits, not Settings' Date & time: there the zone
-    # and the time are grey text, and the two pictures looked the same.
+    # and the time are gray text, and the two pictures looked the same.
     dict(tool="app_timezone", i=0,
          setup=["terminate com.google.android.deskclock", "launch com.google.android.deskclock", "tap testid=tab_menu_clock",
                 "wait 'label=Add city'"],
