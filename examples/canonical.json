@@ -230,6 +230,14 @@
       "title": "List what the folder holds",
       "cli": "mobium download",
       "args": {}
+    },
+    {
+      "title": "Bring back a folder from a path on the device",
+      "cli": "mobium download --device-path /sdcard/seed -o seed-copy",
+      "args": {
+        "device_path": "/sdcard/seed",
+        "path": "seed-copy"
+      }
     }
   ],
   "app_drag": [
@@ -258,6 +266,14 @@
       "args": {
         "target": "testid=search",
         "text": "coffee"
+      }
+    },
+    {
+      "title": "Move a slider to a position",
+      "cli": "mobium fill label=Volume 0.3",
+      "args": {
+        "target": "label=Volume",
+        "text": "0.3"
       }
     }
   ],
@@ -467,6 +483,21 @@
       "cli": "mobium press home",
       "args": {
         "button": "home"
+      }
+    },
+    {
+      "title": "Move focus with a TV remote's D-pad",
+      "cli": "mobium press dpad-down",
+      "args": {
+        "button": "dpad-down"
+      }
+    },
+    {
+      "title": "Go back with a swipe in from the edge",
+      "cli": "mobium press back --gesture",
+      "args": {
+        "button": "back",
+        "gesture": true
       }
     }
   ],
@@ -762,6 +793,14 @@
       "cli": "mobium upload invoice-42.txt",
       "args": {
         "path": "invoice-42.txt"
+      }
+    },
+    {
+      "title": "Send a folder to a path on the device",
+      "cli": "mobium upload ./seed --device-path /sdcard/seed",
+      "args": {
+        "path": "./seed",
+        "device_path": "/sdcard/seed"
       }
     }
   ],

@@ -120,6 +120,9 @@
       },
       {
         "code": "foreach (var f in device.Downloads())\n{\n    Console.WriteLine($\"{f[\"name\"]} {f[\"bytes\"]}\");\n}"
+      },
+      {
+        "code": "var got = device.PullPath(\"/sdcard/seed\", \"seed-copy\");\nConsole.WriteLine($\"{got[\"files\"]} {got[\"path\"]}\");"
       }
     ],
     "app_drag": [
@@ -135,6 +138,9 @@
     "app_fill": [
       {
         "code": "device.Fill(\"testid=search\", \"coffee\");"
+      },
+      {
+        "code": "device.Fill(\"label=Volume\", \"0.3\"); // a slider: its position, from 0 to 1"
       }
     ],
     "app_find": [
@@ -241,6 +247,12 @@
       },
       {
         "code": "device.Press(\"home\");"
+      },
+      {
+        "code": "device.Press(\"dpad-down\");"
+      },
+      {
+        "code": "var went = device.Back(gesture: true);\nConsole.WriteLine($\"{went[\"foreground\"]} {went[\"confirmed\"]}\");"
       }
     ],
     "app_press_drag": [
@@ -393,6 +405,9 @@
     "app_upload": [
       {
         "code": "var sent = device.Upload(\"invoice-42.txt\");\nConsole.WriteLine($\"{sent[\"where\"]} {sent[\"bytes\"]}\");"
+      },
+      {
+        "code": "var sent = device.PushPath(\"seed\", \"/sdcard/seed\");\nConsole.WriteLine($\"{sent[\"files\"]} {sent[\"checked\"]}\");"
       }
     ],
     "app_wait_for": [

@@ -120,6 +120,9 @@
       },
       {
         "code": "for f in device.downloads():\n    print(f[\"name\"], f[\"bytes\"])"
+      },
+      {
+        "code": "got = device.pull_path(\"/sdcard/seed\", path=\"seed-copy\")\nprint(got[\"files\"], got[\"path\"])"
       }
     ],
     "app_drag": [
@@ -135,6 +138,9 @@
     "app_fill": [
       {
         "code": "device.fill(\"testid=search\", \"coffee\")"
+      },
+      {
+        "code": "device.fill(\"label=Volume\", \"0.3\")  # a slider: its position, from 0 to 1"
       }
     ],
     "app_find": [
@@ -241,6 +247,12 @@
       },
       {
         "code": "device.press(\"home\")"
+      },
+      {
+        "code": "device.press(\"dpad-down\")"
+      },
+      {
+        "code": "went = device.back(gesture=True)\nprint(went[\"foreground\"], went[\"confirmed\"])"
       }
     ],
     "app_press_drag": [
@@ -393,6 +405,9 @@
     "app_upload": [
       {
         "code": "sent = device.upload(\"invoice-42.txt\")\nprint(sent[\"where\"], sent[\"bytes\"], sent[\"checked\"])"
+      },
+      {
+        "code": "sent = device.push_path(\"seed\", \"/sdcard/seed\")\nprint(sent[\"files\"], sent[\"checked\"])"
       }
     ],
     "app_wait_for": [
