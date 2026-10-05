@@ -530,12 +530,13 @@ def doc_text(doc, lang):
 
 # -- the synced pages --------------------------------------------------------
 
+# Each section's pages in sidebar order; README.md is the section's overview.
+# Both sections have a cli.md and an mcp.md, so a page's place is its own
+# section's.
 SYNC = {
-    "quickstart": ["README.md", "cli.md", "python.md", "javascript.md", "go.md", "java.md", "dotnet.md"],
-    "guides": ["README.md", "autowait.md", "test-runner.md", "grid.md", "network.md", "inspector.md", "cli.md", "mcp.md"],
+    "quickstart": ["README.md", "cli.md", "mcp.md", "python.md", "javascript.md", "go.md", "java.md", "dotnet.md"],
+    "guides": ["README.md", "autowait.md", "cli.md", "test-runner.md", "grid.md", "network.md", "inspector.md", "mcp.md"],
 }
-POSITION = {"README.md": 0, "cli.md": 1, "python.md": 2, "javascript.md": 3, "go.md": 4, "java.md": 5, "dotnet.md": 6,
-            "autowait.md": 1, "test-runner.md": 2, "grid.md": 3, "network.md": 4, "inspector.md": 5, "mcp.md": 6}
 
 
 def sync(src):
@@ -554,7 +555,7 @@ def sync(src):
             name = "index.md" if f == "README.md" else f
             extra = {"slug": f"/{section}"} if f == "README.md" else {}
             label = {"README.md": "Overview"}.get(f)
-            head = fm(sidebar_position=POSITION[f], **({"sidebar_label": label} if label else {}), **extra)
+            head = fm(sidebar_position=files.index(f), **({"sidebar_label": label} if label else {}), **extra)
             write(out / name, head + text)
         category(out, {"quickstart": "Quick start", "guides": "Guides"}[section],
                  {"quickstart": 1, "guides": 2}[section])
