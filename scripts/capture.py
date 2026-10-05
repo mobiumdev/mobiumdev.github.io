@@ -9,7 +9,7 @@ not the page's own says which command made it, in its caption.
 Emulators only. It changes settings — appearance, orientation, locale,
 timezone, the clipboard — and puts each back, but it is not for a phone.
 
-    python3 scripts/capture.py --bin ./mobium --device emulator-5554 [--only app_tap]
+    python3 scripts/capture.py --bin ./mobium --device emulator-5554 [--only app_tap] [--only 'app_press[2]']
 """
 
 import argparse
@@ -113,7 +113,7 @@ PLAN = [
          pause=3.0, restore=[f"reset-permissions {APP}"]),
     dict(tool="app_location", i=1),
     # The Clock app's big digits, not Settings' Date & time: there the zone
-    # and the time are grey text, and the two pictures looked the same.
+    # and the time are gray text, and the two pictures looked the same.
     dict(tool="app_timezone", i=0,
          setup=["terminate com.google.android.deskclock", "launch com.google.android.deskclock", "tap testid=tab_menu_clock",
                 "wait 'label=Add city'"],
@@ -219,6 +219,13 @@ PLAN = [
          restore=["$adb shell rm -f /sdcard/Download/mobium-report.txt",
                   "$adb shell content delete --uri content://media/external/downloads "
                   "--where \"\\\"_display_name='mobium-report.txt'\\\"\""]),
+    # Since 2026-10-05: the D-pad and an edge-swipe back, a folder to and from a
+    # device path, and a slider. Output only: each page already has its picture.
+    dict(tool="app_press", i=2, setup=settings_root()),
+    dict(tool="app_press", i=3, setup=settings_root() + ["tap 'text=Network & internet'", "wait text=Internet"]),
+    dict(tool="app_upload", i=1, setup=["$mkdir -p seed && printf 'one\\n' > seed/a.txt && printf 'two\\n' > seed/b.txt"]),
+    dict(tool="app_download", i=2, setup=["$rm -rf seed-copy"], restore=["$adb shell rm -rf /sdcard/seed"]),
+    dict(tool="app_fill", i=1, setup=app_screen("Slider Demo")),
     dict(tool="app_session", i=0),
     dict(tool="app_session", i=1),
 ]
@@ -262,9 +269,11 @@ def main():
     timezone = json.loads(tz).get("timezone", "") if tz.strip().startswith("{") else ""
     for p in PLAN:
         tool, i = p["tool"], p["i"]
-        if a.only and tool not in a.only:
-            continue
         key = f"{tool}[{i}]" if i is not None else f"{tool}:{p['cmd']}"
+        # --only takes a tool (every run of it) or one run's key, app_press[2],
+        # so adding a scenario does not re-take the pictures beside it.
+        if a.only and tool not in a.only and key not in a.only:
+            continue
         def steps(ss):
             for s in ss:
                 if s.startswith("$"):

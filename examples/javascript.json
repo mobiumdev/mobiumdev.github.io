@@ -120,6 +120,9 @@
       },
       {
         "code": "for (const f of await device.downloads()) {\n  console.log(f.name, f.bytes)\n}"
+      },
+      {
+        "code": "const got = await device.pullPath('/sdcard/seed', { path: 'seed-copy' })\nconsole.log(got.files, got.path)"
       }
     ],
     "app_drag": [
@@ -135,6 +138,9 @@
     "app_fill": [
       {
         "code": "await device.fill('testid=search', 'coffee')"
+      },
+      {
+        "code": "await device.fill('label=Volume', '0.3') // a slider: its position, from 0 to 1"
       }
     ],
     "app_find": [
@@ -241,6 +247,12 @@
       },
       {
         "code": "await device.press('home')"
+      },
+      {
+        "code": "await device.press('dpad-down')"
+      },
+      {
+        "code": "const went = await device.back({ gesture: true })\nconsole.log(went.foreground, went.confirmed)"
       }
     ],
     "app_press_drag": [
@@ -393,6 +405,9 @@
     "app_upload": [
       {
         "code": "const sent = await device.upload('invoice-42.txt')\nconsole.log(sent.where, sent.bytes, sent.checked)"
+      },
+      {
+        "code": "const sent = await device.pushPath('seed', '/sdcard/seed')\nconsole.log(sent.files, sent.checked)"
       }
     ],
     "app_wait_for": [

@@ -674,5 +674,45 @@
   "verbatim": true,
   "exit": 0,
   "output": "the Download folder holds 1 file\n  mobium-report.txt                                44 bytes  2026-09-29 03:41"
+ },
+ "app_press[2]": {
+  "tool": "app_press",
+  "index": 2,
+  "command": "mobium press dpad-down",
+  "verbatim": true,
+  "exit": 0,
+  "output": "pressed dpad-down — focus moved to homepage_container"
+ },
+ "app_press[3]": {
+  "tool": "app_press",
+  "index": 3,
+  "command": "mobium press back --gesture",
+  "verbatim": true,
+  "exit": 0,
+  "output": "swiped back from the left edge, halfway down — com.android.settings is still in the foreground; app_map shows which screen"
+ },
+ "app_upload[1]": {
+  "tool": "app_upload",
+  "index": 1,
+  "command": "mobium upload ./seed --device-path /sdcard/seed",
+  "verbatim": true,
+  "exit": 0,
+  "output": "uploaded …/seed to /sdcard/seed (a folder of 2 files, 8 bytes) — confirmed by each of its 2 files' sizes read back on the device"
+ },
+ "app_download[2]": {
+  "tool": "app_download",
+  "index": 2,
+  "command": "mobium download --device-path /sdcard/seed -o seed-copy",
+  "verbatim": true,
+  "exit": 0,
+  "output": "downloaded seed from /sdcard/seed to …/seed-copy (a folder of 2 files, 8 bytes) — confirmed by each of its 2 files' sizes read back against the device's"
+ },
+ "app_fill[1]": {
+  "tool": "app_fill",
+  "index": 1,
+  "command": "mobium fill label=Volume 0.3",
+  "verbatim": true,
+  "exit": 0,
+  "output": "moved label=Volume to position 0.3 — it reads \"3.0\", was \"5.0\""
  }
 }

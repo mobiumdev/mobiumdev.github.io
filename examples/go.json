@@ -120,6 +120,9 @@
       },
       {
         "code": "files, err := dev.Downloads(ctx, \"\")\nif err != nil {\n\treturn err\n}\nfor _, f := range files {\n\tfmt.Println(f.Name, f.Bytes)\n}"
+      },
+      {
+        "code": "got, err := dev.PullPath(ctx, \"/sdcard/seed\", \"seed-copy\", \"\")\nif err != nil {\n\treturn err\n}\nfmt.Println(got.Files, got.Path)"
       }
     ],
     "app_drag": [
@@ -135,6 +138,9 @@
     "app_fill": [
       {
         "code": "if err := dev.Fill(ctx, \"testid=search\", \"coffee\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "// A slider: its position, from 0 to 1.\nif err := dev.Fill(ctx, \"label=Volume\", \"0.3\"); err != nil {\n\treturn err\n}"
       }
     ],
     "app_find": [
@@ -241,6 +247,12 @@
       },
       {
         "code": "if err := dev.Press(ctx, \"home\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.Press(ctx, \"dpad-down\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "went, err := dev.Back(ctx, true)\nif err != nil {\n\treturn err\n}\nfmt.Println(went.Foreground, went.Confirmed)"
       }
     ],
     "app_press_drag": [
@@ -393,6 +405,9 @@
     "app_upload": [
       {
         "code": "sent, err := dev.Upload(ctx, \"invoice-42.txt\", nil)\nif err != nil {\n\treturn err\n}\nfmt.Println(sent.Where, sent.Bytes, sent.Checked)"
+      },
+      {
+        "code": "sent, err := dev.PushPath(ctx, \"seed\", \"/sdcard/seed\", \"\")\nif err != nil {\n\treturn err\n}\nfmt.Println(sent.Files, sent.Checked)"
       }
     ],
     "app_wait_for": [

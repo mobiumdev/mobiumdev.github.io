@@ -120,6 +120,9 @@
       },
       {
         "code": "for (Map<String, Object> f : device.downloads()) {\n    System.out.println(f.get(\"name\") + \" \" + f.get(\"bytes\"));\n}"
+      },
+      {
+        "code": "Map<String, Object> got = device.pullPath(\"/sdcard/seed\", \"seed-copy\");\nSystem.out.println(got.get(\"files\") + \" \" + got.get(\"path\"));"
       }
     ],
     "app_drag": [
@@ -135,6 +138,9 @@
     "app_fill": [
       {
         "code": "device.fill(\"testid=search\", \"coffee\");"
+      },
+      {
+        "code": "device.fill(\"label=Volume\", \"0.3\"); // a slider: its position, from 0 to 1"
       }
     ],
     "app_find": [
@@ -241,6 +247,12 @@
       },
       {
         "code": "device.press(\"home\");"
+      },
+      {
+        "code": "device.press(\"dpad-down\");"
+      },
+      {
+        "code": "Map<String, Object> went = device.back(true);\nSystem.out.println(went.get(\"foreground\") + \" \" + went.get(\"confirmed\"));"
       }
     ],
     "app_press_drag": [
@@ -393,6 +405,9 @@
     "app_upload": [
       {
         "code": "Map<String, Object> sent = device.upload(\"invoice-42.txt\");\nSystem.out.println(sent.get(\"where\") + \" \" + sent.get(\"bytes\"));"
+      },
+      {
+        "code": "Map<String, Object> sent = device.pushPath(\"seed\", \"/sdcard/seed\");\nSystem.out.println(sent.get(\"files\") + \" \" + sent.get(\"checked\"));"
       }
     ],
     "app_wait_for": [
