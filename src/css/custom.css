@@ -24,8 +24,14 @@
   --ifm-background-color: #141826;
 }
 
-/* Screenshots of a phone: not the full width of the page. */
+/* Screenshots of a phone: not the full width of the page. Docusaurus writes
+   each image's own width and height on the tag; with only a max-height the
+   width attribute held, and a phone squashed to near square. Both auto
+   scale it as a whole. */
 .markdown img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
   max-height: 520px;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 8px;
