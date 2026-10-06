@@ -459,6 +459,11 @@
       {
         "code": "if err := dev.Shutdown(ctx, \"mobium-test\"); err != nil {\n\treturn err\n}"
       }
+    ],
+    "app_hook": [
+      {
+        "code": "if err := dev.LaunchWithGrayBox(ctx, \"dev.mobium.mobiumapp\"); err != nil {\n\treturn err\n}\nanswer, err := dev.Hook(ctx, \"raiseToast\", \"Toast raised by test script\")\nif err != nil {\n\treturn err\n}\nfmt.Println(answer) // shown"
+      }
     ]
   },
   "members": {

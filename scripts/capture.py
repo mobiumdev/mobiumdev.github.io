@@ -62,6 +62,10 @@ PLAN = [
     dict(tool="app_launch", i=0, setup=[f"terminate {SETTINGS}"], after=True),
     # MobiumApp links Mobium's gray-box library; the launch says the app answered.
     dict(tool="app_launch", i=1, setup=[f"terminate {APP}"]),
+    # A gray-box hook: MobiumApp's raiseToast draws its message in a toast.
+    dict(tool="app_hook", i=0, setup=[f"terminate {APP}", f"launch --gray-box {APP}"], after=True,
+         caption="`mobium hook raiseToast \"Toast raised by test script\"` on MobiumApp, Android 15 emulator, "
+                 "launched with `--gray-box`: the app's own toast says what the hook was sent"),
     dict(tool="app_map", i=0, setup=settings_root(), after=True),
     dict(tool="app_text", i=0, setup=settings_root(), after=True),
     dict(tool="app_find", i=0, setup=settings_root(), after=True),

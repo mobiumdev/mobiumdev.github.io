@@ -732,5 +732,15 @@
   "output": "tapped testid=busyRowB at (540, 1095)\ngray box: waited 307 ms for the app to go idle (busy: quiet)",
   "caption": "`mobium tap testid=busyRowB` on MobiumApp's Busy Demo, Android 15 emulator, launched with `--gray-box`: the tap waited for the quiet refresh to finish, and Row B is the new generation's",
   "after": "/img/shots/app_tap-3-after.jpg"
+ },
+ "app_hook[0]": {
+  "tool": "app_hook",
+  "index": 0,
+  "command": "mobium hook raiseToast \"Toast raised by test script\"",
+  "verbatim": true,
+  "exit": 0,
+  "output": "hook raiseToast answered: \"shown\"\ngray box: the app was idle",
+  "caption": "`mobium hook raiseToast \"Toast raised by test script\"` on MobiumApp, Android 15 emulator, launched with `--gray-box`: the app's own toast says what the hook was sent",
+  "after": "/img/shots/app_hook-0-after.jpg"
  }
 }
