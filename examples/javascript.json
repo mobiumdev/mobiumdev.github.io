@@ -459,6 +459,11 @@
       {
         "code": "await device.shutdown('mobium-test')"
       }
+    ],
+    "app_hook": [
+      {
+        "code": "await device.launch('dev.mobium.mobiumapp', { grayBox: true })\nconsole.log(await device.hook('raiseToast', 'Toast raised by test script'))   // shown"
+      }
     ]
   },
   "members": {

@@ -903,5 +903,17 @@
         "name": "mobium-test"
       }
     }
+  ],
+  "app_hook": [
+    {
+      "title": "Call a hook the app registered, and get back what it answered",
+      "cli": "mobium hook raiseToast \"Toast raised by test script\"",
+      "args": {
+        "hook": "raiseToast",
+        "args": [
+          "Toast raised by test script"
+        ]
+      }
+    }
   ]
 }

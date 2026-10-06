@@ -459,6 +459,11 @@
       {
         "code": "device.shutdown(\"mobium-test\");"
       }
+    ],
+    "app_hook": [
+      {
+        "code": "device.launchWithGrayBox(\"dev.mobium.mobiumapp\");\nObject answer = device.hook(\"raiseToast\", \"Toast raised by test script\");   // \"shown\""
+      }
     ]
   },
   "members": {

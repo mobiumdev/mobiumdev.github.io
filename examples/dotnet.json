@@ -459,6 +459,11 @@
       {
         "code": "device.Shutdown(\"mobium-test\");"
       }
+    ],
+    "app_hook": [
+      {
+        "code": "device.LaunchWithGrayBox(\"dev.mobium.mobiumapp\");\nvar answer = device.Hook(\"raiseToast\", \"Toast raised by test script\");   // \"shown\""
+      }
     ]
   },
   "members": {
