@@ -169,6 +169,9 @@
     "app_launch": [
       {
         "code": "if err := dev.Launch(ctx, \"com.android.settings\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.LaunchWithGrayBox(ctx, \"dev.mobium.mobiumapp\"); err != nil {\n\treturn err\n}"
       }
     ],
     "app_list_apps": [
@@ -359,6 +362,9 @@
       },
       {
         "code": "if err := dev.DoubleTap(ctx, \"@e2\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if err := dev.LaunchWithGrayBox(ctx, \"dev.mobium.mobiumapp\"); err != nil {\n\treturn err\n}\nif err := dev.Tap(ctx, \"testid=busyQuiet\"); err != nil {\n\treturn err\n}\n// Waits for the app to say it is idle.\nif err := dev.Tap(ctx, \"testid=busyRowB\"); err != nil {\n\treturn err\n}"
       }
     ],
     "app_terminate": [

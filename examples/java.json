@@ -169,6 +169,9 @@
     "app_launch": [
       {
         "code": "device.launch(\"com.android.settings\");   // returns once it is in front"
+      },
+      {
+        "code": "device.launchWithGrayBox(\"dev.mobium.mobiumapp\");"
       }
     ],
     "app_list_apps": [
@@ -359,6 +362,9 @@
       },
       {
         "code": "device.doubleTap(\"@e2\");"
+      },
+      {
+        "code": "device.launchWithGrayBox(\"dev.mobium.mobiumapp\");\ndevice.tap(\"testid=busyQuiet\");\ndevice.tap(\"testid=busyRowB\");   // waits for the app to say it is idle"
       }
     ],
     "app_terminate": [

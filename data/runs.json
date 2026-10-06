@@ -714,5 +714,23 @@
   "verbatim": true,
   "exit": 0,
   "output": "moved label=Volume to position 0.3 — it reads \"3.0\", was \"5.0\""
+ },
+ "app_launch[1]": {
+  "tool": "app_launch",
+  "index": 1,
+  "command": "mobium launch --gray-box dev.mobium.mobiumapp",
+  "verbatim": true,
+  "exit": 0,
+  "output": "launched dev.mobium.mobiumapp, with the gray box: every action waits for the app to say it is idle"
+ },
+ "app_tap[3]": {
+  "tool": "app_tap",
+  "index": 3,
+  "command": "mobium tap testid=busyRowB",
+  "verbatim": true,
+  "exit": 0,
+  "output": "tapped testid=busyRowB at (540, 1095)\ngray box: waited 307 ms for the app to go idle (busy: quiet)",
+  "caption": "`mobium tap testid=busyRowB` on MobiumApp's Busy Demo, Android 15 emulator, launched with `--gray-box`: the tap waited for the quiet refresh to finish, and Row B is the new generation's",
+  "after": "/img/shots/app_tap-3-after.jpg"
  }
 }
