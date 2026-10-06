@@ -60,12 +60,21 @@ def app_screen(name):
 PLAN = [
     dict(tool="app_devices", i=0),
     dict(tool="app_launch", i=0, setup=[f"terminate {SETTINGS}"], after=True),
+    # MobiumApp links Mobium's gray-box library; the launch says the app answered.
+    dict(tool="app_launch", i=1, setup=[f"terminate {APP}"]),
     dict(tool="app_map", i=0, setup=settings_root(), after=True),
     dict(tool="app_text", i=0, setup=settings_root(), after=True),
     dict(tool="app_find", i=0, setup=settings_root(), after=True),
     dict(tool="app_current", i=0),
     dict(tool="app_state", i=0),
     dict(tool="app_tap", i=0, setup=settings_root(), before=True, after=True),
+    # The gray box: a tap right after a quiet refresh waits for the app to say
+    # it is idle, and the result says how long, and for what.
+    dict(tool="app_tap", i=3, setup=[f"terminate {APP}", f"launch --gray-box {APP}",
+                                     "scroll-to 'label=Busy Demo' --direction down", "tap 'label=Busy Demo'",
+                                     "tap testid=busyQuiet"], after=True,
+         caption="`mobium tap testid=busyRowB` on MobiumApp's Busy Demo, Android 15 emulator, launched with "
+                 "`--gray-box`: the tap waited for the quiet refresh to finish, and Row B is the new generation's"),
     dict(tool="app_scroll_to", i=0, setup=settings_root(), before=True, after=True),
     # The horizontal case, on MobiumApp's Pager Demo: Card 8 starts off screen
     # to the right, as mobium-app.sh checks.

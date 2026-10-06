@@ -332,6 +332,14 @@
       "args": {
         "app": "com.android.settings"
       }
+    },
+    {
+      "title": "Launch an app with the gray box on, so every action waits for it to be idle",
+      "cli": "mobium launch --gray-box dev.mobium.mobiumapp",
+      "args": {
+        "app": "dev.mobium.mobiumapp",
+        "gray_box": true
+      }
     }
   ],
   "app_list_apps": [
@@ -708,6 +716,13 @@
       "args": {
         "target": "@e2",
         "double": true
+      }
+    },
+    {
+      "title": "Tap right after work the screen does not show, with the gray box on",
+      "cli": "mobium tap testid=busyRowB",
+      "args": {
+        "target": "testid=busyRowB"
       }
     }
   ],

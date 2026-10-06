@@ -535,7 +535,8 @@ def doc_text(doc, lang):
 # section's.
 SYNC = {
     "quickstart": ["README.md", "cli.md", "mcp.md", "python.md", "javascript.md", "go.md", "java.md", "dotnet.md"],
-    "guides": ["README.md", "autowait.md", "cli.md", "test-runner.md", "grid.md", "network.md", "inspector.md", "mcp.md"],
+    "guides": ["README.md", "autowait.md", "graybox.md", "graybox-tutorial.md", "cli.md", "test-runner.md", "grid.md",
+               "network.md", "inspector.md", "mcp.md"],
 }
 
 
