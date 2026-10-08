@@ -148,6 +148,10 @@ PLAN = [
          before=True, after=True, pause=2.0),
     dict(tool="app_record", i=0, setup=settings_root()),
     dict(tool="app_record", i=1, setup=["swipe up"]),
+    # A capture of MobiumApp's Audio Demo: started there, then its 440 Hz tone
+    # played for two seconds, so the stop's expect has what it asks for.
+    dict(tool="app_audio", i=0, setup=app_screen("Audio Demo") + ["wait testid=audioState"]),
+    dict(tool="app_audio", i=1, setup=["tap testid=audioTone", "$sleep 3"]),
     dict(tool="app_list_apps", i=0),
     dict(tool="app_contexts", i=0, setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back"],
          after=True),

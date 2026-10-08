@@ -21,6 +21,14 @@
         "code": "device.appearance(\"dark\")"
       }
     ],
+    "app_audio": [
+      {
+        "code": "device.audio(\"start\", app=\"dev.mobium.mobiumapp\")"
+      },
+      {
+        "code": "heard = device.audio(\"stop\", \"heard.wav\", expect=[{\"hz\": 440}])\nfor segment in heard[\"timeline\"]:\n    print(segment)"
+      }
+    ],
     "app_background": [
       {
         "code": "device.background(5)"
