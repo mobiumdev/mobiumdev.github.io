@@ -21,6 +21,14 @@
         "code": "String mode = device.appearance(\"dark\");   // \"dark\", read back"
       }
     ],
+    "app_audio": [
+      {
+        "code": "device.audioStart(\"dev.mobium.mobiumapp\");"
+      },
+      {
+        "code": "Map<String, Object> heard = device.audioExpect(\"heard.wav\", List.of(Map.of(\"hz\", 440)), null);\nSystem.out.println(heard.get(\"timeline\"));"
+      }
+    ],
     "app_background": [
       {
         "code": "device.background(5);   // back in front, resumed, when this returns"

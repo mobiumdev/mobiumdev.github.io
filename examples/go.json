@@ -21,6 +21,14 @@
         "code": "mode, err := dev.Appearance(ctx, \"dark\")\nif err != nil {\n\treturn err\n}\nfmt.Println(\"appearance is now\", mode)"
       }
     ],
+    "app_audio": [
+      {
+        "code": "if _, err := dev.AudioStart(ctx, \"dev.mobium.mobiumapp\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "heard, err := dev.AudioExpect(ctx, \"heard.wav\", []mobium.AudioExpected{{Hz: 440}}, 0)\nif err != nil {\n\treturn err\n}\nfmt.Println(heard.Path, len(heard.Timeline), \"segments\")"
+      }
+    ],
     "app_background": [
       {
         "code": "// \"\" means the app in front.\nif err := dev.Background(ctx, 5, \"\"); err != nil {\n\treturn err\n}"

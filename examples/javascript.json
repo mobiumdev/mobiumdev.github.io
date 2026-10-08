@@ -21,6 +21,14 @@
         "code": "await device.appearance('dark')"
       }
     ],
+    "app_audio": [
+      {
+        "code": "await device.audio({ action: 'start', app: 'dev.mobium.mobiumapp' })"
+      },
+      {
+        "code": "const heard = await device.audio({ action: 'stop', path: 'heard.wav', expect: [{ hz: 440 }] })\nconsole.log(heard.timeline)"
+      }
+    ],
     "app_background": [
       {
         "code": "await device.background(5)"

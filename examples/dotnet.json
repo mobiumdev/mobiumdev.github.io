@@ -21,6 +21,14 @@
         "code": "device.Appearance(\"dark\");"
       }
     ],
+    "app_audio": [
+      {
+        "code": "device.AudioStart(\"dev.mobium.mobiumapp\");"
+      },
+      {
+        "code": "var heard = device.AudioExpect(\"heard.wav\", new List<IDictionary<string, object?>>\n{\n    new Dictionary<string, object?> { [\"hz\"] = 440 },\n});"
+      }
+    ],
     "app_background": [
       {
         "code": "device.Background(5);"

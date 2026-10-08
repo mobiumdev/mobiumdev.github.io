@@ -38,6 +38,29 @@
       }
     }
   ],
+  "app_audio": [
+    {
+      "title": "Start capturing what an app plays",
+      "cli": "mobium audio start --app dev.mobium.mobiumapp",
+      "args": {
+        "action": "start",
+        "app": "dev.mobium.mobiumapp"
+      }
+    },
+    {
+      "title": "Stop, save the capture, and assert what was heard",
+      "cli": "mobium audio stop -o heard.wav --expect 440",
+      "args": {
+        "action": "stop",
+        "path": "heard.wav",
+        "expect": [
+          {
+            "hz": 440
+          }
+        ]
+      }
+    }
+  ],
   "app_background": [
     {
       "title": "Send the app away for five seconds, and bring it back",

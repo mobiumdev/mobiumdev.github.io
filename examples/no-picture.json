@@ -1,5 +1,6 @@
 {
   "apps": "it lists what is installed, and nothing on the screen changes.",
+  "audio": "it captures what the device plays, and answers with a timeline of sound, silence and pitch; nothing on the screen changes.",
   "audit": "it reads the platform's audit of the screen, and nothing on the screen changes.",
   "background": "the app is off the screen for the seconds it is away, and back in front when the command returns.",
   "biometric": "what it presents goes to a prompt the app put up, and the app's own screen says what it made of it.",
