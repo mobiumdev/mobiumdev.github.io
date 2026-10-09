@@ -57,4 +57,4 @@ builds on every push, and daily, so the reference follows it.
 
 ## License
 
-MIT, as Mobium is.
+This site is MIT licensed. Mobium itself is under the Apache License 2.0.

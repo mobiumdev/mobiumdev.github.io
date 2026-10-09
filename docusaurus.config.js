@@ -107,7 +107,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Mobium is MIT licensed. Built with Docusaurus.`,
+        copyright: `Mobium is licensed under the Apache License 2.0. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
