@@ -14,6 +14,9 @@
       },
       {
         "code": "await device.answerAlert(true)"
+      },
+      {
+        "code": "const result = await device.pressAlertButton(\"Don't Save\")\nconsole.log(`pressed ${result.pressed}`)"
       }
     ],
     "app_appearance": [

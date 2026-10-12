@@ -14,6 +14,9 @@
       },
       {
         "code": "if err := dev.AnswerAlert(ctx, true); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "pressed, err := dev.PressAlertButton(ctx, \"Don't Save\")\nif err != nil {\n\treturn err\n}\nfmt.Println(\"pressed\", pressed)"
       }
     ],
     "app_appearance": [

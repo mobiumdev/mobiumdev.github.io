@@ -14,6 +14,9 @@
       },
       {
         "code": "device.AnswerAlert(true);"
+      },
+      {
+        "code": "var pressed = device.PressAlertButton(\"Don't Save\");\nConsole.WriteLine($\"pressed {pressed}\");"
       }
     ],
     "app_appearance": [
