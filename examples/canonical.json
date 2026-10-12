@@ -17,15 +17,22 @@
   ],
   "app_alert": [
     {
-      "title": "Ask whether a system dialog is up, and what it says",
+      "title": "Ask whether a dialog is up, what it says, and its buttons",
       "cli": "mobium alert",
       "args": {}
     },
     {
-      "title": "Answer it with the platform's accept button",
+      "title": "Say yes to a dialog of one or two buttons",
       "cli": "mobium alert accept",
       "args": {
         "action": "accept"
+      }
+    },
+    {
+      "title": "Press a button by its caption, on a dialog of three",
+      "cli": "mobium alert --button \"Don't Save\"",
+      "args": {
+        "button": "Don't Save"
       }
     }
   ],

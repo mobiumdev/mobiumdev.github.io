@@ -114,6 +114,7 @@ PLAN = [
     dict(tool="app_alert", i=0, setup=app_screen("Dialog Demo") + ["tap 'text=Two-button alert'", "wait 'text=Discard changes?'"], after=True,
          restore=["alert dismiss"]),
     dict(tool="app_alert", i=1, setup=app_screen("Dialog Demo") + ["tap 'text=Two-button alert'", "wait 'text=Discard changes?'"], before=True, after=True),
+    dict(tool="app_alert", i=2, setup=app_screen("Dialog Demo") + ["tap 'text=Three-button alert'", "wait 'text=Save this draft?'"], before=True, after=True),
     dict(tool="app_locale", i=0, after=False,
          restore=["locale org.wikipedia ''"]),
     dict(tool="app_locale", i=None, cmd="launch org.wikipedia",

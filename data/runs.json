@@ -248,7 +248,7 @@
   "command": "mobium alert",
   "verbatim": true,
   "exit": 0,
-  "output": "a dialog is on screen: \"Discard changes?\\nThey will be lost.\"",
+  "output": "a dialog is on screen: \"Discard changes?\\nThey will be lost.\"\nbuttons: \"KEEP EDITING\", \"DISCARD\"",
   "after": "/img/shots/app_alert-0-after.jpg"
  },
  "app_locale[0]": {
@@ -480,7 +480,7 @@
   "command": "mobium alert accept",
   "verbatim": true,
   "exit": 0,
-  "output": "accepted the dialog \"Discard changes?\\nThey will be lost.\" — this answered it and did not choose an outcome: on a permission prompt accept and dismiss do not mean grant and deny, and on iOS they are the other way round. Tap the button by ref if you need a particular answer",
+  "output": "accepted the dialog \"Discard changes?\\nThey will be lost.\": pressed \"DISCARD\"",
   "after": "/img/shots/app_alert-1-after.jpg"
  },
  "app_long_press:long-press testid=pressTarget": {
@@ -758,5 +758,15 @@
   "verbatim": true,
   "exit": 0,
   "output": "saved …/heard.wav: 3.746s of audio: 0.0–0.5s silence, 0.5–0.6s sound, no one pitch (-46 dBFS), 0.6–2.6s 440 Hz (-42 dBFS), 2.6–3.7s silence — at media volume 5 of 15"
+ },
+ "app_alert[2]": {
+  "tool": "app_alert",
+  "index": 2,
+  "before": "/img/shots/app_alert-2-before.jpg",
+  "command": "mobium alert --button \"Don't Save\"",
+  "verbatim": true,
+  "exit": 0,
+  "output": "pressed \"DON'T SAVE\" on the dialog \"Save this draft?\\nYou can come back to it later.\"",
+  "after": "/img/shots/app_alert-2-after.jpg"
  }
 }
