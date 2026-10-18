@@ -436,6 +436,9 @@
       },
       {
         "code": "await device.waitFor('testid=termsCheck', { condition: 'checked', timeoutMs: 5000 })"
+      },
+      {
+        "code": "await device.waitFor('label=Cart', { condition: 'selected' })"
       }
     ],
     "app_zoom": [

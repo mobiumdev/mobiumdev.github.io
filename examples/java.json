@@ -436,6 +436,9 @@
       },
       {
         "code": "device.waitFor(\"testid=termsCheck\", WaitFor.checked().timeout(Duration.ofSeconds(5)));"
+      },
+      {
+        "code": "device.waitFor(\"label=Cart\", WaitFor.selected());"
       }
     ],
     "app_zoom": [

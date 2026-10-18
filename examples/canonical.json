@@ -873,6 +873,14 @@
         "condition": "checked",
         "timeout_ms": 5000
       }
+    },
+    {
+      "title": "Wait for a tab to be selected",
+      "cli": "mobium wait label=Cart --for selected",
+      "args": {
+        "target": "label=Cart",
+        "condition": "selected"
+      }
     }
   ],
   "app_zoom": [
