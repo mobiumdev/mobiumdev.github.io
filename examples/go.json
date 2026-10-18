@@ -436,6 +436,9 @@
       },
       {
         "code": "opts := &mobium.WaitOptions{Condition: mobium.Checked, Timeout: 5 * time.Second}\nif _, err := dev.WaitFor(ctx, \"testid=termsCheck\", opts); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "if _, err := dev.WaitFor(ctx, \"label=Cart\", &mobium.WaitOptions{Condition: mobium.Selected}); err != nil {\n\treturn err\n}"
       }
     ],
     "app_zoom": [

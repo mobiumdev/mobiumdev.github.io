@@ -436,6 +436,9 @@
       },
       {
         "code": "device.WaitFor(\"testid=termsCheck\", Until.Checked().Timeout(TimeSpan.FromSeconds(5)));"
+      },
+      {
+        "code": "device.WaitFor(\"label=Cart\", Until.Selected());"
       }
     ],
     "app_zoom": [
