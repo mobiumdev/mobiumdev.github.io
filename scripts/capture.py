@@ -153,6 +153,10 @@ PLAN = [
     # played for two seconds, so the stop's expect has what it asks for.
     dict(tool="app_audio", i=0, setup=app_screen("Audio Demo") + ["wait testid=audioState"]),
     dict(tool="app_audio", i=1, setup=["tap testid=audioTone", "$sleep 3"]),
+    # The assistant, asked in typed text from the home screen: Clock is
+    # terminated first, so the picture shows the assistant bringing it forward.
+    dict(tool="app_assistant", i=0, setup=["terminate com.google.android.deskclock", "press home"], after=True,
+         pause=2.0, restore=["terminate com.google.android.deskclock", "press home"]),
     dict(tool="app_list_apps", i=0),
     dict(tool="app_contexts", i=0, setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back"],
          after=True),

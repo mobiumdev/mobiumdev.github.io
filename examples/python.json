@@ -451,6 +451,14 @@
         "code": "found = device.audit()\nfor f in found[\"findings\"]:\n    print(f[\"type\"], f[\"summary\"])"
       }
     ],
+    "app_assistant": [
+      {
+        "code": "got = device.assistant(\"Open Clock\", app=\"com.google.android.deskclock\")\nassert got[\"reached\"], got[\"front\"]"
+      },
+      {
+        "code": "got = device.assistant(\"What is 15 times 3\", timeout=20)\nprint(got[\"answer\"])"
+      }
+    ],
     "app_hit_test": [
       {
         "code": "hit = device.hit_test(\"testid=submit\")\nprint(hit[\"reaches\"])"

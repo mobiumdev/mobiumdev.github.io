@@ -451,6 +451,14 @@
         "code": "found, err := dev.Audit(ctx)\nif err != nil {\n\treturn err\n}\nfor _, f := range found.Findings {\n\tfmt.Println(f.Type, f.Summary)\n}"
       }
     ],
+    "app_assistant": [
+      {
+        "code": "got, err := dev.Assistant(ctx, \"Open Clock\", mobium.AssistantOptions{App: \"com.google.android.deskclock\"})\nif err != nil {\n\treturn err\n}\nif got.Reached == nil || !*got.Reached {\n\treturn fmt.Errorf(\"Clock did not come forward: %s is in front\", got.Front)\n}"
+      },
+      {
+        "code": "got, err := dev.Assistant(ctx, \"What is 15 times 3\", mobium.AssistantOptions{Timeout: 20 * time.Second})\nif err != nil {\n\treturn err\n}\nfmt.Println(got.Answer)"
+      }
+    ],
     "app_hit_test": [
       {
         "code": "hit, err := dev.HitTest(ctx, \"testid=submit\")\nif err != nil {\n\treturn err\n}\nfmt.Println(hit.Reaches)"

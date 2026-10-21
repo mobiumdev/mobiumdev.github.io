@@ -451,6 +451,14 @@
         "code": "const found = await device.audit()\nconsole.log(found.findings)"
       }
     ],
+    "app_assistant": [
+      {
+        "code": "const got = await device.assistant('Open Clock', { app: 'com.google.android.deskclock' })\nif (!got.reached) throw new Error(`in front: ${got.front}`)"
+      },
+      {
+        "code": "const got = await device.assistant('What is 15 times 3', { timeout: 20 })\nconsole.log(got.answer)"
+      }
+    ],
     "app_hit_test": [
       {
         "code": "const hit = await device.hitTest('testid=submit')\nconsole.log(hit.reaches)"

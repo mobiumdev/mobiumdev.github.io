@@ -899,6 +899,24 @@
       "args": {}
     }
   ],
+  "app_assistant": [
+    {
+      "title": "Ask the assistant to open an app, and check that it came forward",
+      "cli": "mobium assistant \"Open Clock\" --app com.google.android.deskclock",
+      "args": {
+        "request": "Open Clock",
+        "app": "com.google.android.deskclock"
+      }
+    },
+    {
+      "title": "Ask a question, and read the answer it showed",
+      "cli": "mobium assistant \"What is 15 times 3\" --timeout 20",
+      "args": {
+        "request": "What is 15 times 3",
+        "timeout": 20
+      }
+    }
+  ],
   "app_hit_test": [
     {
       "title": "Ask where a tap on an element would really land",
