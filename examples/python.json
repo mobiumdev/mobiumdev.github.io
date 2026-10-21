@@ -468,6 +468,12 @@
       },
       {
         "code": "said = device.speech(\"label=Pro\")\nprint(said[\"steps\"])"
+      },
+      {
+        "code": "device.speech(listen=\"start\")\ndevice.tap(\"testid=addLive\")"
+      },
+      {
+        "code": "heard = device.speech(listen=\"stop\")\nfor step in heard[\"steps\"]:\n    print(step[\"said\"], step.get(\"cause\"))"
       }
     ],
     "app_hit_test": [

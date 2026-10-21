@@ -937,6 +937,20 @@
       "args": {
         "target": "label=Pro"
       }
+    },
+    {
+      "title": "Start listening to the screen reader, before an action",
+      "cli": "mobium speech --listen start",
+      "args": {
+        "listen": "start"
+      }
+    },
+    {
+      "title": "Stop listening, and hear what the action made it say",
+      "cli": "mobium speech --listen stop",
+      "args": {
+        "listen": "stop"
+      }
     }
   ],
   "app_hit_test": [

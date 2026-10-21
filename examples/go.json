@@ -468,6 +468,12 @@
       },
       {
         "code": "said, err := dev.Speech(ctx, mobium.SpeechOptions{Target: \"label=Pro\"})\nif err != nil {\n\treturn err\n}\nfmt.Println(said.Steps[0].Said)"
+      },
+      {
+        "code": "if _, err := dev.Speech(ctx, mobium.SpeechOptions{Listen: \"start\"}); err != nil {\n\treturn err\n}\nif err := dev.Tap(ctx, \"testid=addLive\"); err != nil {\n\treturn err\n}"
+      },
+      {
+        "code": "heard, err := dev.Speech(ctx, mobium.SpeechOptions{Listen: \"stop\"})\nif err != nil {\n\treturn err\n}\nfor _, step := range heard.Steps {\n\tfmt.Println(step.Said, step.Cause)\n}"
       }
     ],
     "app_hit_test": [

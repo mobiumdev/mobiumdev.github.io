@@ -468,6 +468,12 @@
       },
       {
         "code": "var said = device.Speech(\"label=Pro\");\nConsole.WriteLine(said[\"steps\"]);"
+      },
+      {
+        "code": "device.ListenStart();\ndevice.Tap(\"testid=addLive\");"
+      },
+      {
+        "code": "var heard = device.ListenStop();\nConsole.WriteLine(heard[\"steps\"]);"
       }
     ],
     "app_hit_test": [
