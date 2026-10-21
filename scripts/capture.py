@@ -166,6 +166,11 @@ PLAN = [
                                                                   "$sleep 3"], after=True, pause=1.0),
     dict(tool="app_speech", i=0),
     dict(tool="app_speech", i=1, restore=["accessibility screen_reader off"]),
+    # Listening around a tap on the Screen Reader Demo's Add aloud, whose
+    # count is a live region: TalkBack says the new count.
+    dict(tool="app_speech", i=3, setup=app_screen("Screen Reader Demo") + ["wait testid=addLive",
+                                                                           "accessibility screen_reader on", "$sleep 4"]),
+    dict(tool="app_speech", i=4, setup=["tap testid=addLive"], restore=["accessibility screen_reader off"]),
     dict(tool="app_list_apps", i=0),
     dict(tool="app_contexts", i=0, setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back"],
          after=True),

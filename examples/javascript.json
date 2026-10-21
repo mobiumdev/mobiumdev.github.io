@@ -468,6 +468,12 @@
       },
       {
         "code": "const said = await device.speech({ target: 'label=Pro' })\nconsole.log(said.steps)"
+      },
+      {
+        "code": "await device.speech({ listen: 'start' })\nawait device.tap('testid=addLive')"
+      },
+      {
+        "code": "const heard = await device.speech({ listen: 'stop' })\nconsole.log(heard.steps)"
       }
     ],
     "app_hit_test": [

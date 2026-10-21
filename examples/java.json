@@ -468,6 +468,12 @@
       },
       {
         "code": "Map<String, Object> said = device.speech(\"label=Pro\", false, 0);\nSystem.out.println(said.get(\"steps\"));"
+      },
+      {
+        "code": "device.listenStart();\ndevice.tap(\"testid=addLive\");"
+      },
+      {
+        "code": "Map<String, Object> heard = device.listenStop();\nSystem.out.println(heard.get(\"steps\"));"
       }
     ],
     "app_hit_test": [

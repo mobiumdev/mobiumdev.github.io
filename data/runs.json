@@ -802,5 +802,21 @@
   "verbatim": true,
   "exit": 0,
   "output": "TalkBack says:\n  1. \"not checked. Team. Radio button\" — Team (radio)\n  2. \"OFF. Dark mode. Switch\" — Dark mode (switch)\n  3. \"Dark mode, for the whole app\" — Dark mode, for the whole app, not in map\n  4. \"Read-only\" — Read-only, not in map\n  5. \"This field cannot be edited. Edit box. disabled\"\n  6. \"notify=false terms=false plan=free theme=light\" — notify=false terms=false plan=free theme=light, not in map\n  7. (nothing)\n  8. \"Back. Button\" — Back (button)\n  9. \"Form\" — Form, not in map\n 10. \"not checked. Email me. Check box\" — Email me (checkbox)\n 11. \"not checked. Accept terms. Check box\" — Accept terms (checkbox)\n 12. \"checked. Free. Radio button\" — Free (radio)\n 13. \"not checked. Pro. Radio button\" — Pro (radio)\nended: the cursor came back round to the first element"
+ },
+ "app_speech[3]": {
+  "tool": "app_speech",
+  "index": 3,
+  "command": "mobium speech --listen start",
+  "verbatim": true,
+  "exit": 0,
+  "output": "listening to TalkBack — act, then stop it with listen stop"
+ },
+ "app_speech[4]": {
+  "tool": "app_speech",
+  "index": 4,
+  "command": "mobium speech --listen stop",
+  "verbatim": true,
+  "exit": 0,
+  "output": "TalkBack said, since listening started: \"Live cart: 1\" — Live cart: 1, not in map [a change on screen]"
  }
 }
