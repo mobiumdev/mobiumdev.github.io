@@ -777,5 +777,30 @@
   "exit": 0,
   "output": "asked Google Assistant (typed, not spoken): \"Open Clock\"\nit showed no text a screen read can see\nin front: com.google.android.deskclock\ncom.google.android.deskclock came forward",
   "after": "/img/shots/app_assistant-0-after.jpg"
+ },
+ "app_speech[2]": {
+  "tool": "app_speech",
+  "index": 2,
+  "command": "mobium speech label=Pro",
+  "verbatim": true,
+  "exit": 0,
+  "output": "TalkBack says: \"not checked. Pro. Radio button\" — Pro (radio)",
+  "after": "/img/shots/app_speech-2-after.jpg"
+ },
+ "app_speech[0]": {
+  "tool": "app_speech",
+  "index": 0,
+  "command": "mobium speech",
+  "verbatim": true,
+  "exit": 0,
+  "output": "TalkBack says: \"not checked. Pro. Radio button\" — Pro (radio)"
+ },
+ "app_speech[1]": {
+  "tool": "app_speech",
+  "index": 1,
+  "command": "mobium speech --walk --limit 20",
+  "verbatim": true,
+  "exit": 0,
+  "output": "TalkBack says:\n  1. \"not checked. Team. Radio button\" — Team (radio)\n  2. \"OFF. Dark mode. Switch\" — Dark mode (switch)\n  3. \"Dark mode, for the whole app\" — Dark mode, for the whole app, not in map\n  4. \"Read-only\" — Read-only, not in map\n  5. \"This field cannot be edited. Edit box. disabled\"\n  6. \"notify=false terms=false plan=free theme=light\" — notify=false terms=false plan=free theme=light, not in map\n  7. (nothing)\n  8. \"Back. Button\" — Back (button)\n  9. \"Form\" — Form, not in map\n 10. \"not checked. Email me. Check box\" — Email me (checkbox)\n 11. \"not checked. Accept terms. Check box\" — Accept terms (checkbox)\n 12. \"checked. Free. Radio button\" — Free (radio)\n 13. \"not checked. Pro. Radio button\" — Pro (radio)\nended: the cursor came back round to the first element"
  }
 }

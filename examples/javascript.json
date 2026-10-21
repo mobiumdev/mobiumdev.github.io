@@ -459,6 +459,17 @@
         "code": "const got = await device.assistant('What is 15 times 3', { timeout: 20 })\nconsole.log(got.answer)"
       }
     ],
+    "app_speech": [
+      {
+        "code": "const said = await device.speech()\nconsole.log(said.steps)"
+      },
+      {
+        "code": "const walk = await device.speech({ walk: true, limit: 20 })\nconsole.log(walk.steps, walk.ended)"
+      },
+      {
+        "code": "const said = await device.speech({ target: 'label=Pro' })\nconsole.log(said.steps)"
+      }
+    ],
     "app_hit_test": [
       {
         "code": "const hit = await device.hitTest('testid=submit')\nconsole.log(hit.reaches)"

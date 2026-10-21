@@ -459,6 +459,17 @@
         "code": "var got = device.Assistant(\"What is 15 times 3\", timeoutSeconds: 20);\nConsole.WriteLine(got[\"answer\"]);"
       }
     ],
+    "app_speech": [
+      {
+        "code": "var said = device.Speech();\nConsole.WriteLine(said[\"steps\"]);"
+      },
+      {
+        "code": "var walk = device.Speech(walk: true, limit: 20);\nConsole.WriteLine($\"{walk[\"steps\"]} ended {walk[\"ended\"]}\");"
+      },
+      {
+        "code": "var said = device.Speech(\"label=Pro\");\nConsole.WriteLine(said[\"steps\"]);"
+      }
+    ],
     "app_hit_test": [
       {
         "code": "var hit = device.HitTest(\"testid=submit\");\nConsole.WriteLine(hit[\"reaches\"]);"

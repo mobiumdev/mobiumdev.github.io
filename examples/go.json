@@ -459,6 +459,17 @@
         "code": "got, err := dev.Assistant(ctx, \"What is 15 times 3\", mobium.AssistantOptions{Timeout: 20 * time.Second})\nif err != nil {\n\treturn err\n}\nfmt.Println(got.Answer)"
       }
     ],
+    "app_speech": [
+      {
+        "code": "said, err := dev.Speech(ctx, mobium.SpeechOptions{})\nif err != nil {\n\treturn err\n}\nfmt.Println(said.Steps[0].Said)"
+      },
+      {
+        "code": "walk, err := dev.Speech(ctx, mobium.SpeechOptions{Walk: true, Limit: 20})\nif err != nil {\n\treturn err\n}\nfor _, step := range walk.Steps {\n\tfmt.Println(step.Said)\n}\nfmt.Println(\"ended:\", walk.Ended)"
+      },
+      {
+        "code": "said, err := dev.Speech(ctx, mobium.SpeechOptions{Target: \"label=Pro\"})\nif err != nil {\n\treturn err\n}\nfmt.Println(said.Steps[0].Said)"
+      }
+    ],
     "app_hit_test": [
       {
         "code": "hit, err := dev.HitTest(ctx, \"testid=submit\")\nif err != nil {\n\treturn err\n}\nfmt.Println(hit.Reaches)"
