@@ -459,6 +459,17 @@
         "code": "Map<String, Object> got = device.assistant(\"What is 15 times 3\", null, 20);\nSystem.out.println(got.get(\"answer\"));"
       }
     ],
+    "app_speech": [
+      {
+        "code": "Map<String, Object> said = device.speech(null, false, 0);\nSystem.out.println(said.get(\"steps\"));"
+      },
+      {
+        "code": "Map<String, Object> walk = device.speech(null, true, 20);\nSystem.out.println(walk.get(\"steps\") + \" ended \" + walk.get(\"ended\"));"
+      },
+      {
+        "code": "Map<String, Object> said = device.speech(\"label=Pro\", false, 0);\nSystem.out.println(said.get(\"steps\"));"
+      }
+    ],
     "app_hit_test": [
       {
         "code": "Map<String, Object> hit = device.hitTest(\"testid=submit\");\nSystem.out.println(hit.get(\"reaches\"));"

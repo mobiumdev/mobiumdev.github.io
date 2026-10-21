@@ -459,6 +459,17 @@
         "code": "got = device.assistant(\"What is 15 times 3\", timeout=20)\nprint(got[\"answer\"])"
       }
     ],
+    "app_speech": [
+      {
+        "code": "said = device.speech()\nprint(said[\"steps\"][0][\"said\"])"
+      },
+      {
+        "code": "walk = device.speech(walk=True, limit=20)\nfor step in walk[\"steps\"]:\n    print(step[\"said\"], step.get(\"element\", {}).get(\"label\"))"
+      },
+      {
+        "code": "said = device.speech(\"label=Pro\")\nprint(said[\"steps\"])"
+      }
+    ],
     "app_hit_test": [
       {
         "code": "hit = device.hit_test(\"testid=submit\")\nprint(hit[\"reaches\"])"

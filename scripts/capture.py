@@ -157,6 +157,15 @@ PLAN = [
     # terminated first, so the picture shows the assistant bringing it forward.
     dict(tool="app_assistant", i=0, setup=["terminate com.google.android.deskclock", "press home"], after=True,
          pause=2.0, restore=["terminate com.google.android.deskclock", "press home"]),
+    # The screen reader on the Form Demo, TalkBack turned on after the screen
+    # is up. The cursor is put on Pro first, so the picture shows TalkBack's
+    # green rectangle there and the plain read after it says Pro; the walk
+    # goes last, and TalkBack goes off. Needs TalkBack's log output level at
+    # VERBOSE, which is TalkBack's own setting: set it there before, and back.
+    dict(tool="app_speech", i=2, setup=app_screen("Form Demo") + ["wait label=Pro", "accessibility screen_reader on",
+                                                                  "$sleep 3"], after=True, pause=1.0),
+    dict(tool="app_speech", i=0),
+    dict(tool="app_speech", i=1, restore=["accessibility screen_reader off"]),
     dict(tool="app_list_apps", i=0),
     dict(tool="app_contexts", i=0, setup=app_screen("WebViews") + ["tap 'text=Plain page'", "wait text=Back"],
          after=True),

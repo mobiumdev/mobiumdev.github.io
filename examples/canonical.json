@@ -917,6 +917,28 @@
       }
     }
   ],
+  "app_speech": [
+    {
+      "title": "Say what the screen reader says about the element its cursor is on",
+      "cli": "mobium speech",
+      "args": {}
+    },
+    {
+      "title": "Walk the screen in the screen reader's order, each sentence beside its element",
+      "cli": "mobium speech --walk --limit 20",
+      "args": {
+        "walk": true,
+        "limit": 20
+      }
+    },
+    {
+      "title": "Put the screen reader's cursor on an element, and hear what it says",
+      "cli": "mobium speech label=Pro",
+      "args": {
+        "target": "label=Pro"
+      }
+    }
+  ],
   "app_hit_test": [
     {
       "title": "Ask where a tap on an element would really land",
