@@ -451,6 +451,14 @@
         "code": "Map<String, Object> found = device.audit();\nSystem.out.println(found.get(\"findings\"));"
       }
     ],
+    "app_assistant": [
+      {
+        "code": "Map<String, Object> got = device.assistant(\"Open Clock\", \"com.google.android.deskclock\", 0);\nif (!Boolean.TRUE.equals(got.get(\"reached\"))) throw new AssertionError(\"in front: \" + got.get(\"front\"));"
+      },
+      {
+        "code": "Map<String, Object> got = device.assistant(\"What is 15 times 3\", null, 20);\nSystem.out.println(got.get(\"answer\"));"
+      }
+    ],
     "app_hit_test": [
       {
         "code": "Map<String, Object> hit = device.hitTest(\"testid=submit\");\nSystem.out.println(hit.get(\"reaches\"));"

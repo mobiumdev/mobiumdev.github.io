@@ -768,5 +768,14 @@
   "exit": 0,
   "output": "pressed \"DON'T SAVE\" on the dialog \"Save this draft?\\nYou can come back to it later.\"",
   "after": "/img/shots/app_alert-2-after.jpg"
+ },
+ "app_assistant[0]": {
+  "tool": "app_assistant",
+  "index": 0,
+  "command": "mobium assistant \"Open Clock\" --app com.google.android.deskclock",
+  "verbatim": true,
+  "exit": 0,
+  "output": "asked Google Assistant (typed, not spoken): \"Open Clock\"\nit showed no text a screen read can see\nin front: com.google.android.deskclock\ncom.google.android.deskclock came forward",
+  "after": "/img/shots/app_assistant-0-after.jpg"
  }
 }
