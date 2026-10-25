@@ -2,14 +2,14 @@
 title: Introduction
 slug: /
 sidebar_position: 0
-description: Mobile app automation for AI agents and humans — Android emulators and phones, iOS simulators and iPhones, from one Go binary.
+description: Mobile app automation for AI agents and people — Android emulators and phones, iOS simulators and iPhones, from one Go binary.
 ---
 
 # Mobium
 
 *Mutatis mutandis.*
 
-**Mobile app automation for AI agents and humans.** Android emulators,
+**Mobile app automation for AI agents and people.** Android emulators,
 Android phones, iOS simulators and iPhones, driven through one tool layer
 from a single Go binary with no runtime dependencies.
 
