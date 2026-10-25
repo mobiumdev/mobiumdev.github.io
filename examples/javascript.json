@@ -55,12 +55,12 @@
         "code": "await device.incomingCall('hang')"
       }
     ],
-    "app_check": [
+    "app_set": [
       {
-        "code": "await device.check('testid=termsCheck')"
+        "code": "await device.set('testid=termsCheck')"
       },
       {
-        "code": "await device.check('@e4', false)"
+        "code": "await device.unset('@e4')"
       }
     ],
     "app_clear_data": [

@@ -55,12 +55,12 @@
         "code": "device.incomingCall(\"hang\");"
       }
     ],
-    "app_check": [
+    "app_set": [
       {
-        "code": "device.check(\"testid=termsCheck\", true);   // does nothing if it is already ticked"
+        "code": "device.set(\"testid=termsCheck\", true);   // does nothing if it is already ticked"
       },
       {
-        "code": "device.check(\"@e4\", false);"
+        "code": "device.unset(\"@e4\");"
       }
     ],
     "app_clear_data": [
