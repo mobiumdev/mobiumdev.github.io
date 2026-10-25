@@ -122,20 +122,20 @@
       }
     }
   ],
-  "app_check": [
+  "app_set": [
     {
       "title": "Tick a checkbox, whatever state it is in",
-      "cli": "mobium check testid=termsCheck",
+      "cli": "mobium set testid=termsCheck",
       "args": {
         "target": "testid=termsCheck"
       }
     },
     {
       "title": "Turn a switch off",
-      "cli": "mobium uncheck @e4",
+      "cli": "mobium unset @e4",
       "args": {
         "target": "@e4",
-        "checked": false
+        "value": false
       }
     }
   ],

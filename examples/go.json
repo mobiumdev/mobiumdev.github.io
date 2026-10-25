@@ -55,12 +55,12 @@
         "code": "if err := dev.IncomingCall(ctx, \"hang\", \"\"); err != nil {\n\treturn err\n}"
       }
     ],
-    "app_check": [
+    "app_set": [
       {
-        "code": "if err := dev.Check(ctx, \"testid=termsCheck\", true); err != nil {\n\treturn err\n}"
+        "code": "if err := dev.Set(ctx, \"testid=termsCheck\", true); err != nil {\n\treturn err\n}"
       },
       {
-        "code": "if err := dev.Check(ctx, \"@e4\", false); err != nil {\n\treturn err\n}"
+        "code": "if err := dev.Unset(ctx, \"@e4\"); err != nil {\n\treturn err\n}"
       }
     ],
     "app_clear_data": [

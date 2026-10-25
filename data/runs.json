@@ -196,23 +196,13 @@
   "output": "com.android.shell  Mobium — Your code is 123456\nandroid  Serial console enabled — Performance is impacted. To disable, check bootloader.",
   "after": "/img/shots/app_notifications-1-after.jpg"
  },
- "app_check[0]": {
-  "tool": "app_check",
-  "index": 0,
-  "before": "/img/shots/app_check-0-before.jpg",
-  "command": "mobium check testid=termsCheck",
-  "verbatim": true,
-  "exit": 0,
-  "output": "testid=termsCheck is now checked",
-  "after": "/img/shots/app_check-0-after.jpg"
- },
  "app_wait_for[2]": {
   "tool": "app_wait_for",
   "index": 2,
   "command": "mobium wait testid=termsCheck --for checked --timeout 5s",
   "verbatim": true,
   "exit": 0,
-  "output": "testid=termsCheck is checked after 18ms — @e3 Accept terms (checkbox, checked)"
+  "output": "testid=termsCheck is checked after 29ms — @e3 Accept terms (checkbox, checked)"
  },
  "app_fill:fill testid=username mobium": {
   "tool": "app_fill",
@@ -587,16 +577,6 @@
   "output": "no cookies for about:blank",
   "after": "/img/shots/app_cookies-0-after.jpg"
  },
- "app_check:uncheck testid=termsCheck": {
-  "tool": "app_check",
-  "index": null,
-  "before": "/img/shots/app_check-uncheck-testid-termscheck-before.jpg",
-  "command": "mobium uncheck testid=termsCheck",
-  "verbatim": false,
-  "exit": 0,
-  "output": "testid=termsCheck is now unchecked",
-  "after": "/img/shots/app_check-uncheck-testid-termscheck-after.jpg"
- },
  "app_open_url:open https://en.wikipedia.org/wiki/Mobile_app": {
   "tool": "app_open_url",
   "index": null,
@@ -818,5 +798,25 @@
   "verbatim": true,
   "exit": 0,
   "output": "TalkBack said, since listening started: \"Live cart: 1\" — Live cart: 1, not in map [a change on screen]"
+ },
+ "app_set[0]": {
+  "tool": "app_set",
+  "index": 0,
+  "before": "/img/shots/app_set-0-before.jpg",
+  "command": "mobium set testid=termsCheck",
+  "verbatim": true,
+  "exit": 0,
+  "output": "testid=termsCheck is now checked",
+  "after": "/img/shots/app_set-0-after.jpg"
+ },
+ "app_set:unset testid=termsCheck": {
+  "tool": "app_set",
+  "index": null,
+  "before": "/img/shots/app_set-unset-testid-termscheck-before.jpg",
+  "command": "mobium unset testid=termsCheck",
+  "verbatim": false,
+  "exit": 0,
+  "output": "testid=termsCheck is now unchecked",
+  "after": "/img/shots/app_set-unset-testid-termscheck-after.jpg"
  }
 }

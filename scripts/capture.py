@@ -104,8 +104,8 @@ PLAN = [
          restore=["accessibility bold_text off"]),
     dict(tool="app_notifications", i=0, setup=cleared_shade()),
     dict(tool="app_notifications", i=1, after=True, restore=["notifications --shade close"]),
-    dict(tool="app_check", i=0, setup=app_screen("Form Demo"), before=True, after=True),
-    dict(tool="app_wait_for", i=2, setup=app_screen("Form Demo") + ["check testid=termsCheck"]),
+    dict(tool="app_set", i=0, setup=app_screen("Form Demo"), before=True, after=True),
+    dict(tool="app_wait_for", i=2, setup=app_screen("Form Demo") + ["set testid=termsCheck"]),
     dict(tool="app_fill", i=None, cmd="fill testid=username mobium", setup=app_screen("Login Demo"), after=True),
     dict(tool="app_keyboard", i=0, setup=app_screen("Login Demo") + ["tap testid=username"], after=True),
     # The keyboard slides in after the tap; the pause lets the picture show it up.
@@ -228,8 +228,8 @@ PLAN = [
                  "`mobium tap testid=oneButtonBtn` met the Discard dialog in its way, pressed Keep Editing, and "
                  "went on — its own alert is up, and the line under the title says what the app received — "
                  "on an Android 15 emulator"),
-    dict(tool="app_check", i=None, cmd="uncheck testid=termsCheck",
-         setup=app_screen("Form Demo") + ["check testid=termsCheck"], before=True, after=True),
+    dict(tool="app_set", i=None, cmd="unset testid=termsCheck",
+         setup=app_screen("Form Demo") + ["set testid=termsCheck"], before=True, after=True),
     dict(tool="app_open_url", i=None, cmd="open https://en.wikipedia.org/wiki/Mobile_app",
          setup=["terminate org.wikipedia"], after=True, pause=3.0, restore=["terminate org.wikipedia"]),
     # A file sent to the device, then picked in MobiumApp's Files Demo, which

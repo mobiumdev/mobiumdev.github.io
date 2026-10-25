@@ -55,12 +55,12 @@
         "code": "device.IncomingCall(\"hang\");"
       }
     ],
-    "app_check": [
+    "app_set": [
       {
-        "code": "device.Check(\"testid=termsCheck\");"
+        "code": "device.Set(\"testid=termsCheck\");"
       },
       {
-        "code": "device.Check(\"@e4\", false);"
+        "code": "device.Unset(\"@e4\");"
       }
     ],
     "app_clear_data": [
@@ -673,7 +673,7 @@
     "NotConfirmedException": [
       {
         "title": "Notice an action the device did not confirm",
-        "code": "try { device.Check(\"@e4\"); }\ncatch (NotConfirmedException e) { Console.WriteLine(e.Details.Count); }"
+        "code": "try { device.Set(\"@e4\"); }\ncatch (NotConfirmedException e) { Console.WriteLine(e.Details.Count); }"
       }
     ],
     "Until": [
