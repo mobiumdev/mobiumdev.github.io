@@ -4,7 +4,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Mobium',
-  tagline: 'Mobile app automation for AI agents and humans',
+  tagline: 'Mobile app automation for AI agents and people',
   favicon: 'img/favicon.svg',
 
   future: {
