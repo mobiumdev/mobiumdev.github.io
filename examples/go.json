@@ -63,6 +63,11 @@
         "code": "if err := dev.Unset(ctx, \"@e4\"); err != nil {\n\treturn err\n}"
       }
     ],
+    "app_check": [
+      {
+        "code": "v, err := dev.Check(ctx, \"After card 3 was tapped, it was shown face up as the Blue Morpho.\", \"card.zip\",\n\t&mobium.CheckOptions{Model: \"openai:qwen2.5:14b\"})\nif err != nil {\n\treturn err\n}\nfmt.Println(v.Status, v.Summary)"
+      }
+    ],
     "app_clear_data": [
       {
         "code": "cleared, err := dev.ClearData(ctx, \"com.example.shop\")\nif err != nil {\n\treturn err\n}\nfmt.Println(\"emptied:\", cleared.Emptied, \"still granted:\", cleared.StillGranted)"
@@ -287,6 +292,14 @@
         "code": "rec, err := dev.Record(ctx, \"stop\", \"flow.mp4\")\nif err != nil {\n\treturn err\n}\nfmt.Println(rec.Path, rec.Frames, \"frames\")"
       }
     ],
+    "app_recording": [
+      {
+        "code": "sum, err := dev.Recording(ctx, \"card.zip\", \"summary\", nil)\nif err != nil {\n\treturn err\n}\nfmt.Println(sum[\"calls\"], sum[\"title\"])"
+      },
+      {
+        "code": "hits, err := dev.Recording(ctx, \"card.zip\", \"search\", map[string]any{\"query\": \"Blue Morpho\"})\nif err != nil {\n\treturn err\n}\nfmt.Println(hits[\"calls\"])"
+      }
+    ],
     "app_reset_permissions": [
       {
         "code": "if err := dev.ResetPermissions(ctx, \"com.example.shop\"); err != nil {\n\treturn err\n}"
@@ -425,6 +438,11 @@
       },
       {
         "code": "sent, err := dev.PushPath(ctx, \"seed\", \"/sdcard/seed\", \"\")\nif err != nil {\n\treturn err\n}\nfmt.Println(sent.Files, sent.Checked)"
+      }
+    ],
+    "app_verdict": [
+      {
+        "code": "if _, err := dev.Verdict(ctx, \"After card 3 was tapped, it was shown face up as the Blue Morpho.\", \"card.zip\", \"passed\",\n\t\"Card 3 reads Blue Morpho after the tap\",\n\t\"call@7: the screen after the tap shows Card 3, Blue Morpho\"); err != nil {\n\treturn err\n}"
       }
     ],
     "app_wait_for": [

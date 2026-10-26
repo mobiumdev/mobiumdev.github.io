@@ -139,6 +139,17 @@
       }
     }
   ],
+  "app_check": [
+    {
+      "title": "Ask a model on this machine whether a claim holds in a recording",
+      "cli": "mobium check \"After card 3 was tapped, it was shown face up as the Blue Morpho.\" --input card.zip --model openai:qwen2.5:14b",
+      "args": {
+        "claim": "After card 3 was tapped, it was shown face up as the Blue Morpho.",
+        "record": "card.zip",
+        "model": "openai:qwen2.5:14b"
+      }
+    }
+  ],
   "app_clear_data": [
     {
       "title": "Delete an app's data, and keep it installed",
@@ -577,6 +588,25 @@
       }
     }
   ],
+  "app_recording": [
+    {
+      "title": "See what a recording holds",
+      "cli": "mobium recording summary --input card.zip",
+      "args": {
+        "read": "summary",
+        "record": "card.zip"
+      }
+    },
+    {
+      "title": "Find the calls that mention something",
+      "cli": "mobium recording search \"Blue Morpho\" --input card.zip",
+      "args": {
+        "read": "search",
+        "query": "Blue Morpho",
+        "record": "card.zip"
+      }
+    }
+  ],
   "app_reset_permissions": [
     {
       "title": "Put one app's permissions back to their defaults",
@@ -846,6 +876,24 @@
       "args": {
         "path": "./seed",
         "device_path": "/sdcard/seed"
+      }
+    }
+  ],
+  "app_verdict": [
+    {
+      "title": "Judge a claim yourself, citing the call it rests on",
+      "cli": "mobium verdict \"After card 3 was tapped, it was shown face up as the Blue Morpho.\" --input card.zip --status passed --summary \"Card 3 reads Blue Morpho after the tap\" --evidence \"call@7: the screen after the tap shows Card 3, Blue Morpho\"",
+      "args": {
+        "claim": "After card 3 was tapped, it was shown face up as the Blue Morpho.",
+        "record": "card.zip",
+        "status": "passed",
+        "summary": "Card 3 reads Blue Morpho after the tap",
+        "evidence": [
+          {
+            "type": "observation",
+            "summary": "call@7: the screen after the tap shows Card 3, Blue Morpho"
+          }
+        ]
       }
     }
   ],
