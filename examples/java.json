@@ -63,6 +63,11 @@
         "code": "device.unset(\"@e4\");"
       }
     ],
+    "app_check": [
+      {
+        "code": "Map<String, Object> v = device.check(\"After card 3 was tapped, it was shown face up as the Blue Morpho.\", \"card.zip\", \"openai:qwen2.5:14b\");\nSystem.out.println(v.get(\"status\") + \" \" + v.get(\"summary\"));"
+      }
+    ],
     "app_clear_data": [
       {
         "code": "Map<String, Object> result = device.clearData(\"com.example.shop\");\nSystem.out.println(result.get(\"emptied\"));"
@@ -287,6 +292,14 @@
         "code": "Map<String, Object> video = device.record(\"stop\", \"flow.mp4\");\nSystem.out.println(video.get(\"frames\") + \" frames\");"
       }
     ],
+    "app_recording": [
+      {
+        "code": "System.out.println(device.recording(\"card.zip\", \"summary\", null));"
+      },
+      {
+        "code": "Map<String, Object> hits = device.recording(\"card.zip\", \"search\", \"Blue Morpho\");\nSystem.out.println(hits.get(\"calls\"));"
+      }
+    ],
     "app_reset_permissions": [
       {
         "code": "device.resetPermissions(\"com.example.shop\");"
@@ -425,6 +438,11 @@
       },
       {
         "code": "Map<String, Object> sent = device.pushPath(\"seed\", \"/sdcard/seed\");\nSystem.out.println(sent.get(\"files\") + \" \" + sent.get(\"checked\"));"
+      }
+    ],
+    "app_verdict": [
+      {
+        "code": "device.verdict(\"After card 3 was tapped, it was shown face up as the Blue Morpho.\", \"card.zip\", \"passed\",\n    \"Card 3 reads Blue Morpho after the tap\",\n    \"call@7: the screen after the tap shows Card 3, Blue Morpho\");"
       }
     ],
     "app_wait_for": [

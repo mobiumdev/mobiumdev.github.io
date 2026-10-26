@@ -63,6 +63,11 @@
         "code": "device.Unset(\"@e4\");"
       }
     ],
+    "app_check": [
+      {
+        "code": "var v = device.Check(\"After card 3 was tapped, it was shown face up as the Blue Morpho.\", \"card.zip\", \"openai:qwen2.5:14b\");\nConsole.WriteLine($\"{v[\"status\"]} {v[\"summary\"]}\");"
+      }
+    ],
     "app_clear_data": [
       {
         "code": "device.ClearData(\"com.example.shop\");"
@@ -287,6 +292,14 @@
         "code": "var video = device.Record(\"stop\", \"flow.mp4\");"
       }
     ],
+    "app_recording": [
+      {
+        "code": "var sum = device.Recording(\"card.zip\", \"summary\");\nConsole.WriteLine(sum[\"title\"]);"
+      },
+      {
+        "code": "var hits = device.Recording(\"card.zip\", \"search\", \"Blue Morpho\");\nConsole.WriteLine(hits[\"calls\"]);"
+      }
+    ],
     "app_reset_permissions": [
       {
         "code": "device.ResetPermissions(\"com.example.shop\");"
@@ -425,6 +438,11 @@
       },
       {
         "code": "var sent = device.PushPath(\"seed\", \"/sdcard/seed\");\nConsole.WriteLine($\"{sent[\"files\"]} {sent[\"checked\"]}\");"
+      }
+    ],
+    "app_verdict": [
+      {
+        "code": "device.Verdict(\"After card 3 was tapped, it was shown face up as the Blue Morpho.\", \"card.zip\", \"passed\",\n    \"Card 3 reads Blue Morpho after the tap\",\n    \"call@7: the screen after the tap shows Card 3, Blue Morpho\");"
       }
     ],
     "app_wait_for": [

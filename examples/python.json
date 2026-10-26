@@ -63,6 +63,11 @@
         "code": "device.unset(\"@e4\")"
       }
     ],
+    "app_check": [
+      {
+        "code": "v = device.check(\"After card 3 was tapped, it was shown face up as the Blue Morpho.\", \"card.zip\", model=\"openai:qwen2.5:14b\")\nprint(v[\"status\"], v[\"summary\"])"
+      }
+    ],
     "app_clear_data": [
       {
         "code": "result = device.clear_data(\"com.example.shop\")\nprint(result[\"emptied\"])"
@@ -287,6 +292,14 @@
         "code": "video = device.record(\"stop\", path=\"flow.mp4\")\nprint(video[\"frames\"], video[\"duration\"])"
       }
     ],
+    "app_recording": [
+      {
+        "code": "print(device.recording(\"card.zip\", \"summary\"))"
+      },
+      {
+        "code": "hits = device.recording(\"card.zip\", \"search\", query=\"Blue Morpho\")\nfor c in hits[\"calls\"]:\n    print(c[\"id\"], c[\"title\"])"
+      }
+    ],
     "app_reset_permissions": [
       {
         "code": "device.reset_permissions(\"com.example.shop\")"
@@ -425,6 +438,11 @@
       },
       {
         "code": "sent = device.push_path(\"seed\", \"/sdcard/seed\")\nprint(sent[\"files\"], sent[\"checked\"])"
+      }
+    ],
+    "app_verdict": [
+      {
+        "code": "device.verdict(\"After card 3 was tapped, it was shown face up as the Blue Morpho.\", \"card.zip\", \"passed\",\n               \"Card 3 reads Blue Morpho after the tap\",\n               \"call@7: the screen after the tap shows Card 3, Blue Morpho\")"
       }
     ],
     "app_wait_for": [

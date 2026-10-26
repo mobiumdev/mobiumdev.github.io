@@ -63,6 +63,11 @@
         "code": "await device.unset('@e4')"
       }
     ],
+    "app_check": [
+      {
+        "code": "const v = await device.check(\"After card 3 was tapped, it was shown face up as the Blue Morpho.\", 'card.zip', { model: 'openai:qwen2.5:14b' })\nconsole.log(v.status, v.summary)"
+      }
+    ],
     "app_clear_data": [
       {
         "code": "const cleared = await device.clearData('com.example.shop')\nconsole.log(cleared.emptied, cleared.kept)"
@@ -287,6 +292,14 @@
         "code": "const video = await device.record({ action: 'stop', path: 'flow.mp4' })\nconsole.log(video.frames, video.duration)"
       }
     ],
+    "app_recording": [
+      {
+        "code": "console.log(await device.recording('card.zip', 'summary'))"
+      },
+      {
+        "code": "const hits = await device.recording('card.zip', 'search', { query: 'Blue Morpho' })\nconsole.log(hits.calls)"
+      }
+    ],
     "app_reset_permissions": [
       {
         "code": "await device.resetPermissions('com.example.shop')"
@@ -425,6 +438,11 @@
       },
       {
         "code": "const sent = await device.pushPath('seed', '/sdcard/seed')\nconsole.log(sent.files, sent.checked)"
+      }
+    ],
+    "app_verdict": [
+      {
+        "code": "await device.verdict(\"After card 3 was tapped, it was shown face up as the Blue Morpho.\", 'card.zip', 'passed',\n  'Card 3 reads Blue Morpho after the tap',\n  [\"call@7: the screen after the tap shows Card 3, Blue Morpho\"])"
       }
     ],
     "app_wait_for": [
