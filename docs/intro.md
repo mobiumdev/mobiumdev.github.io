@@ -2,16 +2,19 @@
 title: Introduction
 slug: /
 sidebar_position: 0
-description: Mobile app automation for AI agents and people — Android emulators and phones, iOS simulators and iPhones, from one Go binary.
+description: Mobile app automation for AI agents and people — Android emulators and phones, iOS simulators and iPhones, TVs, Wear OS and Meta Quest panels, from one Go binary.
 ---
+
+<img src="https://raw.githubusercontent.com/mobiumdev/mobium/main/assets/branding/mobium-banner.gif" alt="Mobium — mobile app automation for AI agents and people. Android, iOS, TV, Wear OS, Meta Quest." width="100%" />
 
 # Mobium
 
 *Mutatis mutandis.*
 
 **Mobile app automation for AI agents and people.** Android emulators,
-Android phones, iOS simulators and iPhones, driven through one tool layer
-from a single Go binary with no runtime dependencies.
+Android phones, iOS simulators and iPhones — and TVs, Wear OS and Meta Quest's
+2D app panels — driven through one tool layer from a single Go binary with no
+runtime dependencies.
 
 ```sh
 mobium launch com.example.shop && mobium map && mobium tap @e5 && mobium map
@@ -100,8 +103,21 @@ all seven.
 | **Windows** | Not yet | No |
 
 Verified on devices, not only compiled: a Pixel 7 emulator on Android 15 and
-17, a Pixel 8 Pro on Android 17, an iPhone 17 Pro simulator on iOS 26.5, and
-an iPhone 15 Plus on iOS 26.6.2.
+17, a Pixel 8 Pro on Android 17, an iPhone 17 Pro simulator on iOS 26.5 and an
+iPhone 18 Pro simulator on iOS 27.0, and an iPhone 15 Plus on iOS 26.6.2 and,
+since its update, iOS 27.0.1.
+
+Beyond phones, from the same binary:
+
+| | What is driven | More |
+| --- | --- | --- |
+| **TVs** | a Fire TV over `adb connect`, an Android TV, and an Apple TV simulator — with a remote: the D-pad, select, back and media keys, each press reported by where focus went | [Platforms](https://github.com/mobiumdev/mobium#platforms), [Apple TV setup](https://github.com/mobiumdev/mobium/blob/main/docs/SETUP.md#an-apple-tv-simulator) |
+| **Wear OS** | a Wear OS 5.1 emulator, through the Android backends with nothing added; not yet a real watch, or the crown | [wear-os.sh](https://github.com/mobiumdev/mobium/blob/main/docs/checks/wear-os.sh) |
+| **Meta Quest** | the 2D app panels on the Meta Spatial Simulator, Meta's Horizon OS emulator; not yet a real headset, or immersive apps | [HORIZON-OS](https://github.com/mobiumdev/mobium/blob/main/docs/HORIZON-OS.md) |
+
+Windows is not supported yet: an Android emulator and a phone have been driven
+from a Windows laptop, and what is left is in
+[WINDOWS](https://github.com/mobiumdev/mobium/blob/main/docs/WINDOWS.md).
 
 ## Next
 
