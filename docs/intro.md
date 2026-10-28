@@ -115,8 +115,11 @@ Beyond phones, from the same binary:
 | **Wear OS** | a Wear OS 5.1 emulator, through the Android backends with nothing added; not yet a real watch, or the crown | [wear-os.sh](https://github.com/mobiumdev/mobium/blob/main/docs/checks/wear-os.sh) |
 | **Meta Quest** | the 2D app panels on the Meta Spatial Simulator, Meta's Horizon OS emulator; not yet a real headset, or immersive apps | [HORIZON-OS](https://github.com/mobiumdev/mobium/blob/main/docs/HORIZON-OS.md) |
 
-Windows is not supported yet: an Android emulator and a phone have been driven
-from a Windows laptop, and what is left is in
+Windows is not declared supported yet: an Android emulator and a phone have
+been driven from a Windows laptop through the CLI, MCP and all five clients,
+the checks a person at the machine runs passed on the v0.1.0-rc1 prerelease,
+and the `windows/arm64` build drove a device from Windows on ARM. Left is a
+full sweep of the device checks on an emulator; the state of it is in
 [WINDOWS](https://github.com/mobiumdev/mobium/blob/main/docs/WINDOWS.md).
 
 ## Next
