@@ -1,0 +1,57 @@
+# A failed run nobody was watching opens an issue: a scheduled run, a push
+# to the default branch, a release tag. A pull request's run is not counted,
+# since the pull request already shows it. One issue per workflow, labeled
+# ci-failure: a later failure comments on it, and the next run that passes
+# comments and closes it, so the open issues are what is broken now.
+#
+# The workflows it watches are listed by name below; one that is renamed
+# must be renamed here too.
+name: Failure issue
+
+on:
+  workflow_run:
+    workflows: [Pages]
+    types: [completed]
+
+permissions:
+  actions: read
+  issues: write
+
+jobs:
+  issue:
+    if: >
+      github.event.workflow_run.event != 'pull_request' &&
+      contains(fromJSON('["failure", "timed_out", "success"]'), github.event.workflow_run.conclusion)
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      RUN_ID: ${{ github.event.workflow_run.id }}
+      RUN_URL: ${{ github.event.workflow_run.html_url }}
+      NAME: ${{ github.event.workflow_run.name }}
+      EVENT: ${{ github.event.workflow_run.event }}
+      BRANCH: ${{ github.event.workflow_run.head_branch }}
+      SHA: ${{ github.event.workflow_run.head_sha }}
+      CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+    steps:
+      - name: Open, update or close the workflow's issue
+        run: |
+          title="$NAME is failing"
+          open=$(gh issue list --label ci-failure --state open --json number,title \
+            --jq ".[] | select(.title == \"$title\") | .number" | head -1)
+          if [ "$CONCLUSION" = success ]; then
+            [ -n "$open" ] && gh issue close "$open" --comment "Passing again: $RUN_URL ($EVENT on \`$BRANCH\`, ${SHA:0:7})."
+            exit 0
+          fi
+          failed=$(gh run view "$RUN_ID" --json jobs --jq '.jobs[] | select(.conclusion == "failure" or .conclusion == "timed_out")
+            | "- **\(.name)**: \([.steps[] | select(.conclusion == "failure") | .name] | join(", ") | if . == "" then "no step failed; the job did" else . end)"')
+          body=$(printf '%s\n\n%s\n\n%s\n' \
+            "[$NAME]($RUN_URL) $CONCLUSION on a $EVENT of \`$BRANCH\` at ${SHA:0:7}." \
+            "${failed:-No job reported a failure; see the run.}" \
+            "The run's logs and artifacts are on its page.")
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --body "$body"
+          else
+            gh label create ci-failure --color B60205 --description "A workflow failing outside a pull request" 2>/dev/null || true
+            gh issue create --title "$title" --label ci-failure --body "$body"
+          fi
