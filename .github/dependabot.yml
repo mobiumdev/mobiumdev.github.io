@@ -1,0 +1,14 @@
+# Keeps the pinned GitHub Actions current: at most one pull request a week,
+# every action's update in it. The code's own dependencies get Dependabot's
+# security updates, turned on in the repository's settings, rather than
+# version bumps: an upgrade of an app under test is a change to test, made
+# on purpose.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ["*"]
