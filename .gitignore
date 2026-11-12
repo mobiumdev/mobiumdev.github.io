@@ -29,3 +29,7 @@ yarn-error.log*
 /static/img/quickstart
 /static/img/guides
 __pycache__/
+
+# Python bytecode: it records the absolute path of the file it was built from
+__pycache__/
+*.pyc
