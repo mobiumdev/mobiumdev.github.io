@@ -2,7 +2,7 @@
 title: Introduction
 slug: /
 sidebar_position: 0
-description: Mobile app automation for AI agents and people — Android emulators and phones, iOS simulators and iPhones, TVs, Wear OS and Meta Quest panels, from one Go binary.
+description: Mobile app automation for AI agents and people — Android emulators and phones, iOS simulators and iPhones, TVs, Wear OS, Android Automotive and Meta Quest panels, from one Go binary.
 ---
 
 <img src="https://raw.githubusercontent.com/mobiumdev/mobium/main/assets/branding/mobium-banner.gif" alt="Mobium — mobile app automation for AI agents and people. Android, iOS, TV, Wear OS, Meta Quest." width="100%" />
@@ -12,9 +12,9 @@ description: Mobile app automation for AI agents and people — Android emulator
 *Mutatis mutandis.*
 
 **Mobile app automation for AI agents and people.** Android emulators,
-Android phones, iOS simulators and iPhones — and TVs, Wear OS and Meta Quest's
-2D app panels — driven through one tool layer from a single Go binary with no
-runtime dependencies.
+Android phones, iOS simulators and iPhones — and TVs, Wear OS, Android
+Automotive and Meta Quest's 2D app panels — driven through one tool layer from
+a single Go binary with no runtime dependencies.
 
 ```sh
 mobium launch com.example.shop && mobium map && mobium tap @e5 && mobium map
@@ -113,6 +113,7 @@ Beyond phones, from the same binary:
 | --- | --- | --- |
 | **TVs** | a Fire TV over `adb connect`, an Android TV, and an Apple TV simulator — with a remote: the D-pad, select, back and media keys, each press reported by where focus went | [Platforms](https://github.com/mobiumdev/mobium#platforms), [Apple TV setup](https://github.com/mobiumdev/mobium/blob/main/docs/SETUP.md#an-apple-tv-simulator) |
 | **Wear OS** | a Wear OS 5.1 emulator, through the Android backends with nothing added; not yet a real watch, or the crown | [wear-os.sh](https://github.com/mobiumdev/mobium/blob/main/docs/checks/wear-os.sh) |
+| **Cars** | the Android Automotive 15 emulator, through the UiAutomator2 backend: the system bars and the app between them, its dialogs and the car's permission prompt, acting for user 10, the driver, as the car's apps do; not yet a real car, the instrument cluster, Android Auto, or CarPlay, which Xcode 27.1's simulator does not offer | [automotive.sh](https://github.com/mobiumdev/mobium/blob/main/docs/checks/automotive.sh) |
 | **Meta Quest** | the 2D app panels on the Meta Spatial Simulator, Meta's Horizon OS emulator; not yet a real headset, or immersive apps | [HORIZON-OS](https://github.com/mobiumdev/mobium/blob/main/docs/HORIZON-OS.md) |
 
 Windows is not declared supported yet: an Android emulator and a phone have
